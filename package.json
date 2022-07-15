@@ -1,0 +1,27 @@
+{
+  "name": "eleja",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luizns/eleja.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luizns/eleja/issues"
+  },
+  "homepage": "https://github.com/luizns/eleja#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.19",
+    "uuid": "^8.3.2"
+  }
+}
