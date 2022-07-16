@@ -1,5 +1,6 @@
 const CreateUserService = require("../../services/Users/CreateUserService");
 const ListUserService = require('../../services/Users/ListUserService');
+const DeleteUserService = require('../../services/Users/DeleteUserService');
 
 const userController = {
     listAll: (request, response) =>{
@@ -41,7 +42,7 @@ const userController = {
             return response.status(400).json(deletedUser.message);
         }
 
-        return response.status(200).json(deletedUser.message);
+        response.status(200).json(deletedUser.message);
     }
 }
 

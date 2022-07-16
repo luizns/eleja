@@ -3,7 +3,7 @@ const ListUserService = require('../Users/ListUserService');
 const DeleteUserService = {
     delete: (id) => {
         const users = ListUserService.listAll();
-        const user = users.find(user => user.id === id);
+        const user = users.find(user => user.id === Number(id));
 
         if(!user){
             return {
