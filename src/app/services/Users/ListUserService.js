@@ -4,35 +4,23 @@ const ListUserService = {
     listAll: () => {
         const user1 = new UserModel(
             1,
-            "José Abelardo Barbosa de Medeiros",
-            12345678901,
-            012345,
-            98765432,
-            "abelardobm@gmail.com",
-            "a1b2b3c4"
-        )
-
+            "Rodrigo",
+            "05202377402",
+            "8524156",
+            "0865 9875 0456",
+            "rodrigomoreiralima@hotmail.com"
+            
+        );
         const user2 = new UserModel(
             2,
-            "Hebe Maria Monteiro de Camargo Ravagnani",
-            12346789051,
-            122346,
-            87654321,
-            "hebemcamargo@gmail.com",
-            "a1b2b3c4"
-        )
+            "Jackson",
+            "05514164642",
+            "854142486",
+            "0846 9155 01651",
+            "jack@hotmail.com",
+        );
 
-        const user3 = new UserModel(
-            3,
-            "Raul Santos Seixas",
-            71829348591,
-            917364,
-            84956731,
-            "raulsseixas@gmail.com",
-            "a1b2b3c4"
-        )
-
-        return [user1, user2, user3];
+        return [user1, user2];
     }
 }
 
