@@ -1,5 +1,6 @@
 const CreateUserService = require("../../services/Users/CreateUserService");
 const ListUserService = require('../../services/Users/ListUserService');
+const UpdateUserService = require("../../services/Users/UpdateUserService");
 
 const userController = {
     listAll: (request, response) =>{
@@ -31,7 +32,30 @@ const userController = {
         }
 
         return response.status(200).json(createdUser.message);
+    },
+
+    update:(request,response) =>{
+        const {id} = request.params
+        const {
+            name,
+            cpf,
+            rg,
+            titulo,
+            email,
+            password
+      } = request.body;
+
+      const updatedUser = UpdateUserService.UpdateUserService(
+        id,
+        name,
+        cpf,
+        rg,
+        titulo,
+        email,
+        password
+      );
+
+      response.json(updatedUser)
     }
 }
-
 module.exports = userController;
