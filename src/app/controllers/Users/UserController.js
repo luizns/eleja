@@ -4,17 +4,19 @@ const DeleteUserService = require('../../services/Users/DeleteUserService');
 const UpdateUserService = require("../../services/Users/UpdateUserService");
 
 const userController = {
-    listAll: (request, response) =>{
+    listAll: (request, response) => {
         const users = ListUserService.listAll();
 
         return response.send(users);
     },
-    create: (request, response) =>{
-        const {id,
+
+    create: (request, response) => {
+        const {
+            id,
             name,
             cpf,
             rg,
-            titulo,
+            voter,
             email,
             password
         } = request.body;
@@ -24,29 +26,20 @@ const userController = {
             name,
             cpf,
             rg,
-            titulo,
+            voter,
             email,
             password
         );
-        if (!createdUser.sucess) {
+
+        /* if (!createdUser.sucess) {
             return response.status(400).json(createdUser.message);
-        }
+        } */
 
         return response.status(200).json(createdUser.message);
     },
-    delete: (request, response) =>{
-        const {id} = request.params;
 
-        const deletedUser = DeleteUserService.delete(id);
-       
-        if (!deletedUser.sucess) {
-            return response.status(400).json(deletedUser.message);
-        }
-
-        response.status(200).json(deletedUser.message);
-
-    update:(request,response) =>{
-        const {id} = request.params
+    update: (request, response) => {
+        const { id } = request.params
         const {
             name,
             cpf,
@@ -54,19 +47,32 @@ const userController = {
             titulo,
             email,
             password
-      } = request.body;
+        } = request.body;
 
-      const updatedUser = UpdateUserService.UpdateUserService(
-        id,
-        name,
-        cpf,
-        rg,
-        titulo,
-        email,
-        password
-      );
+        const updatedUser = UpdateUserService.UpdateUserService(
+            id,
+            name,
+            cpf,
+            rg,
+            titulo,
+            email,
+            password
+        );
 
-      response.json(updatedUser)
+        response.json(updatedUser)
+    },
+
+    
+    delete: (request, response) => {
+        const { id } = request.params;
+
+        const deletedUser = DeleteUserService.delete(id);
+
+        if (!deletedUser.sucess) {
+            return response.status(400).json(deletedUser.message);
+        }
+        response.status(200).json(deletedUser.message)
     }
 }
+
 module.exports = userController;
