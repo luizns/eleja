@@ -31,6 +31,17 @@ const userController = {
         }
 
         return response.status(200).json(createdUser.message);
+    },
+    delete: (request, response) =>{
+        const {id} = request.params;
+
+        const deletedUser = DeleteUserService.delete(id);
+       
+        if (!deletedUser.sucess) {
+            return response.status(400).json(deletedUser.message);
+        }
+
+        return response.status(200).json(deletedUser.message);
     }
 }
 
