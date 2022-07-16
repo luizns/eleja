@@ -1,5 +1,6 @@
 const { v4 } = require('uuid');
 const UserModel = require('../../models/Users/UserModel');
+const ListUserService = require('../Users/ListUserService');
 
 const CreateUserService = {
     create: (id,
