@@ -7,12 +7,14 @@ const userController = {
 
         return response.send(users);
     },
+
     create: (request, response) =>{
-        const {id,
+        const {
+            id,
             name,
             cpf,
             rg,
-            titulo,
+            voter,
             email,
             password
         } = request.body;
@@ -22,13 +24,14 @@ const userController = {
             name,
             cpf,
             rg,
-            titulo,
+            voter,
             email,
             password
         );
-        if (!createdUser.sucess) {
+
+        /* if (!createdUser.sucess) {
             return response.status(400).json(createdUser.message);
-        }
+        } */
 
         return response.status(200).json(createdUser.message);
     }
