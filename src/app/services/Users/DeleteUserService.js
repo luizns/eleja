@@ -1,4 +1,4 @@
-const ListUserService = require('../Users/ListUserService');
+const ListUserService = require('./ListUserService');
 
 const DeleteUserService = {
     delete: (id) => {

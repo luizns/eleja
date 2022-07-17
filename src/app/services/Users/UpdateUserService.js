@@ -1,8 +1,8 @@
-const ListUserService = require('../Users/ListUserService');
+const ListUserService = require('./ListUserService');
 
-const UpdateUserService ={
+const UpdateUserService = {
 
-    UpdateUserService:(
+    UpdateUserService: (
         id ,
         name,
         cpf ,
@@ -11,11 +11,10 @@ const UpdateUserService ={
         email,
        password
     ) => {
-
         const users = ListUserService.listAll()
         const userIndice = users.findIndex(item => item.id === Number(id))
 
-        if(userIndice === -1){
+        if (userIndice === -1 ) {
             return {erro:"User not found."}
         }
 
@@ -26,14 +25,12 @@ const UpdateUserService ={
             titulo,
             email,
             password
-    
         }
 
         return {
             id,
             ...users[userIndice]
         }
-    
     }
 }
 

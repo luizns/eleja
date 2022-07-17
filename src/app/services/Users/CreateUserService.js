@@ -1,6 +1,6 @@
 const { v4 } = require('uuid');
-const UserModel = require('../../models/Users/UserModel');
-const ListUserService = require('../Users/ListUserService');
+const UserModel = require('../../models/users/UserModel');
+const ListUserService = require('./ListUserService');
 
 const CreateUserService = {
     create: (
@@ -8,16 +8,16 @@ const CreateUserService = {
         name,
         cpf,
         rg,
-        voter,
+        titulo,
         email,
         password
         ) => {
         const newUser = new UserModel(
             v4(),
             name,
-            Number(cpf),
-            Number(rg),
-            Number(voter),
+            cpf,
+            rg,
+            titulo,
             email,
             password
         );

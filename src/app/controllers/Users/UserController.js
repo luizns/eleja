@@ -1,7 +1,7 @@
-const CreateUserService = require("../../services/Users/CreateUserService");
-const ListUserService = require('../../services/Users/ListUserService');
-const DeleteUserService = require('../../services/Users/DeleteUserService');
-const UpdateUserService = require("../../services/Users/UpdateUserService");
+const CreateUserService = require("../../services/users/CreateUserService");
+const ListUserService = require('../../services/users/ListUserService');
+const DeleteUserService = require('../../services/users/DeleteUserService');
+const UpdateUserService = require("../../services/users/UpdateUserService");
 
 const userController = {
     listAll: (request, response) => {
@@ -16,7 +16,7 @@ const userController = {
             name,
             cpf,
             rg,
-            voter,
+            titulo,
             email,
             password
         } = request.body;
@@ -26,15 +26,10 @@ const userController = {
             name,
             cpf,
             rg,
-            voter,
+            titulo,
             email,
             password
         );
-
-        /* if (!createdUser.sucess) {
-            return response.status(400).json(createdUser.message);
-        } */
-
         return response.status(200).json(createdUser.message);
     },
 
