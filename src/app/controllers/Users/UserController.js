@@ -45,7 +45,7 @@ const userController = {
         } = request.body;
 
         const updatedUser = UpdateUserService.UpdateUserService(
-            id,
+            Number(id),
             name,
             cpf,
             rg,
