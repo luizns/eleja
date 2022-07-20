@@ -44,6 +44,7 @@ const userController = {
         }
 
         response.status(200).json(deletedUser.message);
+    },
 
     update:(request,response) =>{
         const {id} = request.params
@@ -67,6 +68,6 @@ const userController = {
       );
 
       response.json(updatedUser)
-    }
+        } 
 }
 module.exports = userController;
