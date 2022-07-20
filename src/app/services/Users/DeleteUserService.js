@@ -5,11 +5,11 @@ const DeleteUserService = {
         const users = ListUserService.listAll();
         const userIndex = users.findIndex(user => user.id === Number(id));
 
-        if(userIndex === -1){
+        /* if(userIndex === -1){
             return {
                 message: "ID não referente a qualquer usuário."
             }
-        }
+        } */
 
         users.splice(userIndex, 1);
 

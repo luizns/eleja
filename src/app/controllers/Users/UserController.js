@@ -30,6 +30,7 @@ const userController = {
             email,
             password
         );
+        
         return response.status(200).json(createdUser.message);
     },
 
@@ -66,6 +67,7 @@ const userController = {
         if (!deletedUser.sucess) {
             return response.status(400).json(deletedUser.message);
         }
+
         response.status(200).json(deletedUser.message)
     }
 }
