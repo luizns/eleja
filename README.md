@@ -1,8 +1,9 @@
-![img](https://user-images.githubusercontent.com/23271567/179368939-835fa1c2-ac62-4352-bd7d-ec066acd78ae.jpg)
+![f42e539f-8d83-4f07-9d33-c2cd05587105](https://user-images.githubusercontent.com/23271567/179368939-835fa1c2-ac62-4352-bd7d-ec066acd78ae.jpg)
+
 
 # Projeto Integrador
 
-​	Digital House | Potência Tech | iFood | Back-End
+ Digital House | Potência Tech | iFood
 
 ## <Elej@>
 
@@ -13,8 +14,6 @@ Discentes:
 - Luiz Nascimento da Silva
 - Rodrigo Moreira Lima
 - Ubirajara Tamer Pinto Júnior
-
-
 
 
 
