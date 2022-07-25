@@ -1,39 +1,38 @@
-const ListUserService = require('../Users/ListUserService');
+const ListUserService = require('./ListUserService');
 
-const UpdateUserService ={
+const UpdateUserService = {
 
-    UpdateUserService:(
-        id ,
+    UpdateUserService: (
+        id,
         name,
-        cpf ,
-        rg ,
+        cpf,
+        rg,
         titulo,
         email,
-       password
+        password
     ) => {
-
         const users = ListUserService.listAll()
-        const userIndice = users.findIndex(item => item.id === Number(id))
+        const userIndex = users.findIndex(user => user.id === Number(id))
 
-        if(userIndice === -1){
-            return {erro:"User not found."}
+        if (userIndex === -1) {
+            return {
+                message: "ID não referente a qualquer usuário."
+            }
         }
 
-        users[userIndice] = {
+        users[userIndex] = {
             name,
             cpf,
             rg,
             titulo,
             email,
             password
-    
         }
 
         return {
             id,
-            ...users[userIndice]
+            ...users[userIndex]
         }
-    
     }
 }
 

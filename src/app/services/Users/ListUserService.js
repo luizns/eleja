@@ -1,4 +1,4 @@
-const UserModel = require('../../models/Users/UserModel');
+const UserModel = require('../../models/users/UserModel');
 
 const ListUserService = {
     listAll: () => {
@@ -7,16 +7,16 @@ const ListUserService = {
             "Rodrigo",
             "05202377402",
             "8524156",
-            "0865 9875 0456",
+            "086598750456",
             "rodrigomoreiralima@hotmail.com"
-            
         );
+
         const user2 = new UserModel(
             2,
             "Jackson",
             "05514164642",
             "854142486",
-            "0846 9155 01651",
+            "0846915501651",
             "jack@hotmail.com",
         );
 

@@ -9,7 +9,7 @@ const userController = {
 
         return response.send(users);
     },
-
+    
     create: (request, response) => {
         const {
             id,
@@ -38,19 +38,10 @@ const userController = {
         return response.status(200).json(createdUser.message);
     },
 
-<<<<<<< HEAD
-        const deletedUser = DeleteUserService.delete(id);
-       
-        if (!deletedUser.sucess) {
-            return response.status(400).json(deletedUser.message);
-        }
-
-        response.status(200).json(deletedUser.message);
-    },
-
-    update:(request,response) =>{
-
     update: (request, response) => {
+        const { id } = request.params
+        const {
+            name,
             cpf,
             rg,
             titulo,
@@ -68,9 +59,6 @@ const userController = {
             password
         );
 
-      response.json(updatedUser)
-        } 
-
         response.json(updatedUser)
     },
 
@@ -85,7 +73,6 @@ const userController = {
         }
         response.status(200).json(deletedUser.message)
     }
-
 }
 
 module.exports = userController;

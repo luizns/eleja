@@ -1,19 +1,17 @@
-const ListUserService = require('../Users/ListUserService');
+const ListUserService = require('./ListUserService');
 
 const DeleteUserService = {
     delete: (id) => {
         const users = ListUserService.listAll();
-        const user = users.find(user => user.id === Number(id));
+        const userIndex = users.findIndex(user => user.id === Number(id));
 
-        if(!user){
+        if(userIndex === -1){
             return {
-                sucess: false,
-                message: "Usuário não encontrado."
+                message: "ID não referente a qualquer usuário."
             }
         }
 
-        const index = users.indexOf(user);
-        users.splice(index, 1);
+        users.splice(userIndex, 1);
 
         return {
             sucess: true,
