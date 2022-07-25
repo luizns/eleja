@@ -1,9 +1,9 @@
-function UserModel(id, name, cpf, rg, voter, email, password) {
+function UserModel(id, name, cpf, rg, titulo, email, password) {
     this.id = id;
     this.name = name;
     this.cpf = cpf;
     this.rg = rg;
-    this.voter = voter;
+    this.titulo = titulo;
     this.email = email;
     this.password = password;
 }

@@ -9,7 +9,7 @@ const userController = {
 
         return response.send(users);
     },
-
+    
     create: (request, response) => {
         const {
             id,

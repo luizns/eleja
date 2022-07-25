@@ -1,11 +1,14 @@
 const Router = require('express');
 
-const userController = require('./app/controllers/Users/UserController');
+const userController = require('./app/controllers/users/UserController');
+const UserValidator = require('./middlewares/UserValidator');
+const IndexValidator = require('./middlewares/IndexValidator');
 
 const routes = new Router();
 
-routes.get('/Users', userController.listAll);
-routes.post('/Users', userController.create);
-routes.put('/Users/:id', userController.update);
-routes.delete('/Users/:id', userController.delete);
+routes.get('/users', userController.listAll);
+routes.post('/users', UserValidator, userController.create);
+routes.put('/users/:id', IndexValidator, UserValidator, userController.update);
+routes.delete('/users/:id', IndexValidator, userController.delete);
+
 module.exports = routes;
