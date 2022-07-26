@@ -10,16 +10,16 @@ async function IndexValidator(request, response, next) {
             .positive("ID não pode ser um número negativo.")
             .min(1, "Este ID não se refere a qualquer usuário cadastrado.")
             .max(ListUserService.listAll().length, "Este ID não se refere a qualquer usuário cadastrado.")
-            // .typeError("Em ID devem ser usados apenas números.")
+            .typeError("Em ID devem ser usados apenas números.")
     })
 
     await schema.validate(request.params).catch(err => {
         return response.status(400).json({
             message: err.errors
-        })
-    })
+        });
+    });
 
-    next()
+    next();
 }
 
-module.exports = IndexValidator
+module.exports = IndexValidator;

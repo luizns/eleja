@@ -1,4 +1,4 @@
-const yup = require('yup')
+const yup = require('yup');
 
 async function UserValidator(request, response, next) {
     const schema = yup.object().shape({
@@ -36,10 +36,10 @@ async function UserValidator(request, response, next) {
     await schema.validate(request.body).catch(err => {
         return response.status(400).json({
             message: err.errors
-        })
-    })
+        });
+    });
 
-    next()
+    next();
 }
 
-module.exports = UserValidator
+module.exports = UserValidator;

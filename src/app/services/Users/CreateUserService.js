@@ -1,6 +1,5 @@
 const { v4 } = require('uuid');
 const UserModel = require('../../models/users/UserModel');
-const ListUserService = require('./ListUserService');
 
 const CreateUserService = {
     create: (
@@ -24,7 +23,7 @@ const CreateUserService = {
 
         return {
             sucess: true,
-            message: newUser
+            message: "Usuario criado com sucesso - ID: " + newUser.id
         }
     }
 }

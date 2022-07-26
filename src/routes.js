@@ -1,8 +1,8 @@
 const Router = require('express');
 
 const userController = require('./app/controllers/users/UserController');
-const UserValidator = require('./middlewares/UserValidator')
-const IndexValidator = require('./middlewares/IndexValidator')
+const UserValidator = require('./middlewares/UserValidator');
+const IndexValidator = require('./middlewares/IndexValidator');
 
 const routes = new Router();
 
