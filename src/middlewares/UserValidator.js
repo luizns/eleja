@@ -1,4 +1,4 @@
-const yup = require('yup');
+import yup from 'yup';
 
 async function UserValidator(request, response, next) {
     const schema = yup.object().shape({
@@ -32,4 +32,4 @@ async function UserValidator(request, response, next) {
     next();
 }
 
-module.exports = UserValidator;
+export default UserValidator;
