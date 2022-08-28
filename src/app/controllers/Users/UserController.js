@@ -1,7 +1,7 @@
-const CreateUserService = require("../../services/Users/CreateUserService");
-const ListUserService = require('../../services/Users/ListUserService');
-const DeleteUserService = require('../../services/Users/DeleteUserService');
-const UpdateUserService = require("../../services/Users/UpdateUserService");
+import CreateUserService from "../../services/Users/CreateUserService";
+import ListUserService from '../../services/Users/ListUserService';
+import DeleteUserService from '../../services/Users/DeleteUserService';
+import UpdateUserService from "../../services/Users/UpdateUserService";
 
 const userController = {
     listAll: (request, response) => {
@@ -31,10 +31,6 @@ const userController = {
             password
         );
 
-        /* if (!createdUser.sucess) {
-            return response.status(400).json(createdUser.message);
-        } */
-
         return response.status(200).json(createdUser.message);
     },
 
@@ -55,8 +51,7 @@ const userController = {
             cpf,
             rg,
             titulo,
-            email,
-            password
+            email
         );
 
         response.json(updatedUser)
@@ -75,4 +70,4 @@ const userController = {
     }
 }
 
-module.exports = userController;
+export default userController;

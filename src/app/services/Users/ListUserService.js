@@ -1,4 +1,4 @@
-const UserModel = require('../../models/users/UserModel');
+import UserModel from '../../models/users/UserModel';
 
 const ListUserService = {
     listAll: () => {
@@ -24,4 +24,4 @@ const ListUserService = {
     }
 }
 
-module.exports = ListUserService;
+export default ListUserService;

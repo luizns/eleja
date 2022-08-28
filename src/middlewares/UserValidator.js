@@ -1,6 +1,6 @@
 const yup = require('yup');
 
-async function UserValidator(request, response, next) {
+export default async function UserValidator(request, response, next) {
     const schema = yup.object().shape({
         name: yup
             .string()
@@ -23,7 +23,7 @@ async function UserValidator(request, response, next) {
             .max(16, "Para uma senha válida, são necessários no máximo 16 caracteres.")
     });
 
-    await schema.validate(request.body).catch(err => {
+    await schema.validate(request.body).catch((err) => {
         return response.status(400).json({
             message: err.errors
         });
@@ -32,4 +32,4 @@ async function UserValidator(request, response, next) {
     next();
 }
 
-module.exports = UserValidator;
+// export default UserValidator;

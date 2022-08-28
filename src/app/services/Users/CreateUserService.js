@@ -1,5 +1,5 @@
-const { v4 } = require('uuid');
-const UserModel = require('../../models/users/UserModel');
+import { v4 } from 'uuid';
+import UserModel from '../../models/users/UserModel';
 
 const CreateUserService = {
     create: (
@@ -28,4 +28,4 @@ const CreateUserService = {
     }
 }
 
-module.exports = CreateUserService;
+export default CreateUserService;

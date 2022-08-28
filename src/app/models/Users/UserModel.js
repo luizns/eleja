@@ -8,4 +8,4 @@ function UserModel(id, name, cpf, rg, titulo, email, password) {
     this.password = password;
 }
 
-module.exports = UserModel;
+export default UserModel;
