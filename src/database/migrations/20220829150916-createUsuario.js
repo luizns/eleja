@@ -24,9 +24,8 @@ module.exports = {
         allowNull: false,
       },
       id_tipo_usuario: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
-        foreingKey: true,
       },
     });
   },

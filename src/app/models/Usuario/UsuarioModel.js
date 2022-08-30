@@ -10,16 +10,15 @@ UsuarioModel.init(
       type: Sequelize.UUIDV4(),
       primaryKey: true,
     },
-    name: Sequelize.STRING,
+    nome: Sequelize.STRING,
     email: Sequelize.STRING,
-    password: Sequelize.STRING,
-    cpf: Sequelize.STRING,
-    rg: Sequelize.STRING,
-    titulo: Sequelize.STRING,
-  },
+    senha: Sequelize.STRING,
+    id_tipo_usuario:Sequelize.STRING
+   },
   {
     sequelize,
     modelName: "usuarios",
     timestamps: false,
   }
 );
+export default UsuarioModel;

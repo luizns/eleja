@@ -6,31 +6,27 @@ export default class CreateUserController {
         this.service = new CreateUserService();
     }
 
-    create (request, response){
+   async create (request, response){
         const {
-            id,
-            name,
-            cpf,
-            rg,
-            voter,
+            idusuario,
+            nome,
             email,
-            password
+            senha,
+            id_tipo_usuario
         } = request.body;
 
-        const createdUser = this.service.create(
-            id,
-            name,
-            cpf,
-            rg,
-            voter,
+        const createdUser = await this.service.create(
+            idusuario,
+            nome,
             email,
-            password
+            senha,
+            id_tipo_usuario
         );
 
         /* if (!createdUser.sucess) {
             return response.status(400).json(createdUser.message);
         } */
 
-        return response.status(200).json(createdUser.message);
+        return response.status(200).json(createdUser);
     }    
 }
