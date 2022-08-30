@@ -1,4 +1,4 @@
-import JudgeModel from '..models/JudgeModel';
+import JudgeModel from '../../models/Judges/JudgeModel';
 
 const ListJudgeService = {
     listAll: () => {

@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import JudgeModel from '../models/JudgeModel';
+import JudgeModel from '../../models/Judges/JudgeModel';
 
 const CreateJudgeService = {
     create: (
@@ -9,7 +9,7 @@ const CreateJudgeService = {
         password,
         matricula
         ) => {
-        const newJudge = new UserModel(
+        const newJudge = new JudgeModel(
             v4(),
             name,
             email,
