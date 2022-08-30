@@ -2,25 +2,24 @@ import Sequelize, { Model } from "sequelize";
 import databaseConfig from "../../../config/database";
 
 const sequelize = new Sequelize(databaseConfig);
-class EleitorModel extends Model {}
+class UsuarioModel extends Model {}
 
-EleitorModel.init(
+UsuarioModel.init(
   {
-    ideleitor: {
+    idusuario: {
       type: Sequelize.UUIDV4(),
       primaryKey: true,
     },
+    name: Sequelize.STRING,
+    email: Sequelize.STRING,
+    password: Sequelize.STRING,
     cpf: Sequelize.STRING,
-    titulo_eleitor: Sequelize.STRING,
     rg: Sequelize.STRING,
-    id_usuario: Sequelize.INTEGER,
-    id_eleitor_voto: Sequelize.INTEGER,
+    titulo: Sequelize.STRING,
   },
   {
     sequelize,
-    modelName: "eleitores",
+    modelName: "usuarios",
     timestamps: false,
   }
 );
-
-export default EleitorModel;

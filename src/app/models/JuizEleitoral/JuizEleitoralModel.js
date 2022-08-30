@@ -1,16 +1,22 @@
 import Sequelize, { Model } from "Sequelize";
+import databaseConfig from "../../../config/database";
 
-export default class JuizEleitoralModel extends Model {
-  static init(sequelize) {
-    super.init(
-      {
-        idjuiz: Sequelize.INTEGER,
-        matricula: Sequelize.STRING,
-        id_usuario: Sequelize.INTEGER,
-      },
-      {
-        sequelize,
-      }
-    );
+const sequelize = new Sequelize(databaseConfig);
+class JuizEleitoralModel extends Model {}
+
+JuizEleitoralModel.init(
+  {
+    idjuiz: {
+      type: Sequelize.UUIDV4(),
+      primaryKey: true,
+    },
+    matricula: Sequelize.STRING,
+    id_usuario: Sequelize.INTEGER,
+  },
+  {
+    sequelize,
+    modelName: "juizes",
+    timestamps: false,
   }
-}
+);
+export default JuizEleitoralModel;
