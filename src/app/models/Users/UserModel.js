@@ -1,11 +1,17 @@
-function UserModel(id, name, cpf, rg, titulo, email, password) {
-    this.id = id;
-    this.name = name;
-    this.cpf = cpf;
-    this.rg = rg;
-    this.titulo = titulo;
-    this.email = email;
-    this.password = password;
-}
+import Sequelize, { Model } from "sequelize"
 
-module.exports = UserModel;
+export default class UserModel extends Model {
+    static init(sequelize){
+        super.init({
+          id: Sequelize.UUIDV4(),
+          name: Sequelize.STRING,
+          email: Sequelize.STRING,
+          password: Sequelize.STRING,
+          cpf: Sequelize.STRING,
+          rg: Sequelize.STRING,
+          titulo: Sequelize.STRING
+        }, {
+          sequelize
+        })
+      }
+}

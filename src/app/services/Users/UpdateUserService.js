@@ -1,8 +1,10 @@
-const ListUserService = require('./ListUserService');
+import ListUserService from './ListUserService';
 
-const UpdateUserService = {
+export default class UpdateUserService {
 
-    UpdateUserService: (
+    constructor() {}
+
+    update(
         id,
         name,
         cpf,
@@ -10,7 +12,7 @@ const UpdateUserService = {
         titulo,
         email,
         password
-    ) => {
+    ) {
         const users = ListUserService.listAll()
         const userIndex = users.findIndex(user => user.id === Number(id))
 
@@ -36,4 +38,3 @@ const UpdateUserService = {
     }
 }
 
-module.exports = UpdateUserService;

@@ -1,8 +1,12 @@
-const { v4 } = require('uuid');
-const UserModel = require('../../models/users/UserModel');
+import { v4 } from 'uuid';
 
-const CreateUserService = {
-    create: (
+import UserModel from '../../models/users/UserModel';
+
+export default class CreateUserService {
+
+    constructor() {}
+
+    create (
         id,
         name,
         cpf,
@@ -10,7 +14,7 @@ const CreateUserService = {
         titulo,
         email,
         password
-        ) => {
+        ) {
         const newUser = new UserModel(
             v4(),
             name,
@@ -27,5 +31,3 @@ const CreateUserService = {
         }
     }
 }
-
-module.exports = CreateUserService;

@@ -1,7 +1,10 @@
-const UserModel = require('../../models/users/UserModel');
+import UserModel from '../../models/users/UserModel';
 
-const ListUserService = {
-    listAll: () => {
+export default class ListUserService {
+
+    constructor() {}
+
+    listAll () {
         const user1 = new UserModel(
             1,
             "Rodrigo",
@@ -22,6 +25,10 @@ const ListUserService = {
 
         return [user1, user2];
     }
+    FindUser(email, password) {
+        const user = ListUserService.listAll().find(user => user.email === email && user.password === password)
+    
+        return user
+      }
 }
 
-module.exports = ListUserService;
