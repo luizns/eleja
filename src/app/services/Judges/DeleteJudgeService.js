@@ -1,8 +1,12 @@
 import ListJudgeService from './ListJudgeService';
 
-const DeleteJudgeService = {
-    delete: (id) => {
-        const judges = ListJudgeService.listAll();
+export default class DeleteJudgeService {
+    constructor() { 
+        this.service = new ListJudgeService();
+      }
+
+    delete(id) {
+        const judges = this.service.listAll();
         const judgeIndex = judges.findIndex(judge => judge.id === Number(id));
 
         if(judgeIndex === -1){
@@ -19,5 +23,3 @@ const DeleteJudgeService = {
         }
     }
 }
-
-export default DeleteJudgeService;

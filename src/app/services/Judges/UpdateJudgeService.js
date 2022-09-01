@@ -1,13 +1,18 @@
 import ListJudgeService from './ListJudgeService';
 
-const UpdateJudgeService = {
+export default class UpdateJudgeService {
 
-    UpdateJudgeService: (
+    constructor() {
+        this.service = new ListJudgeService();
+    }
+
+    Update (
+        id,
         name,
         email,
         password,
-    ) => {
-        const judges = ListUserService.listAll()
+    ) {
+        const judges = this.service.listAll()
         const judgeIndex = judges.findIndex(judge => judge.id === Number(id))
 
         if (judgeIndex === -1) {
@@ -17,6 +22,7 @@ const UpdateJudgeService = {
         }
 
         judges[judgeIndex] = {
+            id,
             name,
             email,
             password
@@ -28,5 +34,3 @@ const UpdateJudgeService = {
         }
     }
 }
-
-export default UpdateJudgeService;

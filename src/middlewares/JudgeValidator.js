@@ -5,7 +5,8 @@ export default async function JudgeValidator(request, response, next) {
         name: yup
             .string()
             .strict()
-            .required("Nome é obrigatório."),        
+            .required("Nome é obrigatório.")
+            .min(5, "Nome deve ter no mínimo 5 caracteres."),        
         password: yup
             .string()
             .required("Senha é obrigatória.")
