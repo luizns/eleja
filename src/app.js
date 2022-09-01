@@ -1,5 +1,7 @@
 import express from 'express';
-import routes from './routes';
+import routesUsers from './rotas/routesUsers';
+import routesJudges from './rotas/routesJudges';
+import routesCandidatos from './rotas/routesCandidatos';
 
 
 class App {
@@ -8,15 +10,25 @@ class App {
         
 
         this.middlewares();
-        this.routes();
+        this.routesUsers();
+        this.routesJudges();
+        this.routesCandidatos();
     }
 
     middlewares() {
         this.server.use(express.json());
     }
 
-    routes() {
-        this.server.use(routes);
+    routesUsers() {
+        this.server.use(routesUsers);
+    }
+
+    routesJudges() {
+        this.server.use(routesJudges);
+    }
+
+    routesCandidatos() {
+        this.server.use(routesCandidatos);
     }
 }
 
