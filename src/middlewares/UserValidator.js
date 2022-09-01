@@ -5,7 +5,8 @@ export default async function UserValidator(request, response, next) {
         name: yup
             .string()
             .strict()
-            .required("Nome é obrigatório."),
+            .required("Nome é obrigatório.")
+            .min(5, "Nome deve ter no mínimo 5 caracteres."),
         cpf: yup
             .string()
             .required("CPF é obrigatório.")

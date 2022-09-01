@@ -21,8 +21,6 @@ const CreateUserService = {
             password
         );
 
-        console.log(newUser)
-
         return {
             sucess: true,
             message: "Usuario criado com sucesso - ID: " + newUser.id
