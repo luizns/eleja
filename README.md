@@ -17,4 +17,4 @@ Discentes:
 
 
 
-[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Eleja%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fluizns%2Feleja%2Frodrigo%2FInsomnia_2022-07-16.json)
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Requisi%C3%A7%C3%B5es%20Eleja&uri=)
