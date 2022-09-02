@@ -1,6 +1,6 @@
 const yup = require('yup');
 
-export default async function JudgeValidator(request, response, next) {
+export default async function CandidatoValidator(request, response, next) {
     const schema = yup.object().shape({
         name: yup
             .string()
