@@ -1,17 +1,23 @@
 import Sequelize, { Model } from "sequelize";
+import databaseConfig from "../../../config/database";
 
-export default class PartidoModel extends Model {
-  static init(sequelize) {
-    super.init(
-      {
-        idpartido: Sequelize.INTEGER,
+const sequelize = new Sequelize(databaseConfig);
+class PartidoModel extends Model {}
+
+PartidoModel.init(
+  {
+        idpartido: {
+        type:Sequelize.UUIDV4(),
+        primaryKey:true,
+       },
         nome_partido: Sequelize.STRING,
         sigla: Sequelize.STRING,
         numero_legenda: Sequelize.STRING,
       },
       {
         sequelize,
+        modelName:"partidos",
+        timestamps:false
       }
-    );
-  }
-}
+ );
+   

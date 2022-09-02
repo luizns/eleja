@@ -1,10 +1,15 @@
 import Sequelize, { Model } from "sequelize";
+import databaseConfig from "../../../config/database";
 
-export default class EnderecoEleitorModel extends Model {
-  static init(sequelize) {
-    super.init(
+const sequelize = new Sequelize(databaseConfig);
+class EnderecoEleitorModel extends Model {}
+
+EnderecoEleitorModel.init(
       {
-        idendereco: Sequelize.INTEGER,
+        idendereco:{
+          type:Sequelize.UUIDV4(),
+          primaryKey:true,
+      },
         rua: Sequelize.STRING,
         bairro: Sequelize.STRING,
         numero: Sequelize.STRING,
@@ -14,8 +19,9 @@ export default class EnderecoEleitorModel extends Model {
         id_zona: Sequelize.INTEGER,
       },
       {
-        sequelize,
+        sequelize, 
+        modelName:"enderecos",
+        timestamps:false
       }
     );
-  }
-}
+    export default EnderecoEleitorModel;

@@ -1,33 +1,24 @@
-import { v4 } from 'uuid';
+import { v4 } from "uuid";
 
-import UserModel from '../../models/users/UserModel';
+import UserModel from "../../models/Usuario/UsuarioModel";
 
 export default class CreateUserService {
+  constructor() {}
 
-    constructor() {}
-
-    create (
-        id,
-        name,
-        cpf,
-        rg,
-        titulo,
+  async create(idusuario, nome, email, senha,id_tipo_usuario) {
+    try {
+      const newUser = await UserModel.create({
+        idusuario: v4(),
+        nome,
         email,
-        password
-        ) {
-        const newUser = new UserModel(
-            v4(),
-            name,
-            cpf,
-            rg,
-            titulo,
-            email,
-            password
-        );
+        senha,
+        id_tipo_usuario
+      });
 
-        return {
-            sucess: true,
-            message: "Usuario criado com sucesso - ID: " + newUser.id
-        }
+      return newUser;
+    } catch (error) {
+      console.log(error);
+      return { erro: error.message };
     }
+  }
 }

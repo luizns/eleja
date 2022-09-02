@@ -1,12 +1,12 @@
 "use strict";
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("endereco_eleitor", {
+ async up(queryInterface, Sequelize){
+    return await queryInterface.createTable("endereco_eleitores", {
       idendereco: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
       },
       rua: {
@@ -32,17 +32,17 @@ module.exports = {
       id_eleitor: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        foreingKey: true,
+        
       },
       id_zona: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        foreingKey: true,
+       
       },
     });
   },
 
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("endereco_eleitor");
+  async down(queryInterface, Sequelize){
+    return await queryInterface.dropTable("endereco_eleitores");
   },
 };

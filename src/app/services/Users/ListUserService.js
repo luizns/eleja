@@ -1,4 +1,4 @@
-import UserModel from '../../models/users/UserModel';
+import UserModel from '../../models/Usuario/UsuarioModel';
 
 export default class ListUserService {
 

@@ -2,20 +2,23 @@ import Sequelize, { Model } from "sequelize";
 import databaseConfig from "../../../config/database";
 
 const sequelize = new Sequelize(databaseConfig);
-class ZonaEnderecoEleitor extends Model {}
+class UsuarioModel extends Model {}
 
-ZonaEnderecoEleitor.init(
+UsuarioModel.init(
   {
-    idzona: {
+    idusuario: {
       type: Sequelize.UUIDV4(),
       primaryKey: true,
     },
-    secao: Sequelize.STRING,
-  },
+    nome: Sequelize.STRING,
+    email: Sequelize.STRING,
+    senha: Sequelize.STRING,
+    id_tipo_usuario:Sequelize.STRING
+   },
   {
     sequelize,
-    modelName: "zonas",
+    modelName: "usuarios",
     timestamps: false,
   }
 );
-export default ZonaEnderecoEleitor;
+export default UsuarioModel;
