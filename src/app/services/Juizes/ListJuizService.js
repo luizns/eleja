@@ -1,9 +1,9 @@
-import JudgeModel from '../../models/Judges/JudgeModel';
+import JuizModel from '../../models/Juizes/JuizModel';
 
-export default class ListJudgeService {
+export default class ListJuizService {
     
     listAll() {
-        const judge1 = new JudgeModel(
+        const juiz1 = new JuizModel(
             56,
             "Alberto",
             "alberto@hotmail.com",
@@ -11,7 +11,7 @@ export default class ListJudgeService {
             "00501"
         );
 
-        const judge2 = new JudgeModel(
+        const juiz2 = new JuizModel(
             25,
             "Alan Pereira",
             "jack@hotmail.com",
@@ -19,6 +19,6 @@ export default class ListJudgeService {
             "001205",
         );
 
-        return [judge1, judge2];
+        return [juiz1, juiz2];
     }
 }

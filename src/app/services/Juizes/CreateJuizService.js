@@ -1,7 +1,7 @@
 import { v4 } from 'uuid';
-import JudgeModel from '../../models/Judges/JudgeModel';
+import JuizModel from '../../models/Juizes/JuizModel';
 
-export default class CreateJudgeService {
+export default class CreateJuizService {
     create (
         id,
         name,
@@ -9,7 +9,7 @@ export default class CreateJudgeService {
         password,
         matricula
         ) {
-        const newJudge = new JudgeModel(
+        const newJuiz = new JuizModel(
             v4(),
             name,
             email,
@@ -19,7 +19,7 @@ export default class CreateJudgeService {
         
         return {
             sucess: true,
-            message: "Usuario criado com sucesso - ID: " + newJudge.id
+            message: "Usuario criado com sucesso - ID: " + newJuiz.id
         }
     }
 }

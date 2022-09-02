@@ -1,10 +1,10 @@
 
-import CreateJudgeService from '../../services/Judges/CreateJudgeService';
+import CreateJuizService from '../../services/Juizes/CreateJuizService';
 
-export default class CreateJudgeController {
+export default class CreateJuizController {
     
         constructor() {
-            this.service = new CreateJudgeService();
+            this.service = new CreateJuizService();
         }
 
     create (req, res){
@@ -16,7 +16,7 @@ export default class CreateJudgeController {
             matricula
         } = req.body;
     
-        const createdJudge = this.service.create(
+        const createdJuiz = this.service.create(
             id,
             name,
             email,
@@ -24,6 +24,6 @@ export default class CreateJudgeController {
             matricula
         );
     
-        return res.status(200).json(createdJudge.message);
+        return res.status(200).json(createdJuiz.message);
     }
 }

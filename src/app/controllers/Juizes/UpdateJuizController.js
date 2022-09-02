@@ -1,8 +1,8 @@
-import UpdateJudgeService from '../../services/Judges/UpdateJudgeService';
+import UpdateJuizService from '../../services/Juizes/UpdateJuizService';
 
-export default class UpdateJudgeController {
+export default class UpdateJuizController {
     constructor() {
-        this.service = new UpdateJudgeService();
+        this.service = new UpdateJuizService();
     }
 
     update (req, res){
@@ -13,13 +13,13 @@ export default class UpdateJudgeController {
             password
         } = req.body;
 
-        const updatedJudge = this.service.Update(
+        const updatedJuiz = this.service.Update(
             id,
             name,
             email,
             password
         );
 
-        res.json(updatedJudge)
+        res.json(updatedJuiz)
     }
 }

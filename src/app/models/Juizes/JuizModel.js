@@ -1,4 +1,4 @@
-export default function JudgeModel(id, name, email, password, matricula) {
+export default function JuizModel(id, name, email, password, matricula) {
     this.id = id;
     this.name = name;
     this.email = email;

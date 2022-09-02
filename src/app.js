@@ -1,8 +1,9 @@
 import express from 'express';
 import routesUsers from './rotas/routesUsers';
-import routesJudges from './rotas/routesJudges';
+import routesJuizes from './rotas/routesJuizes';
 import routesCandidatos from './rotas/routesCandidatos';
 import routesPartidos from './rotas/routesPartidos';
+import routesEleitores from './rotas/routesEleitores';
 class App {
     constructor() {
         this.server = express();
@@ -11,9 +12,10 @@ class App {
         this.middlewares();
         
         this.routesUsers();
-        this.routesJudges();
+        this.routesJuizes();
         this.routesCandidatos();
         this.routesPartidos();
+        this.routesEleitores();
     }
 
     middlewares() {
@@ -24,8 +26,8 @@ class App {
         this.server.use(routesUsers);
     }
 
-    routesJudges() {
-        this.server.use(routesJudges);
+    routesJuizes() {
+        this.server.use(routesJuizes);
     }
 
     routesCandidatos() {
@@ -34,6 +36,10 @@ class App {
 
     routesPartidos() {
         this.server.use(routesPartidos);
+    }
+
+    routesEleitores() {
+        this.server.use(routesEleitores);
     }
 }
 
