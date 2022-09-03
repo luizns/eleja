@@ -7,7 +7,7 @@ export default class CreateEnderecoController {
             this.service = new CreateEnderecoService();
         }
 
-    create (req, res){
+    async create (req, res){
         const {
             idendereco,
             rua,
@@ -19,7 +19,7 @@ export default class CreateEnderecoController {
             id_zona
         } = req.body;
     
-        const createdEndereco = this.service.create(
+        const createdEndereco = await this.service.create(
             idendereco,
             rua,
             bairro,
@@ -30,6 +30,6 @@ export default class CreateEnderecoController {
             id_zona
         );
     
-        return res.status(200).json(createdEndereco.message);
+        return res.status(200).json(createdEndereco);
     }
 }

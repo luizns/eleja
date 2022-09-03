@@ -6,14 +6,14 @@ export default class CreateUsuarioController {
         this.service = new CreateUsuarioService();
     }
 
-   async create (request, response){
+   async create (req, res){
         const {
             idusuario,
             nome,
             email,
             senha,
             id_tipo_usuario
-        } = request.body;
+        } = req.body;
 
         const createdUsuario = await this.service.create(
             idusuario,
@@ -23,6 +23,6 @@ export default class CreateUsuarioController {
             id_tipo_usuario
         );
 
-        return response.status(200).json(createdUsuario);
+        return res.status(200).json(createdUsuario);
     }    
 }

@@ -6,7 +6,7 @@ class EnderecoModel extends Model {}
 
 EnderecoModel.init(
   {
-    idEndereco: {
+    idendereco: {
       type: Sequelize.UUIDV4(),
       primaryKey: true,
     },
@@ -20,7 +20,7 @@ EnderecoModel.init(
    },
   {
     sequelize,
-    modelName: "enderecos",
+    modelName: "endereco_eleitors",
     timestamps: false,
   }
 );

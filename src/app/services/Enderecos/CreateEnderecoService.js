@@ -2,7 +2,9 @@ import { v4 } from 'uuid';
 import EnderecoModel from '../../models/Enderecos/EnderecoEleitorModel';
 
 export default class CreateEnderecoService {
-    create (
+    constructor(){}
+
+    async create (
         idendereco,
         rua,
         bairro,
@@ -12,20 +14,22 @@ export default class CreateEnderecoService {
         id_eleitor,
         id_zona
         ) {
-        const newEndereco = new EnderecoModel(
-            v4(),
-            rua,
-            bairro,
-            numero,
-            cidade,
-            cep,
-            id_eleitor,
-            id_zona
-        );
-        
-        return {
-            sucess: true,
-            message: "Endereco criado com sucesso - ID: " + newEndereco.id
+        try {
+            const newEndereco = await EnderecoModel.create({
+                idendereco: v4(),
+                rua,
+                bairro,
+                numero,
+                cidade,
+                cep,
+                id_eleitor,
+                id_zona
+            });
+            
+            return newEndereco;        
+        } catch(error) {
+            console.log(error);
+            return { erro: error.message };
         }
     }
 }

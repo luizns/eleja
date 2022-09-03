@@ -46,7 +46,7 @@ class App {
     }
 
     routesEnderecos() {
-        this.server.use(routesEnderecos);0
+        this.server.use(routesEnderecos);
     }
 }
 
