@@ -12,6 +12,7 @@ import routesZonas from './rotas/routesZonas';
 import routesQuantVotos from './rotas/routesQuantVotos';
 import routesRegistroVotos from './rotas/routesRegistroVotos';
 import routesVotos from './rotas/routesVotos';
+import routesTipoUsuario from './rotas/routesTipoUsuario';
 class App {
    constructor() {
     this.server = express();
@@ -28,6 +29,7 @@ class App {
     this.routesQuantVotos();
     this.routesRegistroVotos();
     this.routesVotos();
+    this.routesTipoUsuario();
   }
 
   middlewares() {
@@ -37,6 +39,10 @@ class App {
 
     routesUsuarios() {
         this.server.use(routesUsuarios);
+    }
+
+    routesTipoUsuario() {
+        this.server.use(routesTipoUsuario);
     }
 
     routesJuizes() {

@@ -10,12 +10,12 @@ module.exports = {
         primaryKey: true,
       },
       hora_voto: {
-        type: Sequelize.DATE,
+        type: Sequelize.TIME,
         allowNull: false,
       },
       data_voto: {
         type: Sequelize.DATEONLY,
-        allowNull: false,
+        allowNull: false, 
       },
     });
   },

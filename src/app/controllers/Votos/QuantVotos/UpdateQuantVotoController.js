@@ -6,9 +6,8 @@ export default class UpdateQuantVotoController {
     }
 
     update (req, res){
-        const { id } = req.params
+        const { idquantvoto } = req.params
         const {
-            idquantvoto,
             horavoto,
             datavoto
         } = req.body;

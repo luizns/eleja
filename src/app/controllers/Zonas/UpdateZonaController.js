@@ -6,9 +6,8 @@ export default class UpdateZonaController {
     }
 
     update (req, res){
-        const { id } = req.params
+        const { idzona } = req.params
         const {
-            idzona,
             secao
         } = req.body;
 
