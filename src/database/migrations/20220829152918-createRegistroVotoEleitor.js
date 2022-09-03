@@ -2,7 +2,7 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return await queryInterface.createTable("registro_voto_eleitores", {
+    return await queryInterface.createTable("registra_voto_eleitores", {
       id_registro_voto_eleitor: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,

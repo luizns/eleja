@@ -1,22 +1,22 @@
 import { v4 } from 'uuid';
-import QuantVotoModel from '../../../models/Votos/QuantidadeVotosCandidatosModel';
+import RegistroVotoModel from '../../../models/Votos/RegistroVotoEleitorModel';
 
-export default class CreateQuantVotoService {
+export default class CreateRegistroVotoService {
     constructor(){}
 
     async create (
-        idquant_votos_candidato,
+        id_registro_voto_eleitor,
         hora_voto,
         data_voto
         ) {
         try {
-            const newQuantVoto = await QuantVotoModel.create({
-                idquant_votos_candidato: v4(),
+            const newRegistroVoto = await RegistroVotoModel.create({
+                id_registro_voto_eleitor: v4(),
                 hora_voto,
                 data_voto
             });
             
-            return newQuantVoto;        
+            return newRegistroVoto;        
         } catch(error) {
             console.log(error);
             return { erro: error.message };

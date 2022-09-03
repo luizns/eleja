@@ -10,12 +10,12 @@ module.exports = {
         primaryKey: true,
       },
       id_reg_voto_eleitor: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
         foreingKey: true,
       },
       id_quant_votos: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
         foreingKey: true,
       },

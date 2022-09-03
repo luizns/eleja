@@ -10,8 +10,8 @@ VotoModel.init(
       type: Sequelize.UUIDV4(),
       primaryKey: true,
     },
-    id_reg_voto_eleitor: Sequelize.INTEGER,
-    id_quant_votos: Sequelize.INTEGER,
+    id_reg_voto_eleitor: Sequelize.STRING,
+    id_quant_votos: Sequelize.STRING,
   },
   {
     sequelize,

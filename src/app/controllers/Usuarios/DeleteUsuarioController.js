@@ -6,15 +6,15 @@ export default class DeleteUsuarioController {
         this.service = new DeleteUsuarioService();
     }
 
-    delete (request, response) {
-        const { id } = request.params;
+    delete (req, res) {
+        const { id } = req.params;
 
         const deletedUsuario = this.service.delete(id);
 
         if (!deletedUsuario.sucess) {
-            return response.status(400).json(deletedUsuario.message);
+            return res.status(400).json(deletedUsuario.message);
         }
-        response.status(200).json(deletedUsuario.message)
+        res.status(200).json(deletedUsuario.message)
     }
 
 }

@@ -6,8 +6,8 @@ export default class UpdateUsuarioController {
         this.service = new UpdateUsuarioService();
     }
 
-    update(request, response) {
-        const { id } = request.params
+    update(req, res) {
+        const { id } = req.params
         const {
             name,
             cpf,
@@ -15,7 +15,7 @@ export default class UpdateUsuarioController {
             titulo,
             email,
             password
-        } = request.body;
+        } = req.body;
 
         const updatedUsuario = this.service.update(
             id,
@@ -27,7 +27,7 @@ export default class UpdateUsuarioController {
             password
         );
 
-        response.json(updatedUsuario)
+        res.json(updatedUsuario)
     }
 
 }

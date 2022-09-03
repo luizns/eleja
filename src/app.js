@@ -9,7 +9,8 @@ import routesPartidos from './rotas/routesPartidos';
 import routesEleitores from './rotas/routesEleitores';
 import routesEnderecos from './rotas/routesEnderecos';
 import routesZonas from './rotas/routesZonas';
-import routesQuantVoto from './rotas/routesQuantVotos';
+import routesQuantVotos from './rotas/routesQuantVotos';
+import routesRegistroVotos from './rotas/routesRegistroVotos';
 class App {
    constructor() {
     this.server = express();
@@ -23,7 +24,8 @@ class App {
     this.routesEleitores();
     this.routesEnderecos();
     this.routesZonas();
-    this.routesQuantVoto();
+    this.routesQuantVotos();
+    this.routesRegistroVotos();
   }
 
   middlewares() {
@@ -59,9 +61,12 @@ class App {
       this.server.use(routesZonas);
   }
 
-  routesQuantVoto() {
-    this.server.use(routesQuantVoto);
+  routesQuantVotos() {
+    this.server.use(routesQuantVotos);
 }
+  routesRegistroVotos(){
+    this.server.use(routesRegistroVotos);
+  }
 
   async initializeDatabase() {
     try {

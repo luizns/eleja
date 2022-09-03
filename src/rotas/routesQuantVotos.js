@@ -5,10 +5,10 @@ import QuantVotoValidator from '../middlewares/QuantVotoValidator';
 import IndexValidator from '../middlewares/IndexValidator';
 
 //importando controllers para QuantVoto
-import CreateQuantVotoController from '../app/controllers/Votos/QuantVotos/CreateQuantVotosController';
-import ListAllQuantVotoController from '../app/controllers/Votos/QuantVotos/ListAllQuantVotosController';
-import UpdateQuantVotoController from '../app/controllers/Votos/QuantVotos/UpdateQuantVotosController';
-import DeleteQuantVotoController from '../app/controllers/Votos/QuantVotos/DeleteQuantVotosController';
+import CreateQuantVotoController from '../app/controllers/Votos/QuantVotos/CreateQuantVotoController';
+import ListAllQuantVotoController from '../app/controllers/Votos/QuantVotos/ListAllQuantVotoController';
+import UpdateQuantVotoController from '../app/controllers/Votos/QuantVotos/UpdateQuantVotoController';
+import DeleteQuantVotoController from '../app/controllers/Votos/QuantVotos/DeleteQuantVotoController';
 import QuantVotoValidator from '../middlewares/QuantVotoValidator';
 
 // instanciando objetos do crud de QuantVoto

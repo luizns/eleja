@@ -10,8 +10,16 @@ QuantidadeVotosCandidatosModel.init(
          type:Sequelize.UUIDV4(),
          primaryKey:true
         },
-        hora_voto: Sequelize.DATE,
-        data_voto: Sequelize.DATEONLY,
+        hora_voto:{
+          type: Sequelize.TIME,
+          allowNull: false,
+          defaultValue: Sequelize.fn('now')
+        },
+        data_voto: {
+          type: Sequelize.DATEONLY,
+          allowNull: false,
+          defaultValue: Sequelize.fn('now')
+        }
       },
       {
         sequelize,
@@ -19,3 +27,4 @@ QuantidadeVotosCandidatosModel.init(
         timestamps:false
       }
     );
+    export default QuantidadeVotosCandidatosModel;
