@@ -5,6 +5,7 @@ import routesJuizes from './rotas/routesJuizes';
 import routesCandidatos from './rotas/routesCandidatos';
 import routesPartidos from './rotas/routesPartidos';
 import routesEleitores from './rotas/routesEleitores';
+import routesEnderecos from './rotas/routesEnderecos';
 class App {
     constructor() {
         this.server = express();
@@ -17,6 +18,7 @@ class App {
         this.routesCandidatos();
         this.routesPartidos();
         this.routesEleitores();
+        this.routesEnderecos();
     }
 
     middlewares() {
@@ -41,6 +43,10 @@ class App {
 
     routesEleitores() {
         this.server.use(routesEleitores);
+    }
+
+    routesEnderecos() {
+        this.server.use(routesEnderecos);0
     }
 }
 
