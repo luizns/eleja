@@ -1,4 +1,4 @@
-const yup = require('yup');
+import yup from 'yup';
 
 async function IndexValidator(request, response, next) {
     const schema = yup.object().shape({

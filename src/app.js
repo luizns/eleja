@@ -1,5 +1,6 @@
 import express from 'express';
-import routesUsers from './rotas/routesUsers';
+
+import routesUsuarios from './rotas/routesUsuarios';
 import routesJuizes from './rotas/routesJuizes';
 import routesCandidatos from './rotas/routesCandidatos';
 import routesPartidos from './rotas/routesPartidos';
@@ -11,7 +12,7 @@ class App {
 
         this.middlewares();
         
-        this.routesUsers();
+        this.routesUsuarios();
         this.routesJuizes();
         this.routesCandidatos();
         this.routesPartidos();
@@ -22,8 +23,8 @@ class App {
         this.server.use(express.json());
     }
 
-    routesUsers() {
-        this.server.use(routesUsers);
+    routesUsuarios() {
+        this.server.use(routesUsuarios);
     }
 
     routesJuizes() {

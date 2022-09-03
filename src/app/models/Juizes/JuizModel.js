@@ -1,7 +1,16 @@
-export default function JuizModel(id, name, email, password, matricula) {
-    this.id = id;
-    this.name = name;
-    this.email = email;
-    this.password = password;
-    this.matricula = matricula;
+import Sequelize, { Model } from "Sequelize";
+
+export default class JuizEleitoralModel extends Model {
+  static init(sequelize) {
+    super.init(
+      {
+        idjuiz: Sequelize.INTEGER,
+        matricula: Sequelize.STRING,
+        id_usuario: Sequelize.INTEGER,
+      },
+      {
+        sequelize,
+      }
+    );
+  }
 }
