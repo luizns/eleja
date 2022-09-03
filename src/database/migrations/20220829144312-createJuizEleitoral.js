@@ -1,12 +1,12 @@
 "use strict";
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("juiz_eleitoral", {
+ async up(queryInterface, Sequelize){
+    return queryInterface.createTable("juizes_eleitorais", {
       idjuiz: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
       },
       matricula: {
@@ -22,7 +22,7 @@ module.exports = {
     });
   },
 
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("juiz_eleitoral");
+  async down(queryInterface, Sequelize){
+    return queryInterface.dropTable("juizes_eleitorais");
   },
 };

@@ -1,10 +1,11 @@
 "use strict";
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("quant_votos_candidato", {
+ async up(queryInterface, Sequelize){
+    return await queryInterface.createTable("quant_votos_candidatos", {
       idquant_votos_candidato: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
         primaryKey: true,
       },
@@ -19,7 +20,7 @@ module.exports = {
     });
   },
 
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("quant_votos_candidato");
+ async down(queryInterface, Sequelize){
+    return await queryInterface.dropTable("quant_votos_candidatos");
   },
 };

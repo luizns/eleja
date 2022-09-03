@@ -20,7 +20,7 @@ EnderecoModel.init(
    },
   {
     sequelize,
-    modelName: "endereco_eleitors",
+    modelName: "endereco_eleitores",
     timestamps: false,
   }
 );

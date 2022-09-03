@@ -1,4 +1,6 @@
 import express from 'express';
+import db from "./database";
+
 
 import routesUsuarios from './rotas/routesUsuarios';
 import routesJuizes from './rotas/routesJuizes';
@@ -6,24 +8,28 @@ import routesCandidatos from './rotas/routesCandidatos';
 import routesPartidos from './rotas/routesPartidos';
 import routesEleitores from './rotas/routesEleitores';
 import routesEnderecos from './rotas/routesEnderecos';
+import routesZonas from './rotas/routesZonas';
+import routesQuantVoto from './rotas/routesQuantVotos';
 class App {
-    constructor() {
-        this.server = express();
-        
+   constructor() {
+    this.server = express();
+    this.initializeDatabase();
+    this.middlewares();
 
-        this.middlewares();
-        
-        this.routesUsuarios();
-        this.routesJuizes();
-        this.routesCandidatos();
-        this.routesPartidos();
-        this.routesEleitores();
-        this.routesEnderecos();
-    }
+    this.routesUsuarios();
+    this.routesJuizes();
+    this.routesCandidatos();
+    this.routesPartidos();
+    this.routesEleitores();
+    this.routesEnderecos();
+    this.routesZonas();
+    this.routesQuantVoto();
+  }
 
-    middlewares() {
-        this.server.use(express.json());
-    }
+  middlewares() {
+    this.server.use(express.json());
+  }
+
 
     routesUsuarios() {
         this.server.use(routesUsuarios);
@@ -48,6 +54,26 @@ class App {
     routesEnderecos() {
         this.server.use(routesEnderecos);
     }
+
+    routesZonas() {
+      this.server.use(routesZonas);
+  }
+
+  routesQuantVoto() {
+    this.server.use(routesQuantVoto);
+}
+
+  async initializeDatabase() {
+    try {
+      await db.authenticate();
+      console.log("Conexão com banco realizada com sucesso");
+    } catch (error) {
+      console.log(
+        "Não foi possível conectar ao banco de dados:",
+        error.message
+      );
+    }
+  }
 }
 
 export default new App().server;

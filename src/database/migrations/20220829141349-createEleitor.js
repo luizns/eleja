@@ -1,12 +1,12 @@
 "use strict";
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("eleitor", {
+ async up(queryInterface, Sequelize){
+    return await queryInterface.createTable("eleitores", {
       ideleitor: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
       },
       cpf: {
@@ -27,17 +27,17 @@ module.exports = {
       id_usuario: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        foreignKey: true,
+        
       },
       id_eleitor_voto: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        foreignKey: true,
+        
       },
     });
   },
 
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("eleitor");
+  async down(queryInterface, Sequelize){
+    return await queryInterface.dropTable("eleitores");
   },
 };

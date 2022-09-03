@@ -1,12 +1,12 @@
 "use strict";
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("zona", {
+  async up(queryInterface, Sequelize){
+    return await queryInterface.createTable("zonas", {
       idzona: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
       },
       secao: {
@@ -16,7 +16,7 @@ module.exports = {
     });
   },
 
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("zona");
+  async down(queryInterface, Sequelize){
+    return await queryInterface.dropTable("zonas");
   },
 };

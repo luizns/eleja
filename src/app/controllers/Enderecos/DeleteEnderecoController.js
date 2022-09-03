@@ -14,6 +14,6 @@ export default class DeleteEnderecoService {
         if (!deletedEndereco.sucess) {
             return res.status(400).json(deletedEndereco.message);
         }
-        res.status(200).json(deletedEleitor.message)
+        res.status(200).json(deletedEndereco.message)
     }
 }

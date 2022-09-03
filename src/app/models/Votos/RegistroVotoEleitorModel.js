@@ -1,16 +1,22 @@
 import Sequelize, { Model } from "sequelize";
+import databaseConfig from "../../../config/database";
 
-export default class RegistroVotoEleitorModel extends Model {
-  static init(sequelize) {
-    super.init(
-      {
-        id_registro_voto_eleitor: Sequelize.INTEGER,
-        hora_voto: Sequelize.DATE,
-        data_voto: Sequelize.DATEONLY,
-      },
-      {
-        sequelize,
-      }
-    );
+const sequelize = new Sequelize(databaseConfig);
+class RegistroVotoEleitorModel extends Model {}
+
+RegistroVotoEleitorModel.init(
+  {
+    id_registro_voto_eleitor: {
+      type: Sequelize.UUIDV4(),
+      primaryKey: true,
+    },
+    hora_voto: Sequelize.DATE,
+    data_voto: Sequelize.DATEONLY,
+  },
+  {
+    sequelize,
+    modelName: "registra_voto_eleitores",
+    timestamps: false,
   }
-}
+);
+export default RegistroVotoEleitorModel;
