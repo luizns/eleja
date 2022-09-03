@@ -11,6 +11,7 @@ import routesEnderecos from './rotas/routesEnderecos';
 import routesZonas from './rotas/routesZonas';
 import routesQuantVotos from './rotas/routesQuantVotos';
 import routesRegistroVotos from './rotas/routesRegistroVotos';
+import routesVotos from './rotas/routesVotos';
 class App {
    constructor() {
     this.server = express();
@@ -26,6 +27,7 @@ class App {
     this.routesZonas();
     this.routesQuantVotos();
     this.routesRegistroVotos();
+    this.routesVotos();
   }
 
   middlewares() {
@@ -66,6 +68,10 @@ class App {
 }
   routesRegistroVotos(){
     this.server.use(routesRegistroVotos);
+  }
+
+  routesVotos(){
+    this.server.use(routesVotos);
   }
 
   async initializeDatabase() {
