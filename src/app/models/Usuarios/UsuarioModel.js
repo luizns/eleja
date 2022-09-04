@@ -7,7 +7,7 @@ class UsuarioModel extends Model {}
 
 UsuarioModel.init(
   {
-    idusuario: {
+    idUsuario: {
       type: Sequelize.UUIDV4(),
       primaryKey: true,
     },

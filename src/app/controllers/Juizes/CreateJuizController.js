@@ -6,9 +6,9 @@ export default class CreateJuizController {
   }
 
  async create(req, res) {
-    const { idJuiz, matricula } = req.body;
+    const { idJuiz, matricula,id_usuario } = req.body;
 
-    const createdJuiz = await this.service.create(idJuiz, matricula);
+    const createdJuiz = await this.service.create(idJuiz, matricula,id_usuario);
 
     return res.status(200).json(createdJuiz);
   }

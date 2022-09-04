@@ -17,6 +17,12 @@ module.exports = {
       id_usuario: {
         type: Sequelize.UUID,
         allowNull: false,
+        references: {
+          model: {
+            tableName: "usuarios",
+          },
+          key: "idUsuario",
+        },
         },
     });
   },

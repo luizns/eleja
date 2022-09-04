@@ -1,6 +1,6 @@
 import Sequelize, { Model } from "sequelize";
 import databaseConfig from "../../../config/database";
-
+import UsuarioModel from "../Usuarios/UsuarioModel";
 const sequelize = new Sequelize(databaseConfig);
 class JuizEleitoralModel extends Model {}
 
@@ -11,7 +11,13 @@ JuizEleitoralModel.init(
       primaryKey: true,
     },
     matricula: Sequelize.STRING,
-    id_usuario: Sequelize.STRING,
+    id_usuario: {
+      type: Sequelize.STRING,
+      references: {
+        model: UsuarioModel,
+        key: "idUsuario",
+      },
+    },
   },
   {
     sequelize,
@@ -19,4 +25,5 @@ JuizEleitoralModel.init(
     timestamps: false,
   }
 );
+JuizEleitoralModel.belongsTo(UsuarioModel, { trough: UsuarioModel });
 export default JuizEleitoralModel;
