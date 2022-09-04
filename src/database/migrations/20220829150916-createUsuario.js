@@ -1,8 +1,8 @@
 "use strict";
 
 module.exports = {
- async up(queryInterface, Sequelize){
-    return await queryInterface.createTable("usuarios", {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.createTable("usuarios", {
       idusuario: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
@@ -10,27 +10,32 @@ module.exports = {
         primaryKey: true,
       },
       nome: {
-        type: Sequelize.STRING({ length: 100 }),
+        type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
       },
       email: {
-        type: Sequelize.STRING({ length: 60 }),
+        type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
       senha: {
-        type: Sequelize.STRING({ length: 50 }),
+        type: Sequelize.STRING,
         allowNull: false,
       },
       id_tipo_usuario: {
-        type: Sequelize.STRING,
+        type: Sequelize.UUID,
         allowNull: false,
+        references: {
+          model: {
+            tableName: "tipo_usuarios",
+          },
+          key: "idTipo",
+        },
       },
     });
   },
 
-  async down(queryInterface, Sequelize){
-    return await queryInterface.dropTable("usuarios");
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.dropTable("usuarios");
   },
 };

@@ -1,5 +1,6 @@
 import Sequelize, { Model } from "sequelize";
 import databaseConfig from "../../../config/database";
+import TipoUsuarioModel from "./TipoUsuarioModel";
 
 const sequelize = new Sequelize(databaseConfig);
 class UsuarioModel extends Model {}
@@ -13,12 +14,20 @@ UsuarioModel.init(
     nome: Sequelize.STRING,
     email: Sequelize.STRING,
     senha: Sequelize.STRING,
-    id_tipo_usuario:Sequelize.STRING
-   },
+    id_tipo_usuario: {
+      type: Sequelize.STRING,
+      references: {
+        model: TipoUsuarioModel,
+        key: 'idTipo',
+      },
+    },
+  },
   {
     sequelize,
     modelName: "usuarios",
     timestamps: false,
   }
 );
+
+UsuarioModel.belongsTo(TipoUsuarioModel,{through:TipoUsuarioModel})
 export default UsuarioModel;

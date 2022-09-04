@@ -1,12 +1,13 @@
 import Sequelize, { Model } from "sequelize";
 import databaseConfig from "../../../config/database";
+import UsuarioModel from "./UsuarioModel";
 
 const sequelize = new Sequelize(databaseConfig);
 class TipoUsuarioModel extends Model {}
 
 TipoUsuarioModel.init(
   {
-    idtipo: {
+    idTipo: {
       type: Sequelize.UUIDV4(),
       primaryKey: true,
     },
@@ -18,4 +19,5 @@ TipoUsuarioModel.init(
     timestamps: false,
   }
 );
+
 export default TipoUsuarioModel;
