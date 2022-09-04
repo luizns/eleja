@@ -1,6 +1,6 @@
 import Sequelize, { Model } from "sequelize";
 import databaseConfig from "../../../config/database";
-import UsuarioModel from "./UsuarioModel";
+
 
 const sequelize = new Sequelize(databaseConfig);
 class TipoUsuarioModel extends Model {}

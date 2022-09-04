@@ -1,23 +1,20 @@
-import { v4 } from 'uuid';
-import TipoUsuarioModel from '../../models/Usuarios/TipoUsuarioModel';
+import { v4 } from "uuid";
+import TipoUsuarioModel from "../../models/Usuarios/TipoUsuarioModel";
 
 export default class CreateTipoUsuarioService {
-    constructor(){}
+  constructor() {}
 
-    async create (
-        idtipo,
-        descricao
-        ) {
-        try {
-            const newTipoUsuario = await TipoUsuarioModel.create({
-                idtipo: v4(),
-                descricao
-            });
-            
-            return newTipoUsuario;        
-        } catch(error) {
-            console.log(error);
-            return { erro: error.message };
-        }
+  async create(idTipo, descricao) {
+    try {
+      const newTipoUsuario = await TipoUsuarioModel.create({
+        idTipo: v4(),
+        descricao,
+      });
+
+      return newTipoUsuario;
+    } catch (error) {
+      console.log(error);
+      return { erro: error.message };
     }
+  }
 }

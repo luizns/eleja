@@ -3,7 +3,7 @@
 module.exports = {
  async up(queryInterface, Sequelize){
     return queryInterface.createTable("juizes_eleitorais", {
-      idjuiz: {
+      idJuiz: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
@@ -15,10 +15,9 @@ module.exports = {
         unique: true,
       },
       id_usuario: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         allowNull: false,
-        foreingKey: true,
-      },
+        },
     });
   },
 

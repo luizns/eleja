@@ -6,16 +6,16 @@ class JuizEleitoralModel extends Model {}
 
 JuizEleitoralModel.init(
   {
-    idjuiz: {
+    idJuiz: {
       type: Sequelize.UUIDV4(),
       primaryKey: true,
     },
     matricula: Sequelize.STRING,
-    id_usuario: Sequelize.INTEGER,
+    id_usuario: Sequelize.STRING,
   },
   {
     sequelize,
-    modelName: "juizes",
+    modelName: "juizes_eleitorais",
     timestamps: false,
   }
 );

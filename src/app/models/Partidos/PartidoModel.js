@@ -6,7 +6,7 @@ class PartidoModel extends Model {}
 
 PartidoModel.init(
   {
-        idpartido: {
+        idPartido: {
         type:Sequelize.UUIDV4(),
         primaryKey:true,
        },
@@ -20,4 +20,4 @@ PartidoModel.init(
         timestamps:false
       }
  );
-   
+export default PartidoModel;
