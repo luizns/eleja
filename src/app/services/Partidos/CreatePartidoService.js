@@ -1,23 +1,22 @@
-import { v4 } from 'uuid';
-import PartidoModel from '../../models/Partidos/PartidoModel';
+import { v4 } from "uuid";
+import PartidoModel from "../../models/Partidos/PartidoModel";
 
 export default class CreatePartidoService {
-    create (
-        id,
-        name,
+  constructor () {}
+
+  async create(idPartido, nome_partido, sigla, numero_legenda) {
+    try {
+      const newPartido = await  PartidoModel.create({
+        idPartido: v4(),
+        nome_partido,
         sigla,
-        numeroLegenda
-        ) {
-        const newPartido = new PartidoModel(
-            v4(),
-            name,
-            sigla,
-            numeroLegenda
-        );
-        
-        return {
-            sucess: true,
-            message: "Usuario criado com sucesso - ID: " + newPartido.id
-        }
+        numero_legenda
+    });
+      return newPartido;
+      console.log(newPartido)
+    } catch (error) {
+      console.log(error);
+      return { erro: error.message };
     }
+  }
 }

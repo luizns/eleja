@@ -1,27 +1,20 @@
-
-import CreatePartidoService from '../../services/Partidos/CreatePartidoService';
+import CreatePartidoService from "../../services/Partidos/CreatePartidoService";
 
 export default class CreatePartidoController {
-    
-        constructor() {
-            this.service = new CreatePartidoService();
-        }
+  constructor() {
+    this.service = new CreatePartidoService();
+  }
 
-    create (req, res){
-        const {
-            id,
-            name,
-            sigla,
-            numeroLegenda
-        } = req.body;
-    
-        const createdPartido = this.service.create(
-            id,
-            name,
-            sigla,
-            numeroLegenda
-        );
-    
-        return res.status(200).json(createdPartido.message);
-    }
+  async create(req, res) {
+    const { idPartido, nome_partido, sigla, numero_legenda } = req.body;
+
+    const createdPartido = await this.service.create(
+      idPartido,
+      nome_partido,
+      sigla,
+      numero_legenda
+    );
+
+    return res.status(200).json(createdPartido);
+  }
 }
