@@ -6,7 +6,7 @@ const sequelize = new Sequelize(databaseConfig);
 export default class ZonaEnderecoEleitor extends Model {}
  ZonaEnderecoEleitor.init(
   {
-    idzona: {
+    idZona: {
       type: Sequelize.UUIDV4(),
       primaryKey: true,
     },

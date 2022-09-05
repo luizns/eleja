@@ -1,6 +1,7 @@
 import Sequelize, { Model } from "sequelize";
 import databaseConfig from "../../../config/database";
 import EleitorModel from "../../models/Eleitores/EleitorModel";
+import ZonaEnderecoEleitorModel from "../../models/Enderecos/ZonaEnderecoEleitorModel"
 const sequelize = new Sequelize(databaseConfig);
 class EnderecoModel extends Model {}
 
@@ -22,7 +23,13 @@ EnderecoModel.init(
         key: "idEleitor",
       },
     },
-    id_zona: Sequelize.STRING,
+    id_zona: {
+      type:Sequelize.UUID,
+      references:{
+        model:ZonaEnderecoEleitorModel,
+        key: "idZona",
+      }
+    },
   },
   {
     sequelize,
@@ -31,4 +38,5 @@ EnderecoModel.init(
   }
 );
 EnderecoModel.belongsTo(EleitorModel, { through: EleitorModel });
+EnderecoModel.belongsTo(ZonaEnderecoEleitorModel, { through: ZonaEnderecoEleitorModel });
 export default EnderecoModel;

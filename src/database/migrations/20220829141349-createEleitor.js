@@ -38,6 +38,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      id_zona:{
+        type: Sequelize.UUID,
+        allowNull:false
+      }
     });
   },
 

@@ -21,6 +21,7 @@ EleitorModel.init(
       },
     },
     id_eleitor_voto: Sequelize.INTEGER,
+    id_zona:Sequelize.UUID,
   },
   {
     sequelize,

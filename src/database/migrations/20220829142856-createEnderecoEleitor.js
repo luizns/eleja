@@ -40,9 +40,14 @@ module.exports = {
         },
       },
       id_zona: {
-        type: Sequelize.STRING,
+        type: Sequelize.UUID,
         allowNull: false,
-       
+        references: {
+          model: {
+            tableName: "zonas",
+          },
+          key: "idZona",
+        },
       },
     });
   },
