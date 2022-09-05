@@ -7,25 +7,23 @@ export default class CreateEleitorController {
             this.service = new CreateEleitorService();
         }
 
-    create (req, res){
+   async create (req, res){
         const {
-            id,
+            idEleitor,
             cpf,
-            titulo,
+            titulo_eleitor,
             rg,
-            idUsuario,
-            idEleitorVoto
-        } = req.body;
+            id_usuario,
+            } = req.body;
     
-        const createdEleitor = this.service.create(
-            id,
+        const createdEleitor = await this.service.create(
+            idEleitor,
             cpf,
-            titulo,
+            titulo_eleitor,
             rg,
-            idUsuario,
-            idEleitorVoto
-        );
+            id_usuario,
+          );
     
-        return res.status(200).json(createdEleitor.message);
+        return res.status(200).json(createdEleitor);
     }
 }

@@ -34,14 +34,6 @@ module.exports = {
           key: "idUsuario",
         },
       },
-      id_eleitor_voto: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      id_zona:{
-        type: Sequelize.UUID,
-        allowNull:false
-      }
     });
   },
 

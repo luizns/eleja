@@ -1,27 +1,22 @@
-import { v4 } from 'uuid';
-import EleitorModel from '../../models/Eleitores/EleitorModel';
+import { v4 } from "uuid";
+import EleitorModel from "../../models/Eleitores/EleitorModel";
 
 export default class CreateEleitorService {
-    create (
-        id,
+  constructor () {}
+  
+  async create(idEleitor, cpf, titulo_eleitor, rg, id_usuario) {
+    try {
+      const newEleitor = await EleitorModel.create({
+        idEleitor: v4(),
         cpf,
-        titulo,
+        titulo_eleitor,
         rg,
-        idUsuario,
-        idEleitorVoto
-        ) {
-        const newEleitor = new EleitorModel(
-            v4(),
-            cpf,
-            titulo,
-            rg,
-            idUsuario,
-            idEleitorVoto
-        );
-        
-        return {
-            sucess: true,
-            message: "Usuario criado com sucesso - ID: " + newEleitor.id
-        }
+        id_usuario,
+      });
+      return newEleitor;
+    } catch (error) {
+      console.log(error);
+      return { erro: error.message };
     }
+  }
 }

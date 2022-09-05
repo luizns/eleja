@@ -7,7 +7,7 @@ export default async function EleitorValidator(request, response, next) {
             .required("CPF é obrigatório.")
             .min(11, "CPF não válido, CPF deve ter 11 digítos.")
             .max(11, "CPF não válido, CPF deve ter 11 digítos."),        
-        titulo: yup
+        titulo_eleitor: yup
             .string()
             .required("Titulo é obrigatório.")
             .min(12, "Titulo não válido, Titulo deve ter 12 digítos.")
