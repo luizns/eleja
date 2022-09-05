@@ -13,6 +13,7 @@ EleitorModel.init(
     cpf: Sequelize.STRING,
     titulo_eleitor: Sequelize.STRING,
     rg: Sequelize.STRING,
+    idade:Sequelize.STRING,
     id_usuario:{ 
       type: Sequelize.UUID,
       references: {

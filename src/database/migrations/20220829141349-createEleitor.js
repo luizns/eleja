@@ -24,6 +24,10 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
+      idade:{
+        type:Sequelize.STRING({ length: 4 }),
+        allowNull:false,
+      },
       id_usuario: {
         type: Sequelize.UUID,
         allowNull: false,

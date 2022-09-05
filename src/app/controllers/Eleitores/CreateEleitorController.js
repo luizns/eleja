@@ -13,6 +13,7 @@ export default class CreateEleitorController {
             cpf,
             titulo_eleitor,
             rg,
+            idade,
             id_usuario,
             } = req.body;
     
@@ -21,6 +22,7 @@ export default class CreateEleitorController {
             cpf,
             titulo_eleitor,
             rg,
+            idade,
             id_usuario,
           );
     
