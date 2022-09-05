@@ -32,6 +32,6 @@ VotoModel.init(
     timestamps: false,
   }
 );
-VotoModel.hasMany(QuantidadeVotosCandidatosModel,{through:QuantidadeVotosCandidatosModel})
-VotoModel.hasMany(RegistroVotoEleitorModel,{through:RegistroVotoEleitorModel})
+VotoModel.belongsToMany(QuantidadeVotosCandidatosModel,{through:QuantidadeVotosCandidatosModel,as:'idQuantVotosCandidato'})
+VotoModel.belongsToMany(RegistroVotoEleitorModel,{through:RegistroVotoEleitorModel,as:'idRegistroVotoEleitor'})
 export default VotoModel;
