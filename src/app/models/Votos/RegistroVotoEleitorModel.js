@@ -1,12 +1,12 @@
 import Sequelize, { Model } from "sequelize";
 import databaseConfig from "../../../config/database";
-
+import EleitorModel from "../Eleitores/EleitorModel"
 const sequelize = new Sequelize(databaseConfig);
 class RegistroVotoEleitorModel extends Model {}
 
 RegistroVotoEleitorModel.init(
   {
-    id_registro_voto_eleitor: {
+    idRegistroVotoEleitor: {
       type: Sequelize.UUIDV4(),
       primaryKey: true,
     },
@@ -19,7 +19,16 @@ RegistroVotoEleitorModel.init(
       type: Sequelize.DATEONLY,
       allowNull: false,
       defaultValue: Sequelize.fn('now') 
+    },
+    id_eleitor:{
+      type:Sequelize.UUID,
+      allowNull:false,
+      references: {
+        model: EleitorModel,
+        key: 'idEleitor',
+      },
     }
+
   },
   {
     sequelize,
@@ -27,4 +36,5 @@ RegistroVotoEleitorModel.init(
     timestamps: false,
   }
 );
+RegistroVotoEleitorModel.belongsTo(EleitorModel,{through:EleitorModel})
 export default RegistroVotoEleitorModel;

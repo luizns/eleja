@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     return await queryInterface.createTable("registra_voto_eleitores", {
-      id_registro_voto_eleitor: {
+      idRegistroVotoEleitor: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
@@ -16,6 +16,15 @@ module.exports = {
       data_voto: {
         type: Sequelize.DATEONLY,
         allowNull: false,
+      },
+      id_eleitor: {
+        type: Sequelize.UUID,
+        references: {
+          model: {
+            tableName: "eleitores",
+          },
+          key: "idEleitor",
+        },
       },
     });
   },

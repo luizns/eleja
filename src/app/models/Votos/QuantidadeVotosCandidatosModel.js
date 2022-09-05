@@ -6,7 +6,7 @@ class QuantidadeVotosCandidatosModel extends Model {}
 
 QuantidadeVotosCandidatosModel.init(
       {
-        idquant_votos_candidato:{ 
+        idQuantVotosCandidato:{ 
          type:Sequelize.UUIDV4(),
          primaryKey:true
         },
