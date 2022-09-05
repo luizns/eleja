@@ -3,7 +3,7 @@
 module.exports = {
  async up(queryInterface, Sequelize){
     return await queryInterface.createTable("endereco_eleitores", {
-      idendereco: {
+      idEndereco: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
@@ -30,9 +30,14 @@ module.exports = {
         allowNull: false,
       },
       id_eleitor: {
-        type: Sequelize.STRING,
+        type: Sequelize.UUID,
         allowNull: false,
-        
+        references: {
+          model: {
+            tableName: "eleitores",
+          },
+          key: "idEleitor",
+        },
       },
       id_zona: {
         type: Sequelize.STRING,
