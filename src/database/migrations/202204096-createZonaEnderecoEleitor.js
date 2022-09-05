@@ -10,7 +10,7 @@ module.exports = {
         primaryKey: true,
       },
       secao: {
-        type: Sequelize.STRING({ length: 3 }),
+        type: Sequelize.STRING,
         allowNull: false,
       },
     });
