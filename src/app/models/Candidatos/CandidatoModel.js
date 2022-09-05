@@ -22,7 +22,7 @@ CandidatoModel.init(
         key: 'idPartido',
       },
     },
-    id_juiz: {
+    id_juiz_eleitoral: {
       type: Sequelize.STRING,
       references: {
         model: JuizEleitoralModel,

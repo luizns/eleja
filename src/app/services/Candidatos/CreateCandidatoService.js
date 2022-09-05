@@ -1,29 +1,30 @@
-import { v4 } from 'uuid';
-import CandidatoModel from '../../models/Candidatos/CandidatoModel';
+import { v4 } from "uuid";
+import CandidatoModel from "../../models/Candidatos/CandidatoModel";
 
 export default class CreateCandidatoService {
-    create (
-        id,
-        name,
-        numero,
-        idPartido,
-        idJuizEleitoral,
-        idCandidatoVoto
-        ) {
-        const newCandidato = new CandidatoModel(
-            v4(),
-            name,
-            numero,
-            idPartido,
-            idJuizEleitoral,
-            idCandidatoVoto
-        );
-        
-        console.log(newCandidato);
-
-        return {
-            sucess: true,
-            message: "Usuario criado com sucesso - ID: " + newCandidato.id
-        }
+  constructor() {}
+  async create(
+    idCandidato,
+    nome_candidato,
+    numero_candidato,
+    id_partido,
+    id_juiz_eleitoral,
+    id_candidato_voto
+  ) {
+    try {
+      const newCandidato = await CandidatoModel.create({
+        idCandidato: v4(),
+        nome_candidato,
+        numero_candidato,
+        id_partido,
+        id_juiz_eleitoral,
+        id_candidato_voto,
+      });
+      console.log(newCandidato);
+      return newCandidato;
+    } catch (error) {
+      console.log(error);
+      return { erro: error.message };
     }
+  }
 }

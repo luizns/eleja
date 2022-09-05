@@ -9,13 +9,13 @@ export default class CreateQuantVotoController {
 
     async create (req, res){
         const {
-            idquant_votos_candidato,
+            idQuantVotosCandidato,
             hora_voto,
             data_voto
         } = req.body;
     
         const createdQuantVoto = await this.service.create(
-            idquant_votos_candidato,
+            idQuantVotosCandidato,
             hora_voto,
             data_voto
         );
