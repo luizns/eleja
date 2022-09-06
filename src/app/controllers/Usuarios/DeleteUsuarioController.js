@@ -1,20 +1,14 @@
 import DeleteUsuarioService from "../../services/Usuarios/DeleteUsuarioService";
 
 export default class DeleteUsuarioController {
+  constructor() {
+    this.service = new DeleteUsuarioService();
+  }
 
-    constructor() {
-        this.service = new DeleteUsuarioService();
-    }
+  async delete(req, res) {
+    const { idUsuario } = req.params;
 
-    delete (req, res) {
-        const { id } = req.params;
-
-        const deletedUsuario = this.service.delete(id);
-
-        if (!deletedUsuario.sucess) {
-            return res.status(400).json(deletedUsuario.message);
-        }
-        res.status(200).json(deletedUsuario.message)
-    }
-
+    const deletedUsuario = await this.service.delete(idUsuario);
+    res.send(deletedUsuario);
+  }
 }

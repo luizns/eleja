@@ -7,8 +7,7 @@ export default class DeletePartidoService {
 
   async delete(req, res) {
     const { idPartido } = req.params;
-    console.log(idPartido);
-
+  
     const deletedPartido = await this.service.delete(idPartido);
 
     res.send(deletedPartido);
