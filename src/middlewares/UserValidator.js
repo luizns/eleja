@@ -1,30 +1,16 @@
-const yup = require('yup');
+import * as yup from "yup";
 
 async function UserValidator(request, response, next) {
     const schema = yup.object().shape({
-        name: yup
+        nome: yup
             .string()
             .min(10, "O nome deve ser completo.")
             .strict()
-            .required("Nome é obrigatório.")
-            .typeError("Nome deve ser do tipo string"),
-        cpf: yup
+            .required("Nome é obrigatório."),
+        email: yup
             .string()
-            .strict()
-            .required("CPF é obrigatório.")
-            .length(11, "Você deve digitar 11 caracteres para o CPF.")
-            .typeError("CPF deve ser do tipo string"),
-        rg: yup
-            .string()
-            .strict()
-            .min(5, "Para cadastrar o RG, são necessários no mínimo 5 caracteres.")
-            .typeError("RG deve ser do tipo string"),
-        titulo: yup
-            .string()
-            .strict()
-            .min(8, "Para cadastrar o Título de Eleitor, são necessários no mínimo 8 caracteres.")
-            .typeError("Título de eleitor deve ser do tipo string"),
-        password: yup
+            .required("E-mail é obrigatório."),
+        senha: yup
             .string()
             .strict()
             .required("Senha é obrigatória.")
@@ -42,4 +28,4 @@ async function UserValidator(request, response, next) {
     next();
 }
 
-module.exports = UserValidator;
+export default UserValidator;

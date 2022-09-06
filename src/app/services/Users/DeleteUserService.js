@@ -1,7 +1,10 @@
-const ListUserService = require('./ListUserService');
+import ListUserService from './ListUserService';
 
-const DeleteUserService = {
-    delete: (id) => {
+export default class DeleteUserService {
+
+    constructor() {}
+
+    delete(id) {
         const users = ListUserService.listAll();
         const userIndex = users.findIndex(user => user.id === Number(id));
 
@@ -20,4 +23,3 @@ const DeleteUserService = {
     }
 }
 
-module.exports = DeleteUserService;

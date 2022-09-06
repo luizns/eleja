@@ -22,4 +22,4 @@ async function IndexValidator(request, response, next) {
     next();
 }
 
-module.exports = IndexValidator;
+export default IndexValidator

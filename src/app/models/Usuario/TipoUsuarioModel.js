@@ -1,0 +1,21 @@
+import Sequelize, { Model } from "sequelize";
+import databaseConfig from "../../../config/database";
+
+const sequelize = new Sequelize(databaseConfig);
+class TipoUsuarioModel extends Model {}
+
+TipoUsuarioModel.init(
+  {
+    idtipo_usuario: {
+      type: Sequelize.UUIDV4(),
+      primaryKey: true,
+    },
+    descricao: Sequelize.STRING,
+  },
+  {
+    sequelize,
+    modelName: "tipo_usuarios",
+    timestamps: false,
+  }
+);
+export default TipoUsuarioModel;
