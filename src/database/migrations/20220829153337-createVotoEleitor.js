@@ -1,28 +1,38 @@
 "use strict";
 
 module.exports = {
-  async up (queryInterface, Sequelize){
+  async up(queryInterface, Sequelize) {
     return await queryInterface.createTable("votos", {
-      idvoto: {
+      idVoto: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
         primaryKey: true,
       },
-      id_reg_voto_eleitor: {
-        type: Sequelize.INTEGER,
+      id_registro_voto_eleitor: {
+        type: Sequelize.UUID,
         allowNull: false,
-        foreingKey: true,
+        references: {
+          model: {
+            tableName: "registra_voto_eleitores",
+          },
+          key: "idRegistroVotoEleitor",
+        },
       },
-      id_quant_votos: {
-        type: Sequelize.INTEGER,
+      id_quant_votos_candidato: {
+        type: Sequelize.UUID,
         allowNull: false,
-        foreingKey: true,
+        references: {
+          model: {
+            tableName: "quant_votos_candidatos",
+          },
+          key: "idQuantVotosCandidato",
+        },
       },
     });
   },
 
-  async down(queryInterface, Sequelize){
+  async down(queryInterface, Sequelize) {
     return await queryInterface.dropTable("votos");
   },
 };

@@ -1,21 +1,83 @@
-import express from "express";
-import routes from "./routes";
+import express from 'express';
 import db from "./database";
 
+
+import routesUsuarios from './rotas/routesUsuarios';
+import routesJuizes from './rotas/routesJuizes';
+import routesCandidatos from './rotas/routesCandidatos';
+import routesPartidos from './rotas/routesPartidos';
+import routesEleitores from './rotas/routesEleitores';
+import routesEnderecos from './rotas/routesEnderecos';
+import routesZonas from './rotas/routesZonas';
+import routesQuantVotos from './rotas/routesQuantVotos';
+import routesRegistroVotos from './rotas/routesRegistroVotos';
+import routesVotos from './rotas/routesVotos';
+import routesTipoUsuario from './rotas/routesTipoUsuario';
 class App {
-  constructor() {
+   constructor() {
     this.server = express();
     this.initializeDatabase();
     this.middlewares();
-    this.routes();
+
+    this.routesUsuarios();
+    this.routesJuizes();
+    this.routesCandidatos();
+    this.routesPartidos();
+    this.routesEleitores();
+    this.routesEnderecos();
+    this.routesZonas();
+    this.routesQuantVotos();
+    this.routesRegistroVotos();
+    this.routesVotos();
+    this.routesTipoUsuario();
   }
 
   middlewares() {
     this.server.use(express.json());
   }
 
-  routes() {
-    this.server.use(routes);
+
+    routesUsuarios() {
+        this.server.use(routesUsuarios);
+    }
+
+    routesTipoUsuario() {
+        this.server.use(routesTipoUsuario);
+    }
+
+    routesJuizes() {
+        this.server.use(routesJuizes);
+    }
+
+    routesCandidatos() {
+        this.server.use(routesCandidatos);
+    }
+
+    routesPartidos() {
+        this.server.use(routesPartidos);
+    }
+
+    routesEleitores() {
+        this.server.use(routesEleitores);
+    }
+
+    routesEnderecos() {
+        this.server.use(routesEnderecos);
+    }
+
+    routesZonas() {
+      this.server.use(routesZonas);
+  }
+
+  routesQuantVotos() {
+    this.server.use(routesQuantVotos);
+}
+  routesRegistroVotos(){
+    this.server.use(routesRegistroVotos);
+  }
+
+  routesVotos(){
+    this.server.use(routesVotos);
   }
 
   async initializeDatabase() {
