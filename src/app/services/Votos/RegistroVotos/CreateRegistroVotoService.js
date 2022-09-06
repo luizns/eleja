@@ -1,19 +1,28 @@
 import { v4 } from "uuid";
-import RegistroVotoModel from "../../../models/Votos/RegistroVotoEleitorModel";
+import RegistroVotoModel from "../../../models/Votos/RegistroVotoModel";
+import CandidatoModel from "../../../models/Candidatos/CandidatoModel";
 
 export default class CreateRegistroVotoService {
-  constructor() {}
+  constructor() { }
 
-  async create(idRegistroVotoEleitor, hora_voto, data_voto,id_eleitor) {
+  async criar(
+    numeroDigitado,
+    dataHoraVoto,
+    id_eleitor
+  ) {
     try {
-      const newRegistroVoto = await RegistroVotoModel.create({
+      if (!numeroDigitado) {
+        return {erro: "Número do candidato deve ser informado."}
+      }
+
+      const registroVoto = await RegistroVotoModel.create({
         idRegistroVotoEleitor: v4(),
-        hora_voto,
-        data_voto,
+        numeroDigitado,
+        dataHoraVoto,
         id_eleitor
       });
 
-      return newRegistroVoto;
+      return registroVoto;
     } catch (error) {
       console.log(error);
       return { erro: error.message };

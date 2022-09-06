@@ -1,20 +1,19 @@
-import QuantVotoModel from '../../../models/Votos/QuantidadeVotosCandidatosModel';
+import RegistroVotoModel from "../../../models/Votos/RegistroVotoModel";
 
-export default class ListQuantVotoService {
-    
-    listAll() {
-        const quantvoto1 = new QuantVotoModel(
-            "001",
-            "16:59",
-            "2020/10/10"
-        );
+export default class ListarQuantVotosService {
+    constructor() {}
 
-        const quantvoto2 = new QuantVotoModel(
-            "002",
-            "16:30",
-            "2020/10/10"
-        );
+    async contagemDeVotos(numero) {
+        try {
+            const contagem = await RegistroVotoModel.findAll({
+                where: { numeroDigitado: numero }
+            })
 
-        return [quantvoto1, quantvoto2];
+            return contagem.length
+
+        } catch (error) {
+            console.log(error);
+            return { erro: error.message };
+        }
     }
 }
