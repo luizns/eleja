@@ -26,6 +26,6 @@ routesPartido.post('/partidos', PartidoValidator, (req,res) => createPartidoCont
 
 routesPartido.put('/partidos/:id', IndexValidator, PartidoValidator, (req, res) => updatePartidoController.update(req, res));
 
-routesPartido.delete('/partidos/:id', IndexValidator, (req, res) => deletePartidoController.delete(req, res));
+routesPartido.delete('/partidos/:idPartido', IndexValidator, (req, res) => deletePartidoController.delete(req, res));
 
 export default routesPartido;
