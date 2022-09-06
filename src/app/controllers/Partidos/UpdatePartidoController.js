@@ -1,25 +1,21 @@
-import UpdatePartidoService from '../../services/Partidos/UpdatePartidoService';
+import UpdatePartidoService from "../../services/Partidos/UpdatePartidoService";
 
 export default class UpdatePartidoController {
-    constructor() {
-        this.service = new UpdatePartidoService();
-    }
+  constructor() {
+    this.service = new UpdatePartidoService();
+  }
 
-    update (req, res){
-        const { id } = req.params
-        const {
-            name,
-            sigla,
-            numeroLegenda
-        } = req.body;
+  async update(req, res) {
+    const { idPartido } = req.params;
+    const { nome_partido, sigla, numero_legenda } = req.body;
 
-        const updatedPartido = this.service.Update(
-            id,
-            name,
-            sigla,
-            numeroLegenda
-        );
+    const updatedPartido = await this.service.update(
+      idPartido,
+      nome_partido,
+      sigla,
+      numero_legenda
+    );
 
-        res.json(updatedPartido)
-    }
+    res.json(updatedPartido);
+  }
 }

@@ -24,7 +24,7 @@ routesPartido.get('/partidos', (req, res) => listAllPartidoController.listAll(re
 
 routesPartido.post('/partidos', PartidoValidator, (req,res) => createPartidoController.create(req, res));
 
-routesPartido.put('/partidos/:id', IndexValidator, PartidoValidator, (req, res) => updatePartidoController.update(req, res));
+routesPartido.put('/partidos/:idPartido', IndexValidator, PartidoValidator, (req, res) => updatePartidoController.update(req, res));
 
 routesPartido.delete('/partidos/:idPartido', IndexValidator, (req, res) => deletePartidoController.delete(req, res));
 
