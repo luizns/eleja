@@ -1,19 +1,14 @@
-import DeleteEnderecoService from '../../services/Enderecos/DeleteEnderecoService';
+import DeleteEnderecoService from "../../services/Enderecos/DeleteEnderecoService";
 
 export default class DeleteEnderecoService {
+  constructor() {
+    this.service = new DeleteEnderecoService();
+  }
 
-    constructor(){
-        this.service = new DeleteEnderecoService();
-    }
+  async delete(req, res) {
+    const { idEndereco } = req.params;
 
-    delete (req, res){
-        const { id } = req.params;
-
-        const deletedEndereco = this.service.delete(id);
-
-        if (!deletedEndereco.sucess) {
-            return res.status(400).json(deletedEndereco.message);
-        }
-        res.status(200).json(deletedEndereco.message)
-    }
+    const deletedEndereco = await this.service.delete(idEndereco);
+    res.send(deletedEndereco);
+  }
 }
