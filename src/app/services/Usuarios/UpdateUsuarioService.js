@@ -1,35 +1,45 @@
-import ListUsuarioService from './ListUsuarioService';
+import UsuarioModel from "../../models/Usuarios/UsuarioModel";
 
 export default class UpdateUsuarioService {
+  constructor() {}
 
-    constructor() {}
+  async update(idUsuario, nome, email, senha, id_tipo_usuario) {
+    try {
+      const partido = await UsuarioModel.findByPk(idUsuario);
 
-    update(
-        id,
-        nome,
-        email,
-        senha,
-        id_tipo_usuario
-    ) {
-        const usuarios = ListUsuarioService.listAll()
-        const usuarioIndex = usuarios.findIndex(Usuario => usuario.id === Number(id))
+      if (!partido) {
+        return { mensagem: "Usuário não localizado com id: " + idUsuario };
+      }
 
-        if (usuarioIndex === -1) {
-            return {
-                message: "ID não referente a qualquer usuário."
-            }
+      const [numeroRegistrosAtualizado] = await UsuarioModel.update(
+        {
+          idUsuario,
+          nome,
+          email,
+          senha,
+          id_tipo_usuario,
+        },
+
+        {
+          where: { idUsuario },
         }
+      );
 
-        usuarios[usuarioIndex] = {
-            nome,
-            email,
-            senha,
-            id_tipo_usuario
-        }
-
+      if (numeroRegistrosAtualizado === 0) {
         return {
-            id,
-            ...usuarios[usuarioIndex]
-        }
+          mensagem: "Nenhuma alteração realizada, os dados são iguais!",
+        };
+      } else {
+        return {
+          mensagem: "Usuario atualizado com sucesso!",
+          nome,
+          email,
+          id_tipo_usuario,
+        };
+      }
+    } catch (error) {
+      console.log(error);
+      return { erro: error.message };
     }
+  }
 }
