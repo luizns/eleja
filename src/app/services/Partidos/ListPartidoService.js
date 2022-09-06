@@ -1,22 +1,34 @@
-import PartidoModel from '../../models/Partidos/PartidoModel';
+import PartidoModel from "../../models/Partidos/PartidoModel";
 
 export default class ListPartidoService {
-    
-    listAll() {
-        const partido1 = new PartidoModel(
-            10,
-            "Partido dos Devs Brasileiros",
-            "PDB",
-            "10110"
-        );
-
-        const partido2 = new PartidoModel(
-            20,
-            "Partido dos Backenders",
-            "PB",
-            "10110"
-        );
-
-        return [partido1, partido2];
+  constructor() {}
+  async listAll(nomePartido) {
+    try {
+      if (nomePartido) {
+        return await this.listOne(nomePartido);
+      }
+      const partidos = await PartidoModel.findAll();
+      return partidos;
+    } catch (error) {
+      console.log(error);
+      return { erro: error.message };
     }
+  }
+
+  async listOne(nomePartido) {
+    try {
+      const partido = await PartidoModel.findOne({
+        where: { nome_partido:nomePartido },
+      });
+
+      if (!partido) {
+        return {
+          mensagem: " Partido não localizado com o nome: " + nomePartido,
+        };
+      }
+    } catch (error) {
+      console.log(error);
+      return { erro: error };
+    }
+  }
 }
