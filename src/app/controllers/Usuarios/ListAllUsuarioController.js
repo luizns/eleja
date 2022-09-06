@@ -6,10 +6,13 @@ export default class listAllUsuarioController {
         this.service = new ListUsuarioService();
     }
 
-    listAll(req, res) {
-        const usuarios = this.service.listAll();
+  async  listAll(req, res) {
+        
+        const {nome} = req.query;
 
-        return res.send(usuarios);
+        const  usuarios = await this.service.listAll(nome);
+
+        res.json(usuarios);
     }
 
 }
