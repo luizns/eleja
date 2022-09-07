@@ -6,14 +6,15 @@ export default class DeleteTipoUsuarioService {
         this.service = new DeleteTipoUsuarioService();
     }
 
-    delete (req, res){
+    async delete (req, res){
         const { id } = req.params;
 
-        const deletedTipoUsuario = this.service.delete(id);
+        const deletedTipoUsuario = await this.service.delete(id);
 
-        if (!deletedTipoUsuario.sucess) {
-            return res.status(400).json(deletedTipoUsuario.message);
+        if (!deletedTipoUsuario) {
+            return { error: 'Tipo de Usuário não Encontrado!' };
         }
-        res.status(200).json(deletedTipoUsuario.message)
+
+        res.json(deletedTipoUsuario)
     }
 }

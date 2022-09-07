@@ -1,4 +1,3 @@
-
 import CreateCandidatoService from '../../services/Candidatos/CreateCandidatoService';
 
 export default class CreateCandidoController {

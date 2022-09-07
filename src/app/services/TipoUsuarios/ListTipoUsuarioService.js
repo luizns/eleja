@@ -1,18 +1,15 @@
 import TipoUsuarioModel from '../../models/Usuarios/TipoUsuarioModel';
 
 export default class ListTipoUsuarioService {
+
+    constructor() {}
     
-    listAll() {
-        const tipoUsuario1 = new TipoUsuarioModel(
-            "001",
-            "130"
-        );
-
-        const tipoUsuario2 = new TipoUsuarioModel(
-            "002",
-            "250"
-        );
-
-        return [tipoUsuario1, tipoUsuario2];
+    async listAll() {
+        try{
+            const tipoUsuario = await TipoUsuarioModel.findAll();
+            return tipoUsuario;
+        } catch (err) {
+            return { erro: err.message }
+        }
     }
 }

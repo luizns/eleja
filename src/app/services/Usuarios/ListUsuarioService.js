@@ -1,33 +1,48 @@
 import UsuarioModel from '../../models/Usuarios/UsuarioModel';
+import { Op } from 'sequelize';
 
 export default class ListUsuarioService {
 
     constructor() {}
 
-    listAll () {
-        const usuario1 = new UsuarioModel(
-            1,
-            "Rodrigo",
-            "05202377402",
-            "8524156",
-            "086598750456",
-            "rodrigomoreiralima@hotmail.com"
-        );
+    async listAll (nome) {
+        try{
+            if (nome){
+                return await this.FindUsuario(nome);
+            }
 
-        const usuario2 = new UsuarioModel(
-            2,
-            "Jackson",
-            "05514164642",
-            "854142486",
-            "0846915501651",
-            "jack@hotmail.com",
-        );
-
-        return [usuario1, usuario2];
+            const usuarios = await UsuarioModel.findAll();
+            return usuarios;
+        } catch(err) {
+            return { erro: err.message };
+        }
     }
-    FindUsuario(email, password) {
-        const usuario = ListUsuarioService.listAll().find(usuario => usuario.email === email && usuario.password === password)
+    async FindUsuario(nome) {
+        try { 
+            const usuario = await UsuarioModel.findAll({
+                where: { nome: { [Op.like]: `%${nome}%` } }          
+            });
+
+            if(!usuario) {
+                return { message: "Usuario não encontrado!" }
+            }
+            return usuario;
+        } catch (err){
+            return { erro: err.message }
+        }
+    }
+    async listOne(email, password) {
+        try {
+          const usuario = await UsuarioModel.findOne({
+            where: {
+              email,
+            },
+          });
     
-        return usuario
+          return usuario;
+        } catch (error) {
+          return { erro: error.message };
+        }
       }
+
 }

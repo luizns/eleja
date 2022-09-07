@@ -8,21 +8,19 @@ export default class CreateUsuarioController {
 
    async create (req, res){
         const {
-            idusuario,
             nome,
             email,
             senha,
-            id_tipo_usuario
+            tipo_usuario_id
         } = req.body;
 
         const createdUsuario = await this.service.create(
-            idusuario,
             nome,
             email,
             senha,
-            id_tipo_usuario
+            tipo_usuario_id,
         );
 
-        return res.status(200).json(createdUsuario);
+        return res.json(createdUsuario);
     }    
-}
+} 

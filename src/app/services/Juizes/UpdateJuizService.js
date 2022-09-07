@@ -1,36 +1,24 @@
-import ListJuizService from './ListJuizService';
+import JuizEleitoralModel from "../../models/Juizes/JuizModel";
 
 export default class UpdateJuizService {
 
-    constructor() {
-        this.service = new ListJuizService();
-    }
+    constructor() { }
 
-    Update (
-        id,
-        name,
-        email,
-        password,
-    ) {
-        const juizes = this.service.listAll()
-        const juizIndex = juizes.findIndex(juiz => juiz.id === Number(id))
-
-        if (juizIndex === -1) {
-            return {
-                message: "ID não referente a qualquer juíz."
-            }
+    async update (id, matricula) {
+        try{
+             const [numeroDeRegistrosAtualizados] = await JuizEleitoralModel.update({
+                matricula,
+             },
+             {
+                 where: { id },
+             })
+             
+             if ([numeroDeRegistrosAtualizados] === 0) {
+                 return { mensagem: "Dados iguais" };
+             } 
+             return  numeroDeRegistrosAtualizados;
+        } catch(error) {
+             return { erro: error.message };
         }
-
-        juizes[juizIndex] = {
-            id,
-            name,
-            email,
-            password
-        }
-
-        return {
-            id,
-            ...juizes[juizIndex]
-        }
-    }
+     }
 }

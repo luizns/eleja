@@ -2,7 +2,7 @@ import Router from 'express';
 
 // importando validações
 import PartidoValidator from '../middlewares/PartidoValidator';
-import IndexValidator from '../middlewares/IndexValidator';
+
 
 //importando controllers para partidos
 import CreatePartidoController from '../app/controllers/Partidos/CreatePartidoController';
@@ -24,8 +24,8 @@ routesPartido.get('/partidos', (req, res) => listAllPartidoController.listAll(re
 
 routesPartido.post('/partidos', PartidoValidator, (req,res) => createPartidoController.create(req, res));
 
-routesPartido.put('/partidos/:id', IndexValidator, PartidoValidator, (req, res) => updatePartidoController.update(req, res));
+routesPartido.put('/partidos/:id', PartidoValidator, (req, res) => updatePartidoController.update(req, res));
 
-routesPartido.delete('/partidos/:id', IndexValidator, (req, res) => deletePartidoController.delete(req, res));
+routesPartido.delete('/partidos/:id', (req, res) => deletePartidoController.delete(req, res));
 
 export default routesPartido;

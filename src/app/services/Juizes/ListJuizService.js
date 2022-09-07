@@ -1,24 +1,39 @@
-import JuizModel from '../../models/Juizes/JuizModel';
+import JuizEleitoralModel from '../../models/Juizes/JuizModel';
+import UsuarioModel from '../../models/Usuarios/UsuarioModel';
 
-export default class ListJuizService {
-    
-    listAll() {
-        const juiz1 = new JuizModel(
-            56,
-            "Alberto",
-            "alberto@hotmail.com",
-            "1234567",
-            "00501"
-        );
 
-        const juiz2 = new JuizModel(
-            25,
-            "Alan Pereira",
-            "jack@hotmail.com",
-            "36598741",
-            "001205",
-        );
+export default class ListEleitorService {
 
-        return [juiz1, juiz2];
+    constructor() {}
+
+    async listOne(usuario_id) {
+        try{
+            const juiz = await UsuarioModel.findByPk(usuario_id, {
+                include: { association: 'juizes_eleitorais' }
+            });
+
+            return juiz;
+        } catch(error) {
+            return { erro: error.message };
+        }
     }
+
+    async listAll(){
+        try{
+            const usuarioJuiz = await UsuarioModel.findAll({
+                include: [{
+                    model: JuizEleitoralModel,
+                    attributes: ['id', 'matricula','usuario_id', 'createdAt', 'updatedAt'],
+                    association: 'juizes_eleitorais',
+                    required: true,
+                }]
+            })
+
+            return usuarioJuiz;
+        } catch(error) {
+            return { erro: error.message };
+        }
+
+    }
+
 }

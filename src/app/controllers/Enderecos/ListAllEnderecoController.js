@@ -5,10 +5,11 @@ export default class ListAllController {
         this.service = new ListEnderecoService();
     }
 
-    listAll (req, res){
-        const endereco = this.service.listAll();
 
-        return res.send(endereco);
-        
+    async listAll(req, res) {
+
+        const endereco = await this.service.listAll();
+
+        return res.json(endereco);
     }
 }

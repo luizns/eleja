@@ -1,34 +1,42 @@
 import jwt from 'jsonwebtoken';
-
-import ListUserService from '../../services/Users/ListUserService';
+import ListUsuarioService from '../../services/Usuarios/ListUsuarioService'
+import HashSenha from '../../../utils/HashSenha';
 
 export default class SessionController { 
-  constructor() {
-    this.service = new ListUserService();
-  }
+  constructor() { }
 
-  static create(request, response) {
-    const { email, password } = request.body
+  static async create(req, res) {
+    const { email, senha } = req.body
 
-    const user = this.service.FindUser(email, password)
+    const service = new ListUsuarioService();
 
+    const usuario = await service.listOne(email);
 
-  if(!user) {
-      return response.status(401).json({error: 'Trainer not found'})
+    if(!usuario) {
+        return res.status(401).json({error: 'Usuário não encontrado!'})
     }
+  
+  const isSenhaValida = HashSenha.validate(
+    senha,
+    usuario.senha
+  );
 
-    const {id, name} = trainer;
-
-    return response.json({
-      trainer: {
-        id,
-        name,
-        email
-      },
-      token: jwt.sign({ id }, 'a07bda8fd5e39462b4c3d860a36f6b4d', {
-        expiresIn: '5d'
-      })
-    })
+  if(!isSenhaValida) {
+    return res.status(401).json({ error: "senha invalida!" })
   }
+
+  const {idusuario, nome} = usuario;
+
+  return res.json({
+    usuario: {
+      idusuario,
+      nome,
+      email
+    },
+    token: jwt.sign({ idusuario }, process.env.JWT_PRIVATE_KEY, {
+      expiresIn: '5d'
+    })
+  })
+}
 };
 

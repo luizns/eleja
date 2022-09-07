@@ -10,9 +10,19 @@ module.exports = {
         primaryKey: true,
       },
       secao: {
-        type: Sequelize.STRING({ length: 3 }),
+        type: Sequelize.STRING,
         allowNull: false,
       },
+      createdAt: {
+        field: 'created_at',
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        field: 'update_at',
+        allowNull: false,
+        type: Sequelize.DATE
+      }
     });
   },
 

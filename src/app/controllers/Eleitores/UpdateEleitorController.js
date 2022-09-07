@@ -1,3 +1,5 @@
+import EleitorModel from '../../models/Eleitores/EleitorModel';
+import UsuarioModel from '../../models/Usuarios/UsuarioModel';
 import UpdateEleitorService from '../../services/Eleitores/UpdateEleitorService';
 
 export default class UpdateEleitorController {
@@ -5,23 +7,27 @@ export default class UpdateEleitorController {
         this.service = new UpdateEleitorService();
     }
 
-    update (req, res){
-        const { id } = req.params
+    async update (req, res){
+        const { usuario_id, id  } = req.params
         const {
             cpf,
-            titulo,
+            titulo_eleitor,
             rg,
-            idUsuario,
-            idEleitorVoto
+
         } = req.body;
 
-        const updatedEleitor = this.service.Update(
+        const usuario = await UsuarioModel.findByPk(usuario_id);
+        const eleitor = await EleitorModel.findByPk(id);
+
+        if(!usuario || !eleitor){
+            return res.status(404).json({ error: 'Usuario não encontrado' });
+        }
+
+        const updatedEleitor = this.service.update(
             id,
             cpf,
-            titulo,
+            titulo_eleitor,
             rg,
-            idUsuario,
-            idEleitorVoto
         );
 
         res.json(updatedEleitor)

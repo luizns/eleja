@@ -10,15 +10,31 @@ module.exports = {
         primaryKey: true,
       },
       matricula: {
-        type: Sequelize.STRING({ length: 45 }),
+        type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
-      id_usuario: {
-        type: Sequelize.INTEGER,
+      usuario_id: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
-        foreingKey: true,
+        unique: true,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        references: {
+          model:  'usuarios' ,
+          key: 'idusuario'
+      }},
+      createdAt: {
+        field: 'created_at',
+        allowNull: false,
+        type: Sequelize.DATE
       },
+      updatedAt: {
+        field: 'update_at',
+        allowNull: false,
+        type: Sequelize.DATE
+      }
     });
   },
 

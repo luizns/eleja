@@ -1,4 +1,4 @@
-
+import UsuarioModel from '../../models/Usuarios/UsuarioModel';
 import CreateEleitorService from '../../services/Eleitores/CreateEleitorService';
 
 export default class CreateEleitorController {
@@ -7,25 +7,28 @@ export default class CreateEleitorController {
             this.service = new CreateEleitorService();
         }
 
-    create (req, res){
+    async create (req, res){
+        const { usuario_id } = req.params;
+        
         const {
-            id,
             cpf,
-            titulo,
+            titulo_eleitor,
             rg,
-            idUsuario,
-            idEleitorVoto
         } = req.body;
-    
-        const createdEleitor = this.service.create(
-            id,
+
+        const usuario = await UsuarioModel.findByPk(usuario_id);
+
+        if(!usuario) {
+            return res.status(404).json({ error: 'Usuario não encontrado!' });
+        } 
+  
+        const createdEleitor = await this.service.create(      
             cpf,
-            titulo,
+            titulo_eleitor,
             rg,
-            idUsuario,
-            idEleitorVoto
+            usuario_id
         );
-    
-        return res.status(200).json(createdEleitor.message);
+ 
+        return res.json(createdEleitor);
     }
 }

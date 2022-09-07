@@ -1,4 +1,5 @@
 
+import UsuarioModel from '../../models/Usuarios/UsuarioModel';
 import CreateJuizService from '../../services/Juizes/CreateJuizService';
 
 export default class CreateJuizController {
@@ -7,23 +8,20 @@ export default class CreateJuizController {
             this.service = new CreateJuizService();
         }
 
-    create (req, res){
-        const {
-            id,
-            name,
-            email,
-            password,
-            matricula
-        } = req.body;
+    async create (req, res){
+
+        const { usuario_id } = req.params;
+
+        const { matricula } = req.body;
+
+        const usuario = await UsuarioModel.findByPk(usuario_id);
+
+        if(!usuario) {
+            return res.status(404).json({ error: 'Usuario não encontrado!' });
+        } 
     
-        const createdJuiz = this.service.create(
-            id,
-            name,
-            email,
-            password,
-            matricula
-        );
+        const createdJuiz = await this.service.create(matricula, usuario_id);
     
-        return res.status(200).json(createdJuiz.message);
+        return res.json(createdJuiz);
     }
 }

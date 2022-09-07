@@ -1,25 +1,21 @@
+import TipoUsuarioModel from '../../models/Usuarios/TipoUsuarioModel';
 import ListTipoUsuarioService from './ListTipoUsuarioService';
 
 export default class DeleteTipoUsuarioService {
-    constructor() { 
-        this.service = new ListTipoUsuarioService();
-      }
+    constructor() {}
 
-    delete(id) {
-        const tipoUsuarios = this.service.listAll();
-        const tipoUsuarioIndex = tipoUsuarios.findIndex(tipoUsuario => tipoUsuario.id === Number(id));
+    async delete(id) {
+        try{
+            
+            const tipoUsuarios = await TipoUsuarioModel.findByPk(id);
+    
+            await tipoUsuarios.destroy();
+            
+            return { message: "Tipo de Usuário deletado!"};
 
-        if(tipoUsuarioIndex === -1){
-            return {
-                message: "ID não referente a qualquer TipoUsuario."
-            }
+        } catch(error) {
+            return { erro: error.message };
         }
-
-        tipoUsuarios.splice(tipoUsuarioIndex, 1);
-
-        return {
-            sucess: true,
-            message: "TipoUsuario deletado com sucesso."
-        }
+        
     }
 }

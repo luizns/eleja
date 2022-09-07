@@ -10,20 +10,30 @@ module.exports = {
         primaryKey: true,
       },
       nome_partido: {
-        type: Sequelize.STRING({ length: 100 }),
+        type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
       sigla: {
-        type: Sequelize.STRING({ length: 10 }),
+        type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
       numero_legenda: {
-        type: Sequelize.STRING({ length: 2 }),
+        type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
+      createdAt: {
+        field: 'created_at',
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        field: 'update_at',
+        allowNull: false,
+        type: Sequelize.DATE
+      }
     });
   },
 

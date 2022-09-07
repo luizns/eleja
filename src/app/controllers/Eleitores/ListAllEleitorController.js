@@ -1,3 +1,4 @@
+import UsuarioModel from '../../models/Usuarios/UsuarioModel';
 import ListEleitorService from '../../services/Eleitores/ListEleitorService';
 
 export default class ListAllController {
@@ -5,9 +6,24 @@ export default class ListAllController {
         this.service = new ListEleitorService();
     }
 
-    listAll (req, res){
-        const eleitor = this.service.listAll();
+    async listOne(req, res){
+        const { usuario_id } = req.params;
 
-        return res.send(eleitor);
+        const usuario = await UsuarioModel.findByPk(usuario_id);
+
+        if(!usuario) {
+            return res.status(404).json({ error: 'Usuario não encontrado' });
+        } 
+
+        const eleitor = await this.service.listOne(usuario_id);
+
+        return res.json(eleitor);
     }
+    async listAll(req, res) {
+
+        const eleitor = await this.service.listAll();
+
+        return res.json(eleitor)
+    }
+
 }

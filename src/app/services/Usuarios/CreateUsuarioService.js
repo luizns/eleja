@@ -1,24 +1,23 @@
-import { v4 } from "uuid";
-
+import HashSenha from "../../../utils/HashSenha";
 import UsuarioModel from "../../models/Usuarios/UsuarioModel";
 
 export default class CreateUsuarioService {
   constructor() {}
 
-  async create(idusuario, nome, email, senha,id_tipo_usuario) {
-    try {
-      const newUsuario = await UsuarioModel.create({
-        idusuario: v4(),
-        nome,
-        email,
-        senha,
-        id_tipo_usuario
-      });
+  async create( nome, email, senha, tipo_usuario_id) {
+    
+  const hashedSenha = HashSenha.hash(senha); 
 
-      return newUsuario;
-    } catch (error) {
-      console.log(error);
-      return { erro: error.message };
-    }
+  try {
+    const newUsuario = await UsuarioModel.create({
+      nome,
+      email,
+      senha: hashedSenha,
+      tipo_usuario_id,
+  });
+    return newUsuario;
+  } catch (error) {
+    return { erro: error};
+  }
   }
 }

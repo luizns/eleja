@@ -1,26 +1,47 @@
 import EleitorModel from '../../models/Eleitores/EleitorModel';
+import UsuarioModel from '../../models/Usuarios/UsuarioModel';
+
 
 export default class ListEleitorService {
-    
-    listAll() {
-        const eleitor1 = new EleitorModel(
-            2,
-            "13456789112",
-            "021354896573",
-            "213547805",
-            "005",
-            "369854"
-        );
 
-        const eleitor2 = new EleitorModel(
-            3,
-            "32654789524",
-            "012354698774",
-            "321458745",
-            "006",
-            "2547821"
-        );
+    constructor() {}
 
-        return [eleitor1, eleitor2];
+    async listOne(usuario_id) {
+        try{
+            const usuario = await UsuarioModel.findByPk(usuario_id, {
+                include: { association: 'eleitores' }
+            });
+
+            return usuario;
+        } catch(error) {
+            return { erro: error.message };
+        }
     }
+
+    async listAll(){
+        try{
+            const usuarioEleitor = await UsuarioModel.findAll({
+                include: [{
+                    model: EleitorModel,
+                    attributes: [
+                        'id', 
+                        'cpf', 
+                        'titulo_eleitor', 
+                        'rg',
+                        'usuario_id', 
+                        'createdAt', 
+                        'updatedAt'
+                    ],
+                    association: 'eleitores',
+                    required: true,
+                }]
+            })
+
+            return usuarioEleitor;
+        } catch(error) {
+            return { erro: error.message };
+        }
+
+    }
+
 }

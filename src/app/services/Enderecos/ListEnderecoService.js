@@ -1,30 +1,49 @@
+import EleitorModel from '../../models/Eleitores/EleitorModel';
 import EnderecoModel from '../../models/Enderecos/EnderecoEleitorModel';
+import UsuarioModel from '../../models/Usuarios/UsuarioModel';
+
 
 export default class ListEnderecoService {
     
-    listAll() {
-        const endereco1 = new EnderecoModel(
-            2,
-            "Rua Joaquim da Costa Lima",
-            "São Lucas da Maré",
-            "45",
-            "São Bráz",
-            "20280010",
-            1,
-            250
-        );
+    constructor() {}
+   
+    async listAll(){
+        try{
+            
+            
 
-        const endereco2 = new EnderecoModel(
-            1,
-            "Rua da Silva Sauro",
-            "Embariê",
-            "77",
-            "Luanda",
-            "25187150",
-            2,
-            130
-        );
+            const usuarioEleitorEndereco = await UsuarioModel.findAll({
+                include: [{                    
+                    model: EleitorModel,
+                    attributes: [
+                        'id', 
+                        'cpf', 
+                        'titulo_eleitor', 
+                        'rg',
+                    
+                    ],
+                    association: 'eleitores',
+                    include: [{
+                        model: EnderecoModel,
+                        attributes: [
+                            'id', 
+                            'estado', 
+                            'cep', 
+                            'cidade', 
+                            'bairro', 
+                            'numero',
+                        ],
+                    association: 'endereco_eleitores', 
+                    right: true,               
+                }],
+                }]
+            });
 
-        return [endereco1, endereco2];
-    }
+            
+            return usuarioEleitorEndereco;
+        } catch(error) {
+            return { erro: error.message }
+        }
+    } 
+    
 }

@@ -1,25 +1,16 @@
-import { v4 } from 'uuid';
 import JuizModel from '../../models/Juizes/JuizModel';
 
 export default class CreateJuizService {
-    create (
-        id,
-        name,
-        email,
-        password,
-        matricula
-        ) {
-        const newJuiz = new JuizModel(
-            v4(),
-            name,
-            email,
-            password,
-            matricula
-        );
-        
-        return {
-            sucess: true,
-            message: "Usuario criado com sucesso - ID: " + newJuiz.id
-        }
+    async create (matricula, usuario_id) {
+        try{
+            const newJuiz = await JuizModel.create({    
+                matricula,
+                usuario_id
+            });
+            
+            return newJuiz;
+        } catch(error){
+            return { erro: error};
+        }     
     }
 }

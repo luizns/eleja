@@ -2,7 +2,8 @@ import Router from 'express';
 
 // importando validações
 import EleitorValidator from '../middlewares/EleitorValidator';
-import IndexValidator from '../middlewares/IndexValidator';
+import ValidateSession from '../middlewares/ValidateSession'
+
 
 //importando controllers para Juízes
 import CreateEleitorController from '../app/controllers/Eleitores/CreateEleitorController';
@@ -20,12 +21,14 @@ const listAllEleitorController = new ListAllEleitorController();
 const routesEleitor = new Router();
 
 // Rota para juízes
-routesEleitor.get('/eleitores', (req, res) => listAllEleitorController.listAll(req, res));
+routesEleitor.get('/usuarios/:usuario_id/eleitores', (req, res) => listAllEleitorController.listOne(req, res));
 
-routesEleitor.post('/eleitores', EleitorValidator, (req,res) => createEleitorController.create(req, res));
+routesEleitor.get('/usuarios/eleitores', (req, res) => listAllEleitorController.listAll(req, res));
 
-routesEleitor.put('/eleitores/:id', IndexValidator, EleitorValidator, (req, res) => updateEleitorController.update(req, res));
+routesEleitor.post('/usuarios/:usuario_id/eleitores', ValidateSession ,EleitorValidator, (req,res) => createEleitorController.create(req, res));
 
-routesEleitor.delete('/eleitores/:id', IndexValidator, (req, res) => deleteEleitorController.delete(req, res));
+routesEleitor.put('/usuarios/:usuario_id/eleitores/:id', EleitorValidator, (req, res) => updateEleitorController.update(req, res));
+
+routesEleitor.delete('/usuarios/:usuario_id/eleitores/:id', (req, res) => deleteEleitorController.delete(req, res));
 
 export default routesEleitor;

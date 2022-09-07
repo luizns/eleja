@@ -1,20 +1,23 @@
+import UsuarioModel from "../../models/Usuarios/UsuarioModel";
 import DeleteUsuarioService from "../../services/Usuarios/DeleteUsuarioService";
 
 export default class DeleteUsuarioController {
 
-    constructor() {
-        this.service = new DeleteUsuarioService();
+  constructor() {
+    this.service = new DeleteUsuarioService();
+  }
+
+  async delete(req, res) {
+    const { id } = req.params;
+
+    const usuario = await UsuarioModel.findByPk(id);
+  
+    if (!usuario) {
+        return res.status(400).json({ mensagem: "Usuário não encontrado!" });
     }
 
-    delete (req, res) {
-        const { id } = req.params;
+    const resultado = await this.service.delete(id);
 
-        const deletedUsuario = this.service.delete(id);
-
-        if (!deletedUsuario.sucess) {
-            return res.status(400).json(deletedUsuario.message);
-        }
-        res.status(200).json(deletedUsuario.message)
-    }
-
+    res.send(resultado);
+  }
 }

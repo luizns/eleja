@@ -2,7 +2,7 @@ import Router from 'express';
 
 // importando validações
 import QuantVotoValidator from '../middlewares/QuantVotoValidator';
-import IndexValidator from '../middlewares/IndexValidator';
+
 
 //importando controllers para QuantVoto
 import CreateQuantVotoController from '../app/controllers/Votos/QuantVotos/CreateQuantVotoController';
@@ -24,8 +24,8 @@ routesQuantVoto.get('/quantvotos', (req, res) => listAllQuantVotoController.list
 
 routesQuantVoto.post('/quantvotos', QuantVotoValidator, (req,res) => createQuantVotoController.create(req, res));
 
-routesQuantVoto.put('/quantvotos/:id', IndexValidator, QuantVotoValidator, (req, res) => updateQuantVotoController.update(req, res));
+routesQuantVoto.put('/quantvotos/:id', QuantVotoValidator, (req, res) => updateQuantVotoController.update(req, res));
 
-routesQuantVoto.delete('/quantvotos/:id', IndexValidator, (req, res) => deleteQuantVotoController.delete(req, res));
+routesQuantVoto.delete('/quantvotos/:id', (req, res) => deleteQuantVotoController.delete(req, res));
 
 export default routesQuantVoto;

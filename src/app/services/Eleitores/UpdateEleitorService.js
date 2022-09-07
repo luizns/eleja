@@ -1,40 +1,26 @@
-import ListEleitorService from './ListEleitorService';
+import EleitorModel from '../../models/Eleitores/EleitorModel';
 
 export default class UpdateEleitorService {
 
-    constructor() {
-        this.service = new ListEleitorService();
-    }
+    constructor() { }
 
-    Update (
-        id,
-        cpf,
-        titulo,
-        rg,
-        idUsuario,
-        idEleitorVoto
-    ) {
-        const eleitores = this.service.listAll()
-        const eleitorIndex = eleitores.findIndex(eleitor => eleitor.id === Number(id))
-
-        if (eleitorIndex === -1) {
-            return {
-                message: "ID não referente a qualquer juíz."
-            }
-        }
-
-        eleitores[eleitorIndex] = {
-            id,
-            cpf,
-            titulo,
-            rg,
-            idUsuario,
-            idEleitorVoto
-        }
-
-        return {
-            id,
-            ...eleitores[eleitorIndex]
-        }
+    async update (id, cpf, titulo_eleitor, rg) {
+       try{
+            const [numeroDeRegistrosAtualizados] = await EleitorModel.update({
+                cpf,
+                titulo_eleitor,
+                rg,
+            },
+            {
+                where: { id },
+            })
+            
+            if ([numeroDeRegistrosAtualizados] === 0) {
+                return { mensagem: "Dados iguais" };
+            } 
+            return  numeroDeRegistrosAtualizados;
+       } catch(error) {
+            return { erro: error.message };
+       }
     }
 }

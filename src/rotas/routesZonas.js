@@ -2,7 +2,6 @@ import Router from 'express';
 
 // importando validações
 import ZonaValidator from '../middlewares/ZonaValidator';
-import IndexValidator from '../middlewares/IndexValidator';
 
 //importando controllers para Zona
 import CreateZonaController from '../app/controllers/Zonas/CreateZonaController';
@@ -24,8 +23,8 @@ routesZona.get('/zonas', (req, res) => listAllZonaController.listAll(req, res));
 
 routesZona.post('/zonas', ZonaValidator, (req,res) => createZonaController.create(req, res));
 
-routesZona.put('/zonas/:id', IndexValidator, ZonaValidator, (req, res) => updateZonaController.update(req, res));
+routesZona.put('/zonas/:id', ZonaValidator, (req, res) => updateZonaController.update(req, res));
 
-routesZona.delete('/zonas/:id', IndexValidator, (req, res) => deleteZonaController.delete(req, res));
+routesZona.delete('/zonas/:id', (req, res) => deleteZonaController.delete(req, res));
 
 export default routesZona;

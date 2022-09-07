@@ -1,25 +1,18 @@
-import ListEleitorService from './ListEleitorService';
+import EleitorModel from '../../models/Eleitores/EleitorModel';
 
-export default class DeleteEleitorService {
-    constructor() { 
-        this.service = new ListEleitorService();
-      }
+export default class DeleteService {
 
-    delete(id) {
-        const eleitores = this.service.listAll();
-        const eleitorIndex = eleitores.findIndex(eleitor => eleitor.id === Number(id));
+    constructor() { }
 
-        if(eleitorIndex === -1){
-            return {
-                message: "ID não referente a qualquer usuário."
-            }
-        }
-
-        eleitores.splice(eleitorIndex, 1);
-
-        return {
-            sucess: true,
-            message: "Usuário deletado com sucesso."
+    async delete(id) {
+        try {
+            const eleitor = await EleitorModel.findByPk(id);
+      
+            await eleitor.destroy();
+        
+            return { message: "Dados do eleitor deletado!"};
+        } catch (error) {
+            return { erro: error.message };
         }
     }
 }

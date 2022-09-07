@@ -9,15 +9,13 @@ export default class CreateTipoUsuariosController {
 
     async create (req, res){
         const {
-            idtipo,
             descricao
         } = req.body;
     
         const createdTipoUsuarios = await this.service.create(
-            idtipo,
             descricao
         );
     
-        return res.status(200).json(createdTipoUsuarios);
+        return res.json(createdTipoUsuarios);
     }
 }

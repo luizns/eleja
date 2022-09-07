@@ -2,7 +2,7 @@ import Router from 'express';
 
 // importando validações
 import VotoValidator from '../middlewares/VotoValidator';
-import IndexValidator from '../middlewares/IndexValidator';
+
 
 //importando controllers para Voto
 import CreateVotoController from '../app/controllers/Votos/CreateVotoController';
@@ -24,8 +24,8 @@ routesVoto.get('/votos', (req, res) => listAllVotoController.listAll(req, res));
 
 routesVoto.post('/votos', VotoValidator, (req,res) => createVotoController.create(req, res));
 
-routesVoto.put('/votos/:id', IndexValidator, VotoValidator, (req, res) => updateVotoController.update(req, res));
+routesVoto.put('/votos/:id',  VotoValidator, (req, res) => updateVotoController.update(req, res));
 
-routesVoto.delete('/votos/:id', IndexValidator, (req, res) => deleteVotoController.delete(req, res));
+routesVoto.delete('/votos/:id', (req, res) => deleteVotoController.delete(req, res));
 
 export default routesVoto;

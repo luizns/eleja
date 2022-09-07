@@ -2,7 +2,7 @@ import Router from 'express';
 
 // importando validações
 import RegistroVotoValidator from '../middlewares/RegistroVotoValidator';
-import IndexValidator from '../middlewares/IndexValidator';
+
 
 //importando controllers para RegistroVoto
 import CreateRegistroVotoController from '../app/controllers/Votos/RegistroVotos/CreateRegistroVotoController';
@@ -24,8 +24,8 @@ routesRegistroVoto.get('/registrovotos', (req, res) => listAllRegistroVotoContro
 
 routesRegistroVoto.post('/registrovotos', RegistroVotoValidator, (req,res) => createRegistroVotoController.create(req, res));
 
-routesRegistroVoto.put('/registrovotos/:id', IndexValidator, RegistroVotoValidator, (req, res) => updateRegistroVotoController.update(req, res));
+routesRegistroVoto.put('/registrovotos/:id',  RegistroVotoValidator, (req, res) => updateRegistroVotoController.update(req, res));
 
-routesRegistroVoto.delete('/registrovotos/:id', IndexValidator, (req, res) => deleteRegistroVotoController.delete(req, res));
+routesRegistroVoto.delete('/registrovotos/:id', (req, res) => deleteRegistroVotoController.delete(req, res));
 
 export default routesRegistroVoto;

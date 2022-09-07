@@ -1,29 +1,27 @@
-import { v4 } from 'uuid';
 import EnderecoModel from '../../models/Enderecos/EnderecoEleitorModel';
 
 export default class CreateEnderecoService {
     constructor(){}
 
     async create (
-        idendereco,
-        rua,
-        bairro,
-        numero,
-        cidade,
+        estado,
         cep,
-        id_eleitor,
-        id_zona
+        cidade,
+        bairro,
+        rua,
+        numero,
+        eleitor_id,
+
         ) {
         try {
             const newEndereco = await EnderecoModel.create({
-                idendereco: v4(),
-                rua,
-                bairro,
-                numero,
-                cidade,
+                estado,
                 cep,
-                id_eleitor,
-                id_zona
+                cidade,
+                bairro,
+                rua,
+                numero,
+                eleitor_id,
             });
             
             return newEndereco;        

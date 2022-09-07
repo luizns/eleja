@@ -1,32 +1,37 @@
 const yup = require('yup');
 
-export default async function EnderecoValidator(request, response, next) {
+async function EnderecoValidator(request, response, next) {
     const schema = yup.object().shape({
-        rua: yup
+        estado: yup
             .string()
-            .required("Rua é obrigatório."),        
+            .required("Estado é obrigatório"),
+        cep: yup
+            .string()
+            .required("Cep é obrigatório."),
+        cidade: yup
+            	.string()
+            .required("Cidade é obrigatório."),
         bairro: yup
             .string()
             .required("Bairro é obrigatório."),
+        rua: yup
+            .string()
+            .required("Rua é obrigatório."),        
         numero: yup
             .string()
             .required("Número é obrigatório."),
-        cidade: yup
-        .string()
-        .required("Cidade é obrigatório."),
-        cep: yup
-        .string()
-        .required("Cep é obrigatório."),
-
     });
 
-    await schema.validate(request.body).catch((err) => {
+    try{
+        await schema.validate(request.body)
+
+    } catch(err){
         return response.status(400).json({
             message: err.errors
         });
-    });
+    };
 
     next();
 }
 
-// export default UserValidator;
+export default EnderecoValidator;

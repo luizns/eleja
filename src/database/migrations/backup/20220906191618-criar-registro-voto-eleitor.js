@@ -17,6 +17,28 @@ module.exports = {
         type: Sequelize.DATEONLY,
         allowNull: false,
       },
+      id_eleitor: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        allowNull: false,
+        unique: true,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        references: {
+          model:  'eleitores' ,
+          key: 'ideleitor'
+        }
+        },
+      createdAt: {
+        field: 'created_at',
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        field: 'update_at',
+        allowNull: false,
+        type: Sequelize.DATE
+      }
     });
   },
 

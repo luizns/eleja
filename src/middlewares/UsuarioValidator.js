@@ -8,6 +8,7 @@ async function UsuarioValidator(request, response, next) {
             .required("Nome é obrigatório."),
         email: yup
             .string()
+            .email()
             .required("E-mail é obrigatório."),
         senha: yup
             .string()
@@ -16,13 +17,16 @@ async function UsuarioValidator(request, response, next) {
             .max(16, "Para uma senha válida, são necessários no máximo 16 caracteres.")
     });
 
-    await schema.validate(request.body).catch(err => {
+    try{
+        await schema.validate(request.body)
+    }
+    catch(err) {
         return response.status(400).json({
             message: err.errors
         });
-    });
+    };
 
-    next();
+    next();  
 }
 
 export default UsuarioValidator;

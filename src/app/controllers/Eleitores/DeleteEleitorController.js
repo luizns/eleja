@@ -1,19 +1,27 @@
+import EleitorModel from '../../models/Eleitores/EleitorModel';
+import UsuarioModel from '../../models/Usuarios/UsuarioModel';
 import DeleteEleitorService from '../../services/Eleitores/DeleteEleitorService';
 
-export default class DeleteEleitorService {
+export default class DeleteEleitorController {
 
     constructor(){
         this.service = new DeleteEleitorService();
     }
 
-    delete (req, res){
-        const { id } = req.params;
+    async delete (req, res){
+        const { usuario_id, id } = req.params;
 
-        const deletedEleitor = this.service.delete(id);
+        const usuario = await UsuarioModel.findByPk(usuario_id);
+        const eleitor = await EleitorModel.findByPk(id);
 
-        if (!deletedEleitor.sucess) {
-            return res.status(400).json(deletedEleitor.message);
+        if(!usuario || !eleitor){
+            return res.status(404).json({ error: 'Usuario não encontrado' });
         }
-        res.status(200).json(deletedEleitor.message)
+
+
+        const deletedEleitor = await this.service.delete(id);
+
+        
+        res.json(deletedEleitor)
     }
 }

@@ -1,19 +1,27 @@
-import DeleteJuizService from '../../services/Juizes/DeleteJuizService';
+import JuizEleitoralModel from '../../models/Juizes/JuizModel';
+import UsuarioModel from '../../models/Usuarios/UsuarioModel';
+import DeleteJuizService from '../../services/Juizes/DeleteJuizService'
 
-export default class DeleteJuizService {
+export default class DeleteJuizController {
 
     constructor(){
         this.service = new DeleteJuizService();
     }
 
-    delete (req, res){
-        const { id } = req.params;
+    async delete (req, res){
+        const { usuario_id, id } = req.params;
 
-        const deletedJuiz = this.service.delete(id);
+        const usuario = await UsuarioModel.findByPk(usuario_id);
+        const juiz = await JuizEleitoralModel.findByPk(id);
 
-        if (!deletedJuiz.sucess) {
-            return res.status(400).json(deletedJuiz.message);
+        if(!usuario || !juiz){
+            return res.status(404).json({ error: 'Usuario não encontrado' });
         }
-        res.status(200).json(deletedJuiz.message)
+
+
+        const deletedJuiz = await this.service.delete(id);
+
+        
+        res.json(deletedJuiz)
     }
 }

@@ -2,18 +2,29 @@
 
 module.exports = {
  async up(queryInterface, Sequelize){
-    return await queryInterface.createTable("tipo_usuarios", {
+    return queryInterface.createTable("juizes_eleitorais", {
       id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
         primaryKey: true,
       },
-      descricao: {
+      matricula: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
-      },  
+      },
+      usuario_id: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        allowNull: false,
+        unique: true,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        references: {
+          model:  'usuarios' ,
+          key: 'id'
+      }},
       createdAt: {
         field: 'created_at',
         allowNull: false,
@@ -27,7 +38,7 @@ module.exports = {
     });
   },
 
- async down(queryInterface, Sequelize){
-    return await queryInterface.dropTable("tipo_usuarios");
+  async down(queryInterface, Sequelize){
+    return queryInterface.dropTable("juizes_eleitorais");
   },
 };

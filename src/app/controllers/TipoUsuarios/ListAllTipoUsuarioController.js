@@ -5,10 +5,9 @@ export default class ListAllController {
         this.service = new ListTipoUsuarioService();
     }
 
-    listAll (req, res){
-        const tipoUsuario = this.service.listAll();
+    async listAll (req, res){
+        const tipoUsuario = await this.service.listAll();
 
-        return res.send(tipoUsuario);
-        
+        return res.send(tipoUsuario);    
     }
 }
