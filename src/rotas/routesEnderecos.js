@@ -24,7 +24,7 @@ routesEndereco.get('/enderecos', (req, res) => listAllEnderecoController.listAll
 
 routesEndereco.post('/enderecos', EnderecoValidator, (req,res) => createEnderecoController.create(req, res));
 
-routesEndereco.put('/enderecos/:id', IndexValidator, EnderecoValidator, (req, res) => updateEnderecoController.update(req, res));
+routesEndereco.put('/enderecos/:idEndereco', IndexValidator, EnderecoValidator, (req, res) => updateEnderecoController.update(req, res));
 
 routesEndereco.delete('/enderecos/:idEndereco', IndexValidator, (req, res) => deleteEnderecoController.delete(req, res));
 
