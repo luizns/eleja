@@ -5,10 +5,11 @@ export default class ListAllController {
         this.service = new ListZonaService();
     }
 
-    listAll (req, res){
-        const zona = this.service.listAll();
+   async listAll (req, res){
+    const { zona } = req.query;
 
-        return res.send(zona);
-        
+    const zonas = await this.service.listAll(zona);
+
+    res.json(zonas);
     }
 }
