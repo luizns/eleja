@@ -10,12 +10,14 @@ export default class CreateZonaController {
     async create (req, res){
         const {
             idZona,
-            secao
+            secao,
+            numero_zona
         } = req.body;
     
         const createdZona = await this.service.create(
             idZona,
-            secao
+            secao,
+            numero_zona
         );
     
         return res.status(200).json(createdZona);

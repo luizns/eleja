@@ -1,33 +1,25 @@
-import UpdateEnderecoService from '../../services/Enderecos/UpdateEnderecoService';
+import UpdateEnderecoService from "../../services/Enderecos/UpdateEnderecoService";
 
 export default class UpdateEnderecoController {
-    constructor() {
-        this.service = new UpdateEnderecoService();
-    }
+  constructor() {
+    this.service = new UpdateEnderecoService();
+  }
 
-    update (req, res){
-        const { id } = req.params
-        const {
-            rua,
-            bairro,
-            numero,
-            cidade,
-            cep,
-            id_eleitor,
-            id_zona
-        } = req.body;
+  async update(req, res) {
+    const { idEndereco } = req.params;
+    const { rua, bairro, numero, cidade, cep, id_eleitor, id_zona } = req.body;
 
-        const updatedEndereco = this.service.Update(
-            idendereco,
-            rua,
-            bairro,
-            numero,
-            cidade,
-            cep,
-            id_eleitor,
-            id_zona
-        );
+    const updatedEndereco = await this.service.update(
+      idEndereco,
+      rua,
+      bairro,
+      numero,
+      cidade,
+      cep,
+      id_eleitor,
+      id_zona
+    );
 
-        res.json(updatedEndereco)
-    }
+    res.json(updatedEndereco);
+  }
 }

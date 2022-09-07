@@ -1,25 +1,26 @@
-import ListJuizService from './ListJuizService';
-
+import JuizModel from "../../models/Juizes/JuizModel";
 export default class DeleteJuizService {
-    constructor() { 
-        this.service = new ListJuizService();
+  constructor() {}
+
+  async delete(idJuiz) {
+    try {
+      const juiz = await JuizModel.findByPk(idJuiz);
+      
+      if (!juiz) {
+        return { message: "Juíz não encontrado com id: " + idJuiz };
       }
 
-    delete(id) {
-        const juizes = this.service.listAll();
-        const juizIndex = juizes.findIndex(juiz => juiz.id === Number(id));
+      const nomeJuiz = juiz.get("nome");
+      await juiz.destroy();
 
-        if(juizIndex === -1){
-            return {
-                message: "ID não referente a qualquer usuário."
-            }
-        }
-
-        juizes.splice(juizIndex, 1);
-
-        return {
-            sucess: true,
-            message: "Usuário deletado com sucesso."
-        }
+      return {
+        mensagem: "O juíz foi removido com sucesso!",
+        nomeJuiz: nomeJuiz,
+        idJuiz: idJuiz,
+      };
+    } catch (error) {
+    //   console.log(juiz);
+      return { erro: error.message };
     }
+  }
 }

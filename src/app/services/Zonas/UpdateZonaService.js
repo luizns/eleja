@@ -1,32 +1,38 @@
-import ListZonaService from './ListZonaService';
-
+import ZonaModel from "../../models/Enderecos/ZonaEnderecoEleitorModel";
 export default class UpdateZonaService {
+  constructor() {}
+  async update(idZona, secao, numero_zona) {
+    try {
+      const zona = await ZonaModel.findByPk(idZona);
 
-    constructor() {
-        this.service = new ListZonaService();
-    }
+      if (!zona) {
+        return { mensagem: "Zona Eleitoral não localizada com id: " + idZona };
+      }
 
-    Update (
-        idzona,
-        secao
-    ) {
-        const zonas = this.service.listAll()
-        const zonaIndex = zonas.findIndex(zona => zona.id === Number(id))
-
-        if (zonaIndex === -1) {
-            return {
-                message: "ID não referente a qualquer zona."
-            }
+      const [numeroRegistrosAtualizado] = await ZonaModel.update(
+        {
+          idZona,
+          secao,
+          numero_zona,
+        },
+        {
+          where: { idZona },
         }
-
-        zonas[zonaIndex] = {
-            idzona,
-            secao
-        }
-
+      );
+      if (numeroRegistrosAtualizado === 0) {
         return {
-            id,
-            ...zonas[zonaIndex]
-        }
+          mensagem: "Nenhuma alteração realizada, os dados são iguais!",
+        };
+      } else {
+        return {
+          mensagem: "Zona atualizada com sucesso!",
+          secao: secao,
+          numero_zona: numero_zona,
+        };
+      }
+    } catch (error) {
+      console.log(error);
+      return { erro: error.message };
     }
+  }
 }

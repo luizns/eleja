@@ -13,6 +13,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      numero_zona: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
     });
   },
 

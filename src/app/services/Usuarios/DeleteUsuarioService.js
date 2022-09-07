@@ -1,23 +1,26 @@
-import ListUsuarioService from './ListUsuarioService';
+import UsuarioModel from "../../models/Usuarios/UsuarioModel";
 export default class DeleteUsuarioService {
+  constructor() {}
 
-    constructor() {}
+  async delete(idUsuario) {
+    try {
+      const usuario = await UsuarioModel.findByPk(idUsuario);
+      
+      if (!usuario) {
+        return { message: "Usuário não encontrado com id: " + idUsuario };
+      }
 
-    delete(id) {
-        const Usuarios = ListUsuarioService.listAll();
-        const usuarioIndex = usuarios.findIndex(usuario => usuario.id === Number(id));
+      const nomeUsuario = usuario.get("nome");
+      await usuario.destroy();
 
-        if(usuarioIndex === -1){
-            return {
-                message: "ID não referente a qualquer usuário."
-            }
-        }
-
-        Usuarios.splice(usuarioIndex, 1);
-
-        return {
-            sucess: true,
-            message: "Usuário deletado com sucesso."
-        }
+      return {
+        mensagem: "O usuário foi removido com sucesso!",
+        nomeUsuario: nomeUsuario,
+        idUsuario: idUsuario,
+      };
+    } catch (error) {
+      console.log(usuario);
+      return { erro: error.message };
     }
+  }
 }

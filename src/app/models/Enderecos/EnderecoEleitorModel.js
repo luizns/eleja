@@ -1,7 +1,7 @@
 import Sequelize, { Model } from "sequelize";
 import databaseConfig from "../../../config/database";
 import EleitorModel from "../../models/Eleitores/EleitorModel";
-import ZonaEnderecoEleitorModel from "../../models/Enderecos/ZonaEnderecoEleitorModel"
+import ZonaEnderecoEleitorModel from "../../models/Enderecos/ZonaEnderecoEleitorModel";
 const sequelize = new Sequelize(databaseConfig);
 class EnderecoModel extends Model {}
 
@@ -24,11 +24,11 @@ EnderecoModel.init(
       },
     },
     id_zona: {
-      type:Sequelize.UUID,
-      references:{
-        model:ZonaEnderecoEleitorModel,
+      type: Sequelize.UUID,
+      references: {
+        model: ZonaEnderecoEleitorModel,
         key: "idZona",
-      }
+      },
     },
   },
   {
@@ -37,6 +37,14 @@ EnderecoModel.init(
     timestamps: false,
   }
 );
-EnderecoModel.belongsTo(EleitorModel, { through: EleitorModel });
-EnderecoModel.belongsTo(ZonaEnderecoEleitorModel, { through: ZonaEnderecoEleitorModel });
+EnderecoModel.belongsTo(EleitorModel, {
+  through: EleitorModel,
+  as: "eleitores",
+  foreignKey: "id_eleitor",
+});
+EnderecoModel.belongsTo(ZonaEnderecoEleitorModel, {
+  through: ZonaEnderecoEleitorModel,
+  as: "zonas",
+  foreignKey: "id_zona",
+});
 export default EnderecoModel;

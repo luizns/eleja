@@ -1,36 +1,41 @@
-import ListPartidoService from './ListPartidoService';
+import PartidoModel from "../../models/Partidos/PartidoModel";
 
 export default class UpdatePartidoService {
+  constructor() {}
 
-    constructor() {
-        this.service = new ListPartidoService();
-    }
+  async update(idPartido, nome_partido, sigla, numero_legenda) {
+    try {
+      const partido = await PartidoModel.findByPk(idPartido);
 
-    Update (
-        id,
-        name,
-        sigla,
-        numeroLegenda
-    ) {
-        const partidos = this.service.listAll()
-        const partidoIndex = partidos.findIndex(partido => partido.id === Number(id))
+      if (!partido) {
+        return { mensagem: "Partido não localizado com id: " + idPartido };
+      }
 
-        if (partidoIndex === -1) {
-            return {
-                message: "ID não referente a qualquer juíz."
-            }
+      const [numeroRegistrosAtualizado] = await PartidoModel.update(
+        {
+          nome_partido,
+          sigla,
+          numero_legenda,
+        },
+        {
+          where: { idPartido },
         }
-
-        partidos[partidoIndex] = {
-            id,
-            name,
-            sigla,
-            numeroLegenda
-        }
-
+      );
+      if (numeroRegistrosAtualizado === 0) {
         return {
-            id,
-            ...partidos[partidoIndex]
-        }
+          mensagem: "Nenhuma alteração realizada, os dados são iguais!",
+        };
+      } else {
+        return {
+          mensagem: "Partido atualizado com sucesso!",
+          nome_partido,
+          sigla,
+          numero_legenda,
+        };
+      }
+    } catch (error) {
+      console.log(error);
+      return { erro: error.message };
     }
+  }
 }

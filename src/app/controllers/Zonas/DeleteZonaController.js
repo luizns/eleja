@@ -1,19 +1,15 @@
-import DeleteZonaService from '../../services/Zonas/DeleteZonaService';
+import DeleteZonaService from "../../services/Zonas/DeleteZonaService";
 
 export default class DeleteZonaService {
+  constructor() {
+    this.service = new DeleteZonaService();
+  }
 
-    constructor(){
-        this.service = new DeleteZonaService();
-    }
+  async delete(req, res) {
+    const { idZona } = req.params;
 
-    delete (req, res){
-        const { id } = req.params;
+    const deletedZona = await this.service.delete(idZona);
 
-        const deletedZona = this.service.delete(id);
-
-        if (!deletedZona.sucess) {
-            return res.status(400).json(deletedZona.message);
-        }
-        res.status(200).json(deletedZona.message)
-    }
+    res.send(deletedZona);
+  }
 }

@@ -10,6 +10,7 @@ export default class ZonaEnderecoEleitor extends Model {}
       type: Sequelize.UUIDV4(),
       primaryKey: true,
     },
+    numero_zona:Sequelize.STRING,
     secao: Sequelize.STRING,
   },
     {

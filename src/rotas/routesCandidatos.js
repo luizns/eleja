@@ -13,7 +13,7 @@ import IndexValidator from '../middlewares/IndexValidator';
 
 //importando controllers para Candidato
 import CreateCandidatoController from '../app/controllers/Candidatos/CreateCandidatoController';
-import ListAllCandidatosController from '../app/controllers/Candidatos/ListAllCandidatoController';
+import ListCandidatosController from '../app/controllers/Candidatos/ListCandidatoController';
 import UpdateCandidatoController from '../app/controllers/Candidatos/UpdateCandidatoController';
 import DeleteCandidatoController from '../app/controllers/Candidatos/DeleteCandidatoController';
 import CandidatoValidator from '../middlewares/CandidatoValidator';
@@ -22,13 +22,13 @@ import CandidatoValidator from '../middlewares/CandidatoValidator';
 const createCandidatoController = new CreateCandidatoController();
 const deleteCandidatoController = new DeleteCandidatoController();
 const updateCandidatoController = new UpdateCandidatoController();
-const listAllCandidatosController = new ListAllCandidatosController();
+const listCandidatosController = new ListCandidatosController();
 
 
 const routesCandidato = new Router();
 
 // Rota para candidatos
-routesCandidato.get('/candidatos', (req, res) => listAllCandidatosController.listAll(req, res));
+routesCandidato.get('/candidatos', (req, res) => listCandidatosController.index(req, res));
 
 routesCandidato.post('/candidatos', CandidatoValidator, (req,res) => createCandidatoController.create(req, res));
 

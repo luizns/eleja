@@ -1,21 +1,16 @@
-import UpdateZonaService from '../../services/Zonas/UpdateZonaService';
+import UpdateZonaService from "../../services/Zonas/UpdateZonaService";
 
 export default class UpdateZonaController {
-    constructor() {
-        this.service = new UpdateZonaService();
-    }
+  constructor() {
+    this.service = new UpdateZonaService();
+  }
 
-    update (req, res){
-        const { idzona } = req.params
-        const {
-            secao
-        } = req.body;
+  async update(req, res) {
+    const { idZona } = req.params;
+    const { numero_zona, secao } = req.body;
 
-        const updatedZona = this.service.Update(
-            idzona,
-            secao
-        );
+    const updatedZona = await this.service.update(idZona, numero_zona, secao);
 
-        res.json(updatedZona)
-    }
+    res.json(updatedZona);
+  }
 }

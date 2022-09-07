@@ -6,7 +6,7 @@ import IndexValidator from '../middlewares/IndexValidator';
 
 //importando controllers para Juízes
 import CreateEleitorController from '../app/controllers/Eleitores/CreateEleitorController';
-import ListAllEleitorController from '../app/controllers/Eleitores/ListAllEleitorController';
+import ListEleitorController from '../app/controllers/Eleitores/ListEleitorController';
 import UpdateEleitorController from '../app/controllers/Eleitores/UpdateEleitorController';
 import DeleteEleitorController from '../app/controllers/Eleitores/DeleteEleitorController';
 import EleitorValidator from '../middlewares/EleitorValidator';
@@ -15,12 +15,12 @@ import EleitorValidator from '../middlewares/EleitorValidator';
 const createEleitorController = new CreateEleitorController();
 const deleteEleitorController = new DeleteEleitorController();
 const updateEleitorController = new UpdateEleitorController();
-const listAllEleitorController = new ListAllEleitorController();
+const listEleitorController = new ListEleitorController();
 
 const routesEleitor = new Router();
 
 // Rota para juízes
-routesEleitor.get('/eleitores', (req, res) => listAllEleitorController.listAll(req, res));
+routesEleitor.get('/eleitores', (req, res) => listEleitorController.index(req, res));
 
 routesEleitor.post('/eleitores', /* EleitorValidator, */ (req,res) => createEleitorController.create(req, res));
 

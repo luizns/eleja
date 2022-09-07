@@ -6,12 +6,14 @@ export default class CreateZonaService {
 
     async create (
         idZona,
-        secao
+        secao,
+        numero_zona,
         ) {
         try {
             const newZona = await ZonaModel.create({
                 idZona: v4(),
-                secao
+                secao,
+                numero_zona
             });
             
             return newZona;        

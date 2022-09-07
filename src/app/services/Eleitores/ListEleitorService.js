@@ -1,26 +1,39 @@
-import EleitorModel from '../../models/Eleitores/EleitorModel';
+import EleitorModel from "../../models/Eleitores/EleitorModel";
 
 export default class ListEleitorService {
-    
-    listAll() {
-        const eleitor1 = new EleitorModel(
-            2,
-            "13456789112",
-            "021354896573",
-            "213547805",
-            "005",
-            "369854"
-        );
+  constructor() {}
 
-        const eleitor2 = new EleitorModel(
-            3,
-            "32654789524",
-            "012354698774",
-            "321458745",
-            "006",
-            "2547821"
-        );
-
-        return [eleitor1, eleitor2];
+  async listAll(nomeEleitor) {
+    try {
+      if (nomeEleitor) {
+        return await this.listOne(nomeEleitor);
+      }
+      const eleitores = await EleitorModel.findAll();
+      return eleitores;
+    } catch (error) {
+      console.log(error);
+      return { erro: error.message };
     }
+  }
+  async listOne(nomeEleitor) {
+    try {
+      const eleitor = await EleitorModel.findOne({
+        where: {
+          nome: nomeEleitor,
+        },
+      });
+
+      if (!eleitor) {
+        return {
+          mesagem: "Eleitor não localizado com o nome: " + nomeEleitor,
+        };
+      }
+
+      return eleitor;
+      
+    } catch (error) {
+      console.log(error);
+      return { erro: error.message };
+    }
+  }
 }

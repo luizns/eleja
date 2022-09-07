@@ -17,7 +17,7 @@ EleitorModel.init(
     rg: Sequelize.STRING,
     idade:Sequelize.STRING,
     id_usuario:{ 
-      type: Sequelize.UUID,
+      type: Sequelize.UUIDV4(),
       references: {
         model: UsuarioModel,
         key: 'idUsuario',

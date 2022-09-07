@@ -18,7 +18,7 @@ UsuarioModel.init(
       type: Sequelize.STRING,
       references: {
         model: TipoUsuarioModel,
-        key: 'idTipo',
+        key: "idTipo",
       },
     },
   },
@@ -29,6 +29,14 @@ UsuarioModel.init(
   }
 );
 
+<<<<<<< HEAD
 UsuarioModel.belongsTo(TipoUsuarioModel,{through:TipoUsuarioModel})
+=======
+UsuarioModel.belongsTo(TipoUsuarioModel, {
+  through: TipoUsuarioModel,
+  as: "tipo_usuarios",
+  foreignKey: "id_tipo_usuario",
+});
+>>>>>>> 14e64fd86288e7fc4b9f1ffed4d0cab1c950f134
 
 export default UsuarioModel;

@@ -2,10 +2,9 @@ import * as yup from 'yup';
 
 async function IndexValidator(request, response, next) {
     const schema = yup.object().shape({
-        id: yup
-            .number("Neste caso, só será aceito ID do tipo NÚMERO.")
-            .integer("Apenas números inteiros no ID")
-            .positive("ID não pode ser um número negativo.")
+        idPartido: yup
+            .string("Neste caso, só será aceito ID do tipo STRING.")
+            
     });
 
     await schema.validate(request.params).catch(err => {

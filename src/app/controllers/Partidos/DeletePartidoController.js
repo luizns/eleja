@@ -1,19 +1,15 @@
-import DeletePartidoService from '../../services/Partidos/DeletePartidoService';
+import DeletePartidoService from "../../services/Partidos/DeletePartidoService";
 
 export default class DeletePartidoService {
+  constructor() {
+    this.service = new DeletePartidoService();
+  }
 
-    constructor(){
-        this.service = new DeletePartidoService();
-    }
+  async delete(req, res) {
+    const { idPartido } = req.params;
+  
+    const deletedPartido = await this.service.delete(idPartido);
 
-    delete (req, res){
-        const { id } = req.params;
-
-        const deletedPartido = this.service.delete(id);
-
-        if (!deletedPartido.sucess) {
-            return res.status(400).json(deletedPartido.message);
-        }
-        res.status(200).json(deletedPartido.message)
-    }
+    res.send(deletedPartido);
+  }
 }

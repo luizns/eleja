@@ -1,30 +1,45 @@
-import EnderecoModel from '../../models/Enderecos/EnderecoEleitorModel';
+import EnderecoModel from "../../models/Enderecos/EnderecoEleitorModel";
+const { Op } = require("sequelize");
 
 export default class ListEnderecoService {
-    
-    listAll() {
-        const endereco1 = new EnderecoModel(
-            2,
-            "Rua Joaquim da Costa Lima",
-            "São Lucas da Maré",
-            "45",
-            "São Bráz",
-            "20280010",
-            1,
-            250
-        );
+  constructor() {}
 
-        const endereco2 = new EnderecoModel(
-            1,
-            "Rua da Silva Sauro",
-            "Embariê",
-            "77",
-            "Luanda",
-            "25187150",
-            2,
-            130
-        );
-
-        return [endereco1, endereco2];
+  async listAll(endereco) {
+    try {
+      if (endereco) {
+        return await this.listOne(endereco);
+      }
+      const enderecos = await EnderecoModel.findAll();
+      return enderecos;
+    } catch (error) {
+      console.log(error);
+      return { erro: error.message };
     }
+  }
+
+  async listOne(dadoEndereco) {
+    try {
+      const endereco = await EnderecoModel.findOne({
+        where: {
+          [Op.or]: [
+            { rua: { [Op.like]: "%" + dadoEndereco + "%" } },
+            { cep: { [Op.like]: "%" + dadoEndereco + "%" } },
+            { bairro: { [Op.like]: "%" + dadoEndereco + "%" } },
+            { numero: { [Op.like]: "%" + dadoEndereco + "%" } },
+            { cidade: { [Op.like]: "%" + dadoEndereco + "%" } },
+          ],
+        },
+      });
+
+      if (!endereco) {
+        return {
+          mensagem: "Endereço não localizado com o nome: " + dadoEndereco,
+        };
+      }
+      return endereco;
+    } catch (error) {
+      console.log(error);
+      return { erro: error };
+    }
+  }
 }

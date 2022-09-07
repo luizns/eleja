@@ -1,36 +1,44 @@
-import ListJuizService from './ListJuizService';
+import JuizModel from "../../models/Juizes/JuizModel";
 
 export default class UpdateJuizService {
+  constructor() {}
 
-    constructor() {
-        this.service = new ListJuizService();
-    }
+  async update(idJuiz, matricula, id_usuario) {
+    try {
+      const juiz = await JuizModel.findByPk(idJuiz);
 
-    Update (
-        id,
-        name,
-        email,
-        password,
-    ) {
-        const juizes = this.service.listAll()
-        const juizIndex = juizes.findIndex(juiz => juiz.id === Number(id))
+      console.log("id", juiz)
 
-        if (juizIndex === -1) {
-            return {
-                message: "ID não referente a qualquer juíz."
-            }
+      if (!juiz) {
+        return { mensagem: "Juíz não localizado com id: " + idJuiz };
+      }
+
+      const [numeroRegistrosAtualizado] = await JuizModel.update(
+        {
+          idJuiz,
+          matricula,
+          id_usuario,
+        },
+
+        {
+          where: { idJuiz },
         }
+      );
 
-        juizes[juizIndex] = {
-            id,
-            name,
-            email,
-            password
-        }
-
+      if (numeroRegistrosAtualizado === 0) {
         return {
-            id,
-            ...juizes[juizIndex]
-        }
+          mensagem: "Nenhuma alteração realizada, os dados são iguais!",
+        };
+      } else {
+        return {
+          mensagem: "Juíz atualizado com sucesso!",
+          matricula,
+          id_usuario,
+        };
+      }
+    } catch (error) {
+      console.log(error);
+      return { erro: error.message };
     }
+  }
 }
