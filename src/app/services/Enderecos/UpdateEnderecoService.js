@@ -1,44 +1,57 @@
-import ListEnderecoService from './ListEnderecoService';
-
+import EnderecoModel from "../../models/Enderecos/EnderecoEleitorModel";
 export default class UpdateEnderecoService {
+  constructor() {}
+  async update(
+    idEndereco,
+    rua,
+    bairro,
+    numero,
+    cidade,
+    cep,
+    id_eleitor,
+    id_zona
+  ) {
+    try {
+      const endereco = await EnderecoModel.findByPk(idEndereco);
 
-    constructor() {
-        this.service = new ListEnderecoService();
-    }
+      if (!endereco) {
+        return { mensagem: "Endereço não localizado com id: " + idEndereco };
+      }
 
-    Update (
-        idendereco,
-        rua,
-        bairro,
-        numero,
-        cidade,
-        cep,
-        id_eleitor,
-        id_zona
-    ) {
-        const enderecos = this.service.listAll()
-        const enderecoIndex = enderecos.findIndex(endereco => endereco.id === Number(id))
-
-        if (enderecoIndex === -1) {
-            return {
-                message: "ID não referente a qualquer endereco."
-            }
+      const [numeroRegistrosAtualizado] = await EnderecoModel.update(
+        {
+          idEndereco,
+          rua,
+          bairro,
+          numero,
+          cidade,
+          cep,
+          id_eleitor,
+          id_zona,
+        },
+        {
+          where: { idEndereco },
         }
-
-        enderecos[enderecoIndex] = {
-            idendereco,
-            rua,
-            bairro,
-            numero,
-            cidade,
-            cep,
-            id_eleitor,
-            id_zona
-        }
-
+      );
+      if (numeroRegistrosAtualizado === 0) {
         return {
-            id,
-            ...enderecos[enderecoIndex]
-        }
+          mensagem: "Nenhuma alteração realizada, os dados são iguais!",
+        };
+      } else {
+        return {
+          mensagem: "Endereço atualizado com sucesso!",
+          rua: rua,
+          bairro: bairro,
+          numero: numero,
+          cidade: cidade,
+          cep: cep,
+          id_eleitor: id_eleitor,
+          id_zona: id_zona,
+        };
+      }
+    } catch (error) {
+      console.log(error);
+      return { erro: error.message };
     }
+  }
 }
