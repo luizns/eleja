@@ -8,7 +8,7 @@ class TipoUsuarioModel extends Model {}
 TipoUsuarioModel.init(
   {
     idTipo: {
-      type: Sequelize.UUIDV4(),
+      type: Sequelize.UUIDV4,
       primaryKey: true,
     },
     descricao: Sequelize.STRING,

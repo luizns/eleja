@@ -1,20 +1,18 @@
 
-import CreateTipoUsuariosService from '../../services/TipoUsuarios/CreateTipoUsuarioService';
+import CreateTipoUsuarioService from '../../services/TipoUsuarios/CreateTipoUsuarioService';
 
 export default class CreateTipoUsuariosController {
     
         constructor() {
-            this.service = new CreateTipoUsuariosService();
+            this.service = new CreateTipoUsuarioService();
         }
 
     async create (req, res){
         const {
-            idtipo,
             descricao
         } = req.body;
     
         const createdTipoUsuarios = await this.service.create(
-            idtipo,
             descricao
         );
     

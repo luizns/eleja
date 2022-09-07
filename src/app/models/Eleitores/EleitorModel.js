@@ -31,4 +31,5 @@ EleitorModel.init(
   }
 );
 EleitorModel.belongsTo(UsuarioModel,{through:UsuarioModel})
+
 export default EleitorModel;

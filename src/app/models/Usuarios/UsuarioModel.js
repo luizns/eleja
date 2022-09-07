@@ -30,4 +30,5 @@ UsuarioModel.init(
 );
 
 UsuarioModel.belongsTo(TipoUsuarioModel,{through:TipoUsuarioModel})
+
 export default UsuarioModel;

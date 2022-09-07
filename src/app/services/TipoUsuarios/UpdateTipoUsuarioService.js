@@ -1,32 +1,29 @@
-import ListTipoUsuarioService from './ListTipoUsuarioService';
+import TipoUsuarioModel from '../../models/Usuarios/TipoUsuarioModel';
 
 export default class UpdateTipoUsuarioService {
+    constructor() { }
 
-    constructor() {
-        this.service = new ListTipoUsuarioService();
-    }
+    async update(id, descricao) {
+        try {
+            const tipo = TipoUsuarioModel.findByPk(id);
 
-    Update (
-        idTipoUsuario,
-        secao
-    ) {
-        const tipoUsuarios = this.service.listAll()
-        const tipoUsuarioIndex = tipoUsuarios.findIndex(tipoUsuario => tipoUsuario.id === Number(id))
-
-        if (tipoUsuarioIndex === -1) {
-            return {
-                message: "ID não referente a qualquer TipoUsuario."
+            if (!tipo) {
+                return { mensagem: "Tipo não encontrado" };
             }
-        }
 
-        tipoUsuarios[tipoUsuarioIndex] = {
-            idTipoUsuario,
-            secao
-        }
+            const [numeroDeRegistros] = await TipoUsuarioModel.update({ descricao }, {
+                where: { idTipo: id }
+            });
 
-        return {
-            id,
-            ...tipoUsuarios[tipoUsuarioIndex]
+            if (numeroDeRegistros === 0) {
+                return { mensagem: "Dados iguais" }
+            } else {
+                return { id, descricao }
+            }
+
+        } catch (error) {
+            console.log(error);
+            return { erro: error.message };
         }
     }
 }

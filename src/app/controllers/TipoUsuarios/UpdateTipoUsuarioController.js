@@ -5,16 +5,15 @@ export default class UpdateTipoUsuarioController {
         this.service = new UpdateTipoUsuarioService();
     }
 
-    update (req, res){
-        const { idTipoUsuario } = req.params
-        const {
-            descricao
-        } = req.body;
+    async update(req, res) {
+        const { id } = req.params
+        const { descricao } = req.body;
 
-        const updatedTipoUsuario = this.service.Update(
-            idTipoUsuario,
-            descricao
-        );
+        if (!descricao) {
+            return await res.json({ mensagem: "Descrição é um campo obrigatório." })
+        }
+
+        const updatedTipoUsuario = await this.service.update(id, descricao);
 
         res.json(updatedTipoUsuario)
     }

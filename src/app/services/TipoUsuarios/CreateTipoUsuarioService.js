@@ -4,7 +4,9 @@ import TipoUsuarioModel from "../../models/Usuarios/TipoUsuarioModel";
 export default class CreateTipoUsuarioService {
   constructor() {}
 
-  async create(idTipo, descricao) {
+  async create(
+    descricao
+  ) {
     try {
       const newTipoUsuario = await TipoUsuarioModel.create({
         idTipo: v4(),
