@@ -19,7 +19,7 @@ export default class DeleteJuizService {
         idJuiz: idJuiz,
       };
     } catch (error) {
-    //   console.log(juiz);
+      console.log(error);
       return { erro: error.message };
     }
   }

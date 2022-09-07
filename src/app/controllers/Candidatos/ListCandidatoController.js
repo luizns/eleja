@@ -6,9 +6,9 @@ export default class ListCandidatoController {
     }
 
     async index(req, res){
-        const { name } = req.query;
+        const { nome } = req.query;
 
-        const candidatos = await this.service.listAll(name);
+        const candidatos = await this.service.listAll(nome);
 
         res.json(candidatos);
     }

@@ -1,40 +1,52 @@
-import ListCandidatoService from './ListCandidatoService';
+import CandidatoModel from "../../models/Candidatos/CandidatoModel";
 
 export default class UpdateCandidatoService {
+  constructor() {}
 
-    constructor() {
-        this.service = new ListCandidatoService();
-    }
+  async update(
+    idCandidato, 
+    nome_candidato,
+    numero_candidato,
+    id_partido,
+    id_juiz_eleitoral,
+    id_candidato_voto) {
+    try {
+      const candidato = await CandidatoModel.findByPk(idCandidato);
 
-    Update (
-        id,
-        name,
-        numero,
-        idPartido,
-        idJuizEleitoral,
-        idCandidatoVoto
-    ) {
-        const candidatos = this.service.listAll()
-        const candidatoIndex = candidatos.findIndex(candidato => candidato.id === Number(id))
+      console.log("id", candidato)
 
-        if (candidatoIndex === -1) {
-            return {
-                message: "ID não referente a qualquer juíz."
-            }
+      if (!candidato) {
+        return { mensagem: "Candidato não localizado com id: " + idCandidato };
+      }
+
+      const [numeroRegistrosAtualizado] = await CandidatoModel.update(
+        {
+          nome_candidato,
+          numero_candidato,
+          id_partido,
+          id_juiz_eleitoral,
+          id_candidato_voto
+        },
+
+        {
+          where: { idCandidato },
         }
+      );
 
-        candidatos[candidatoIndex] = {
-            id,
-            name,
-            numero,
-            idPartido,
-            idJuizEleitoral,
-            idCandidatoVoto
-        }
-
+      if (numeroRegistrosAtualizado === 0) {
         return {
-            id,
-            ...candidatos[candidatoIndex]
-        }
+          mensagem: "Nenhuma alteração realizada, os dados são iguais!",
+        };
+      } else {
+        return {
+          mensagem: "Candidato atualizado com sucesso!",
+          nome_candidato,
+          numero_candidato
+        };
+      }
+    } catch (error) {
+      console.log(error);
+      return { erro: error.message };
     }
+  }
 }

@@ -1,29 +1,28 @@
-import UpdateCandidatoService from '../../services/Candidatos/UpdateCandidatoService';
+import UpdateCandidatoService from "../../services/Candidatos/UpdateCandidatoService";
 
 export default class UpdateCandidatoController {
-    constructor() {
-        this.service = new UpdateCandidatoService();
-    }
+  constructor() {
+    this.service = new UpdateCandidatoService();
+  }
 
-    update (req, res){
-        const { id } = req.params
-        const {
-            name,
-            numero,
-            idPartido,
-            idJuizEleitoral,
-            idCandidatoVoto
-        } = req.body;
+  async update(req, res) {
+    const { idCandidato } = req.params;
 
-        const updatedCandidato = this.service.Update(
-            id,
-            name,
-            numero,
-            idPartido,
-            idJuizEleitoral,
-            idCandidatoVoto
-        );
+    const { nome_candidato,
+            numero_candidato,
+            id_partido,
+            id_juiz_eleitoral,
+            id_candidato_voto } = req.body;
 
-        res.json(updatedCandidato)
-    }
+    const updatedCandidato = await this.service.update(
+        idCandidato,
+        nome_candidato,
+        numero_candidato,
+        id_partido,
+        id_juiz_eleitoral,
+        id_candidato_voto
+     );
+
+    res.json(updatedCandidato);
+  }
 }

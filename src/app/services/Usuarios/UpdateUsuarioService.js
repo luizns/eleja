@@ -13,7 +13,6 @@ export default class UpdateUsuarioService {
 
       const [numeroRegistrosAtualizado] = await UsuarioModel.update(
         {
-          idUsuario,
           nome,
           email,
           senha,

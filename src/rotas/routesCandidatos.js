@@ -32,9 +32,9 @@ routesCandidato.get('/candidatos', (req, res) => listCandidatosController.index(
 
 routesCandidato.post('/candidatos', CandidatoValidator, (req,res) => createCandidatoController.create(req, res));
 
-routesCandidato.put('/candidatos/:id', IndexValidator, CandidatoValidator, (req, res) => updateCandidatoController.update(req, res));
+routesCandidato.put('/candidatos/:idCandidato', IndexValidator, CandidatoValidator, (req, res) => updateCandidatoController.update(req, res));
 
-routesCandidato.delete('/candidatos/:id', IndexValidator, (req, res) => deleteCandidatoController.delete(req, res));
+routesCandidato.delete('/candidatos/:idCandidato', IndexValidator, (req, res) => deleteCandidatoController.delete(req, res));
 
 routesCandidato.post('/uploads', uploadFile.single('file') ,uploadFileController.storeFile);
 
