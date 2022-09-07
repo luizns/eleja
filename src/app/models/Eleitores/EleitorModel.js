@@ -28,5 +28,8 @@ EleitorModel.init(
     timestamps: false,
   }
 );
-EleitorModel.belongsTo(UsuarioModel,{through:UsuarioModel})
+EleitorModel.belongsTo(UsuarioModel,{through:UsuarioModel,
+as: "idUsuario",
+foreignKey: "id_usuario"})
+
 export default EleitorModel;

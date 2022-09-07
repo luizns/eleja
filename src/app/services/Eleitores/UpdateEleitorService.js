@@ -1,40 +1,53 @@
-import ListEleitorService from './ListEleitorService';
+import EleitorModel from "../../models/Eleitores/EleitorModel";
 
 export default class UpdateEleitorService {
+  constructor() {}
 
-    constructor() {
-        this.service = new ListEleitorService();
-    }
+  async update(
+    idEleitor,
+    cpf,
+    titulo_eleitor,
+    rg,
+    idade,
+    id_usuario) {
+    try {
+      const eleitor = await EleitorModel.findByPk(idEleitor);
 
-    Update (
-        id,
-        cpf,
-        titulo,
-        rg,
-        idUsuario,
-        idEleitorVoto
-    ) {
-        const eleitores = this.service.listAll()
-        const eleitorIndex = eleitores.findIndex(eleitor => eleitor.id === Number(id))
+      if (!eleitor) {
+        return { mensagem: "Usuário não localizado com id: " + idEleitor };
+      }
 
-        if (eleitorIndex === -1) {
-            return {
-                message: "ID não referente a qualquer juíz."
-            }
-        }
-
-        eleitores[eleitorIndex] = {
-            id,
+      const [numeroRegistrosAtualizado] = await EleitorModel.update(
+        {
             cpf,
-            titulo,
+            titulo_eleitor,
             rg,
-            idUsuario,
-            idEleitorVoto
-        }
+            idade,
+            id_usuario
+        },
 
-        return {
-            id,
-            ...eleitores[eleitorIndex]
+        {
+          where: { idEleitor },
         }
+      );
+
+      if (numeroRegistrosAtualizado === 0) {
+        return {
+          mensagem: "Nenhuma alteração realizada, os dados são iguais!",
+        };
+      } else {
+        return {
+          mensagem: "Eleitor atualizado com sucesso!",
+            cpf,
+            titulo_eleitor,
+            rg,
+            idade,
+            id_usuario
+        };
+      }
+    } catch (error) {
+      console.log(error);
+      return { erro: error.message };
     }
+  }
 }
