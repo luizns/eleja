@@ -1,19 +1,15 @@
-import DeleteJuizService from '../../services/Juizes/DeleteJuizService';
+import DeleteJuizService from "../../services/Juizes/DeleteJuizService";
 
-export default class DeleteJuizService {
+export default class DeleteJuizController {
+  constructor() {
+    this.service = new DeleteJuizService();
+  }
 
-    constructor(){
-        this.service = new DeleteJuizService();
-    }
+  async delete(req, res) {
+    const { idJuiz } = req.params;
 
-    delete (req, res){
-        const { id } = req.params;
-
-        const deletedJuiz = this.service.delete(id);
-
-        if (!deletedJuiz.sucess) {
-            return res.status(400).json(deletedJuiz.message);
-        }
-        res.status(200).json(deletedJuiz.message)
-    }
+    const deletedJuiz = await this.service.delete(idJuiz);
+    
+    res.send(deletedJuiz);
+  }
 }

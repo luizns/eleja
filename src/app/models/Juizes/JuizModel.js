@@ -12,7 +12,7 @@ JuizEleitoralModel.init(
     },
     matricula: Sequelize.STRING,
     id_usuario: {
-      type: Sequelize.STRING,
+      type: Sequelize.UUIDV4,
       references: {
         model: UsuarioModel,
         key: "idUsuario",
@@ -25,5 +25,8 @@ JuizEleitoralModel.init(
     timestamps: false,
   }
 );
-JuizEleitoralModel.belongsTo(UsuarioModel, { trough: UsuarioModel });
+JuizEleitoralModel.belongsTo(UsuarioModel, { trough: UsuarioModel,
+as: "usuario",
+foreignKey: "id_usuario" });
+
 export default JuizEleitoralModel;

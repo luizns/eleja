@@ -9,6 +9,7 @@ export default class DeleteUsuarioController {
     const { idUsuario } = req.params;
 
     const deletedUsuario = await this.service.delete(idUsuario);
+    
     res.send(deletedUsuario);
   }
 }

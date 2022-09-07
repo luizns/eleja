@@ -1,25 +1,20 @@
-import UpdateJuizService from '../../services/Juizes/UpdateJuizService';
+import UpdateJuizService from "../../services/Juizes/UpdateJuizService";
 
 export default class UpdateJuizController {
-    constructor() {
-        this.service = new UpdateJuizService();
-    }
+  constructor() {
+    this.service = new UpdateJuizService();
+  }
 
-    update (req, res){
-        const { id } = req.params
-        const {
-            name,
-            email,
-            password
-        } = req.body;
+  async update(req, res) {
+    const { idJuiz } = req.params;
+    const { matricula,id_usuario} = req.body;
 
-        const updatedJuiz = this.service.Update(
-            id,
-            name,
-            email,
-            password
-        );
+    const updatedJuiz = await this.service.update(
+      idJuiz,
+      matricula,
+      id_usuario
+     );
 
-        res.json(updatedJuiz)
-    }
+    res.json(updatedJuiz);
+  }
 }

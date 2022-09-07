@@ -5,9 +5,9 @@ export default class UpdateUsuarioService {
 
   async update(idUsuario, nome, email, senha, id_tipo_usuario) {
     try {
-      const partido = await UsuarioModel.findByPk(idUsuario);
+      const usuario = await UsuarioModel.findByPk(idUsuario);
 
-      if (!partido) {
+      if (!usuario) {
         return { mensagem: "Usuário não localizado com id: " + idUsuario };
       }
 

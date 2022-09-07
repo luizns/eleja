@@ -16,7 +16,7 @@ CandidatoModel.init(
     numero_candidato: Sequelize.STRING,
 
     id_partido: {
-      type: Sequelize.UUID,
+      type: Sequelize.UUIDV4(),
        references: {
         model: PartidoModel,
         key: 'idPartido',
@@ -30,7 +30,7 @@ CandidatoModel.init(
       },
     },
     id_candidato_voto: {
-      type: Sequelize.STRING,
+      type: Sequelize.UUIDV4(),
       references: {
         model: QuantidadeVotosCandidatosModel,
         key: 'idQuantVotosCandidato',

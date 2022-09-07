@@ -1,26 +1,35 @@
-import CandidatoModel from '../../models/Candidatos/CandidatoModel';
+import CadidatoModel from '../../models/Candidatos/CandidatoModel';
 
 export default class ListCandidatosService {
+    constructor() {}
+
+   async listAll (candidatoNome){
+    try {
+        if(candidatoNome){
+            return await this.listOne(candidatoNome);
+        }
+
+        const candidatos = await CadidatoModel.findAll();
+        return candidatos;
+    }catch(error){
+            console.log(error);
+            return{ erro: error.message };
+        }
+    }
     
-    listAll() {
-        const candidato1 = new CandidatoModel(
-            3535,
-            "Silvio Santos",
-            "42123",
-            "13",
-            "001",
-            "001"
-        );
+    async listOne(candidatoNome){
+        try{
+            const candidato = await CandidatoModel.findOne({ 
+                where: { nome: candidatoNome}});
 
-        const candidato2 = new CandidatoModel(
-            2525,
-            "Alan Kardec",
-            "35",
-            "12",
-            "002",
-            "002"
-        );
-
-        return [candidato1, candidato2];
+                if(!candidato){
+                    return { mensagem: 'Candidato não encontrado'};
+                }
+                
+                return candidato;
+        }catch(error){
+            console.log(error);
+            return{ erro: error.message };
+        }
     }
 }
