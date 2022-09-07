@@ -27,9 +27,9 @@ routes.post('/votos_registro', (req, res) =>
 routes.get('/votos_registro', (req, res) =>
     listAllRegistroVotoController.listAll(req, res)
 );
-routes.get('votos-quantidade', (req, res) =>
+/* routes.get('votos-quantidade', (req, res) =>
     listAllQuantVotoController.show(req, res)
-);
+); */
 routes.post('/votos', (req, res) =>
     createVotoController.create(req, res)
 );

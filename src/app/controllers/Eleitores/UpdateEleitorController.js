@@ -1,29 +1,28 @@
-import UpdateEleitorService from '../../services/Eleitores/UpdateEleitorService';
+import UpdateEleitorService from "../../services/Eleitores/UpdateEleitorService";
 
 export default class UpdateEleitorController {
-    constructor() {
-        this.service = new UpdateEleitorService();
-    }
+  constructor() {
+    this.service = new UpdateEleitorService();
+  }
 
-    update (req, res){
-        const { id } = req.params
-        const {
-            cpf,
-            titulo,
-            rg,
-            idUsuario,
-            idEleitorVoto
-        } = req.body;
+  async update(req, res) {
+    const { idEleitor } = req.params;
+    const {
+        cpf,
+        titulo_eleitor,
+        rg,
+        idade,
+        id_usuario } = req.body;
 
-        const updatedEleitor = this.service.Update(
-            id,
-            cpf,
-            titulo,
-            rg,
-            idUsuario,
-            idEleitorVoto
-        );
+    const updatedEleitor = await this.service.update(
+        idEleitor,
+        cpf,
+        titulo_eleitor,
+        rg,
+        idade,
+        id_usuario
+     );
 
-        res.json(updatedEleitor)
-    }
+    res.json(updatedEleitor);
+  }
 }

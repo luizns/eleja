@@ -2,7 +2,7 @@ import Sequelize, { Model } from "sequelize";
 import databaseConfig from "../../../config/database";
 import PartidoModel from "../Partidos/PartidoModel";
 import JuizEleitoralModel from "../Partidos/PartidoModel";
-import QuantVotosCandidatosModel from "../Votos/QuantVotosCandidatosModel";
+import QuantidadeVotosCandidatosModel from "../Votos/QuantVotosCandidatosModel";
 const sequelize = new Sequelize(databaseConfig);
 class CandidatoModel extends Model {}
 
@@ -32,7 +32,7 @@ CandidatoModel.init(
     id_candidato_voto: {
       type: Sequelize.UUIDV4(),
       references: {
-        model: QuantVotosCandidatosModel,
+        model: QuantidadeVotosCandidatosModel,
         key: 'idQuantVotosCandidato',
       },
     },
@@ -44,12 +44,18 @@ CandidatoModel.init(
   }
 );
 /*relação  Partido x candidato 1:N*/
-CandidatoModel.belongsTo(PartidoModel,{through:PartidoModel})
+CandidatoModel.belongsTo(PartidoModel,{through:PartidoModel,
+as: "partido",
+foreignKey: "id_partido"})
 
 /*relação  Juiz X Candidatos 1:N*/
-CandidatoModel.belongsTo(JuizEleitoralModel,{through:JuizEleitoralModel})
+CandidatoModel.belongsTo(JuizEleitoralModel,{through:JuizEleitoralModel,
+  as: "juiz",
+  foreignKey: "id_juiz_eleitoral"})
 
 /*Relação Candidato X QuantidadeVotos 1:N */
-CandidatoModel.belongsTo(QuantVotosCandidatosModel)
+CandidatoModel.belongsTo(QuantidadeVotosCandidatosModel,{through:QuantidadeVotosCandidatosModel,
+  as: "total_votos",
+  foreignKey: "id_candidato_voto"})
 
 export default CandidatoModel;

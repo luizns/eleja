@@ -1,25 +1,26 @@
-import ListCandidatoService from './ListCandidatoService';
-
+import CandidatoModel from "../../models/Candidatos/CandidatoModel";
 export default class DeleteCandidatoService {
-    constructor() { 
-        this.service = new ListCandidatoService();
+  constructor() {}
+
+  async delete(idCandidato) {
+    try {
+      const candidato = await CandidatoModel.findByPk(idCandidato);
+      
+      if (!candidato) {
+        return { message: "Candidato não encontrado com id: " + idCandidato };
       }
 
-    delete(id) {
-        const candidatos = this.service.listAll();
-        const candidatoIndex = candidatos.findIndex(candidato => candidato.id === Number(id));
+      const nomeCandidato = candidato.get("nome");
+      await candidato.destroy();
 
-        if(candidatoIndex === -1){
-            return {
-                message: "ID não referente a qualquer usuário."
-            }
-        }
-
-        candidatos.splice(candidatoIndex, 1);
-
-        return {
-            sucess: true,
-            message: "Usuário deletado com sucesso."
-        }
+      return {
+        mensagem: "O candidato foi removido com sucesso!",
+        nomeCandidato: nomeCandidato,
+        idCandidato: idCandidato,
+      };
+    } catch (error) {
+      console.log(error);
+      return { erro: error.message };
     }
+  }
 }

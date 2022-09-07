@@ -13,8 +13,7 @@ RegistroVotoModel.init(
       type: Sequelize.UUIDV4(),
       primaryKey: true,
     },
-    numeroDigitado: Sequelize.STRING,
-    dataHoraVoto: Sequelize.DATE,
+    dataHora: Sequelize.DATE,
     id_eleitor: {
       type: Sequelize.UUID,
       allowNull: false,

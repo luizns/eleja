@@ -3,10 +3,10 @@ import EleitorModel from "../../models/Eleitores/EleitorModel";
 export default class ListEleitorService {
   constructor() {}
 
-  async listAll(nomeEleitor) {
+  async listAll(cpfEleitor) {
     try {
-      if (nomeEleitor) {
-        return await this.listOne(nomeEleitor);
+      if (cpfEleitor) {
+        return await this.listOne(cpfEleitor);
       }
       const eleitores = await EleitorModel.findAll();
       return eleitores;
@@ -15,17 +15,17 @@ export default class ListEleitorService {
       return { erro: error.message };
     }
   }
-  async listOne(nomeEleitor) {
+  async listOne(cpfEleitor) {
     try {
       const eleitor = await EleitorModel.findOne({
         where: {
-          nome: nomeEleitor,
+          cpf: cpfEleitor,
         },
       });
 
       if (!eleitor) {
         return {
-          mesagem: "Eleitor não localizado com o nome: " + nomeEleitor,
+          mesagem: "Eleitor não localizado com o cpf: " + cpfEleitor,
         };
       }
 

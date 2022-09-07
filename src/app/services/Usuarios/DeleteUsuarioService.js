@@ -19,7 +19,7 @@ export default class DeleteUsuarioService {
         idUsuario: idUsuario,
       };
     } catch (error) {
-      console.log(usuario);
+      console.log(error);
       return { erro: error.message };
     }
   }

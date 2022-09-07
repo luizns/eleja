@@ -1,4 +1,4 @@
-import CadidatoModel from '../../models/Candidatos/CandidatoModel';
+import CandidatoModel from '../../models/Candidatos/CandidatoModel';
 
 export default class ListCandidatosService {
     constructor() {}
@@ -9,7 +9,7 @@ export default class ListCandidatosService {
             return await this.listOne(candidatoNome);
         }
 
-        const candidatos = await CadidatoModel.findAll();
+        const candidatos = await CandidatoModel.findAll();
         return candidatos;
     }catch(error){
             console.log(error);
@@ -20,7 +20,7 @@ export default class ListCandidatosService {
     async listOne(candidatoNome){
         try{
             const candidato = await CandidatoModel.findOne({ 
-                where: { nome: candidatoNome}});
+                where: { nome_candidato: candidatoNome}});
 
                 if(!candidato){
                     return { mensagem: 'Candidato não encontrado'};

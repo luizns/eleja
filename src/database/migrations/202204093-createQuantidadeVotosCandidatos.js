@@ -9,13 +9,19 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
       },
-      numeroCandidato: {
-        type: Sequelize.STRING,
+      dataHora: {
+        type: Sequelize.DATE,
         allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
-      contagemDeVotos: {
-        type: Sequelize.INTEGER,
-        allowNull: false, 
+      candidato_id: {
+        type: Sequelize.UUID,
+        references: {
+          model: {
+            tableName: "candidatos"
+          },
+          key: "idCandidato",
+        }
       },
     });
   },

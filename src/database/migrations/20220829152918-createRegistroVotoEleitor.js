@@ -9,11 +9,7 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
       },
-      numeroDigitado: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      dataHoraVoto: {
+      dataHora: {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')

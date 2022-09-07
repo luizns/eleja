@@ -6,15 +6,9 @@ export default class CreateRegistroVotoController {
   }
 
   async create(req, res) {
-    const { 
-      numeroDigitado,
-      id_eleitor
-    } = req.body;
+    const { id_eleitor } = req.body;
 
-    const registroVoto = await this.service.create(
-      numeroDigitado,
-      id_eleitor
-    );
+    const registroVoto = await this.service.create(id_eleitor);
 
     return res.json(registroVoto);
   }
