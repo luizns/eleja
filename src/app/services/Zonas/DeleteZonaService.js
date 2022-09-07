@@ -1,25 +1,28 @@
-import ListZonaService from './ListZonaService';
+import ZonaEnderecoEleitorModel from "../../models/Enderecos/ZonaEnderecoEleitorModel";
 
 export default class DeleteZonaService {
-    constructor() { 
-        this.service = new ListZonaService();
+  constructor() {}
+
+  async delete(idZona) {
+    try {
+      const zona = await ZonaEnderecoEleitorModel.findByPk(idZona);
+
+      if (!zona) {
+        return { mensagem: "Zona eleitoral não localizada com id: " + idZona };
       }
 
-    delete(id) {
-        const zonas = this.service.listAll();
-        const zonaIndex = zonas.findIndex(zona => zona.id === Number(id));
+      const numeroSecao = zona.get("secao");
+      const numeroZona = zona.get("numero_zona");
+      await zona.destroy();
 
-        if(zonaIndex === -1){
-            return {
-                message: "ID não referente a qualquer Zona."
-            }
-        }
-
-        zonas.splice(zonaIndex, 1);
-
-        return {
-            sucess: true,
-            message: "Zona deletado com sucesso."
-        }
+      return {
+        mensagem: "A zona eleitoral foi removida com sucesso!",
+        numeroSecao: numeroSecao,
+        numeroZona:numeroZona,
+     };
+    } catch (error) {
+      console.log(error);
+      return { erro: error.message };
     }
+  }
 }

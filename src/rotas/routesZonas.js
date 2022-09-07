@@ -24,8 +24,8 @@ routesZona.get('/zonas', (req, res) => listAllZonaController.listAll(req, res));
 
 routesZona.post('/zonas', ZonaValidator, (req,res) => createZonaController.create(req, res));
 
-routesZona.put('/zonas/:id', IndexValidator, ZonaValidator, (req, res) => updateZonaController.update(req, res));
+routesZona.put('/zonas/:idZona', IndexValidator, ZonaValidator, (req, res) => updateZonaController.update(req, res));
 
-routesZona.delete('/zonas/:id', IndexValidator, (req, res) => deleteZonaController.delete(req, res));
+routesZona.delete('/zonas/:idZona', IndexValidator, (req, res) => deleteZonaController.delete(req, res));
 
 export default routesZona;
