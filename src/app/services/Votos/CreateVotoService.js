@@ -2,20 +2,20 @@ import { v4 } from "uuid";
 import VotoModel from "../../models/Votos/VotoModel";
 
 export default class CriarVotoService {
-  constructor() { }
+  constructor() {}
 
-  async criar(
+  async create(
     id_registro_voto_eleitor,
     id_quant_votos_candidato
   ) {
     try {
-      const newVoto = await VotoModel.create({
+      const voto = await VotoModel.create({
         idVoto: v4(),
         id_registro_voto_eleitor,
         id_quant_votos_candidato
       });
 
-      return newVoto;
+      return voto;
 
     } catch (error) {
       console.log(error);

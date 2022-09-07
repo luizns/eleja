@@ -14,7 +14,6 @@ module.exports = {
         allowNull: false,
         references: {
           model: {
-            schema: "schema",
             tableName: "registra_voto_eleitores",
           },
           key: "idRegistroVotoEleitor",
@@ -25,7 +24,6 @@ module.exports = {
         allowNull: false,
         references: {
           model: {
-            schema: "schema",
             tableName: "quant_votos_candidatos",
           },
           key: "idQuantVotosCandidato",

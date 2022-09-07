@@ -5,7 +5,7 @@ import EleitorModel from "../Eleitores/EleitorModel"
 
 const sequelize = new Sequelize(databaseConfig);
 
-class RegistroVotoModel extends Model {}
+export default class RegistroVotoModel extends Model {}
 
 RegistroVotoModel.init(
   {
@@ -13,14 +13,8 @@ RegistroVotoModel.init(
       type: Sequelize.UUIDV4(),
       primaryKey: true,
     },
-    numeroDigitado: {
-      type: Sequelize.STRING(),
-      allowNull: false
-    },
-    dataHoraVoto: {
-      type: Sequelize.DATA,
-      allowNull: false
-    },
+    numeroDigitado: Sequelize.STRING,
+    dataHoraVoto: Sequelize.DATE,
     id_eleitor: {
       type: Sequelize.UUID,
       allowNull: false,
@@ -42,8 +36,6 @@ RegistroVotoModel.belongsTo(EleitorModel);
 EleitorModel.hasOne(RegistroVotoModel, {
   foreignKey: "idEleitor"
 });
-
-export default RegistroVotoModel;
 
 /* 
   hora_voto: {

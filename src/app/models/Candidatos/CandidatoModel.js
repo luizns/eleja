@@ -2,7 +2,7 @@ import Sequelize, { Model } from "sequelize";
 import databaseConfig from "../../../config/database";
 import PartidoModel from "../Partidos/PartidoModel";
 import JuizEleitoralModel from "../Partidos/PartidoModel";
-import QuantidadeVotosCandidatosModel from "../Votos/QuantidadeVotosCandidatosModel";
+import QuantVotosCandidatosModel from "../Votos/QuantVotosCandidatosModel";
 const sequelize = new Sequelize(databaseConfig);
 class CandidatoModel extends Model {}
 
@@ -32,7 +32,7 @@ CandidatoModel.init(
     id_candidato_voto: {
       type: Sequelize.STRING,
       references: {
-        model: QuantidadeVotosCandidatosModel,
+        model: QuantVotosCandidatosModel,
         key: 'idQuantVotosCandidato',
       },
     },
@@ -50,6 +50,6 @@ CandidatoModel.belongsTo(PartidoModel,{through:PartidoModel})
 CandidatoModel.belongsTo(JuizEleitoralModel,{through:JuizEleitoralModel})
 
 /*Relação Candidato X QuantidadeVotos 1:N */
-CandidatoModel.belongsTo(QuantidadeVotosCandidatosModel,{through:QuantidadeVotosCandidatosModel})
+CandidatoModel.belongsTo(QuantVotosCandidatosModel)
 
 export default CandidatoModel;

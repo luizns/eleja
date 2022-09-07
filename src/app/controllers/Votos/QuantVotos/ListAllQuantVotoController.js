@@ -1,14 +1,16 @@
-import ListQuantVotoService from '../../../services/Votos/QuantVotos/ListQuantVotoService';
+import ListQuantVotosService from '../../../services/Votos/QuantVotos/ListQuantVotosService';
 
-export default class ListAllController {
+export default class ListQuantVotosController {
     constructor() {
-        this.service = new ListQuantVotoService();
+        this.service = new ListQuantVotosService();
     }
 
-    listAll (req, res){
-        const quantvoto = this.service.listAll();
+    show(req, res) {
+        const { numeroDigitado } = req.query;
+
+        const quantvoto = this.service.count(numeroDigitado);
 
         return res.send(quantvoto);
-        
+
     }
 }

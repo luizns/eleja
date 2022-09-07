@@ -1,20 +1,16 @@
-import RegistroVotoModel from '../../../models/Votos/RegistroVotoEleitorModel';
+import RegistroVotoModel from '../../../models/Votos/RegistroVotoModel';
 
 export default class ListRegistroVotoService {
-    
-    listAll() {
-        const registroVoto1 = new RegistroVotoModel(
-            "001",
-            "16:59",
-            "2020/10/10"
-        );
 
-        const registroVoto2 = new RegistroVotoModel(
-            "002",
-            "16:30",
-            "2020/10/10"
-        );
+    async listAll(idEleitor) {
+        if (idEleitor) {
+            return await RegistroVotoModel.findOne({
+                where: { id_eleitor: idEleitor }
+            })
+        }
 
-        return [registroVoto1, registroVoto2];
+        const votos = await RegistroVotoModel.findAll()
+
+        return votos
     }
 }

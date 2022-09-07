@@ -1,10 +1,14 @@
 import RegistroVotoModel from "../../../models/Votos/RegistroVotoModel";
 
-export default class ListarQuantVotosService {
+export default class ListQuantVotosService {
     constructor() {}
 
-    async contagemDeVotos(numero) {
+    async count(numero) {
         try {
+            if (!numero) {
+                return await RegistroVotoModel.findAll();
+            }
+
             const contagem = await RegistroVotoModel.findAll({
                 where: { numeroDigitado: numero }
             })

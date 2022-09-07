@@ -9,12 +9,12 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
       },
-      hora_voto: {
-        type: Sequelize.TIME,
+      numeroCandidato: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
-      data_voto: {
-        type: Sequelize.DATEONLY,
+      contagemDeVotos: {
+        type: Sequelize.INTEGER,
         allowNull: false, 
       },
     });

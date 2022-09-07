@@ -1,11 +1,13 @@
 import Sequelize, { Model } from "sequelize";
 import databaseConfig from "../../../config/database";
-import QuantidadeVotosCandidatosModel from "./QuantidadeVotosCandidatosModel"
-import RegistroVotoEleitorModel from "./RegistroVotoEleitorModel"
+
+import QuantVotosCandidatosModel from "./QuantVotosCandidatosModel";
+
+import RegistroVotoModel from "./RegistroVotoModel";
 
 const sequelize = new Sequelize(databaseConfig);
 
-class VotoModel extends Model { }
+class VotoModel extends Model {}
 
 VotoModel.init(
   {
@@ -16,14 +18,14 @@ VotoModel.init(
     id_registro_voto_eleitor: {
       type: Sequelize.UUID,
       references: {
-        model: RegistroVotoEleitorModel,
+        model: RegistroVotoModel,
         key: 'idRegistroVotoEleitor',
       }
     },
     id_quant_votos_candidato: {
       type: Sequelize.UUIDV4(),
       references: {
-        model: QuantidadeVotosCandidatosModel,
+        model: QuantVotosCandidatosModel,
         key: 'idQuantVotosCandidato',
       },
     },
@@ -35,16 +37,16 @@ VotoModel.init(
   }
 );
 
-RegistroVotoEleitorModel.belongsToMany(QuantidadeVotosCandidatosModel, { through: VotoModel });
+RegistroVotoModel.belongsToMany(QuantVotosCandidatosModel, { through: VotoModel });
 
-QuantidadeVotosCandidatosModel.belongsToMany(RegistroVotoEleitorModel, { through: VotoModel });
+QuantVotosCandidatosModel.belongsToMany(RegistroVotoModel, { through: VotoModel });
 
-VotoModel.belongsTo(RegistroVotoEleitorModel, {
+VotoModel.belongsTo(RegistroVotoModel, {
   as: "RegistroVotoEleitor",
   foreignKey: "idRegistroVotoEleitor"
 });
 
-VotoModel.belongsTo(QuantidadeVotosCandidatosModel, {
+VotoModel.belongsTo(QuantVotosCandidatosModel, {
   as: "QuantidadeVotosCandidatos",
   foreignKey: "idQuantVotosCandidato"
 });

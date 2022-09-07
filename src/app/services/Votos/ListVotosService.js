@@ -1,10 +1,10 @@
 import VotoModel from '../../models/Votos/VotoModel';
 
 export default class ListVotoService {
-    constructor() { }
+    constructor() {}
 
 
-    async listarTodos() {
+    async listAllVotes() {
         try {
             const votos = await VotoModel.findAll()
             
