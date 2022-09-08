@@ -18,8 +18,15 @@ export default class CreateEleitorService {
                 usuario_id
             });
 
+            console.log(newEleitor)
 
-            return newEleitor;
+            return {
+                id: `${newEleitor.dataValues['id']}`,
+                CPF: `${newEleitor.dataValues['cpf']}`,
+                titulo_eleitor: `${newEleitor.dataValues['titulo_eleitor']}`,
+                RG: `${newEleitor.dataValues['rg']}`,
+                usuario_id: `${newEleitor.dataValues['usuario_id']}`
+                };
         } catch(error){
             return { erro: error};
         }         

@@ -9,10 +9,9 @@ export default class ListEnderecoService {
    
     async listAll(){
         try{
-            
-            
 
             const usuarioEleitorEndereco = await UsuarioModel.findAll({
+                attributes: { exclude: ['senha', 'createdAt', 'updatedAt', 'tipo_usuario_id'] },
                 include: [{                    
                     model: EleitorModel,
                     attributes: [
@@ -20,7 +19,6 @@ export default class ListEnderecoService {
                         'cpf', 
                         'titulo_eleitor', 
                         'rg',
-                    
                     ],
                     association: 'eleitores',
                     include: [{

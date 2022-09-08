@@ -14,8 +14,14 @@ export default class CreateUsuarioService {
       email,
       senha: hashedSenha,
       tipo_usuario_id,
-  });
-    return newUsuario;
+    });
+
+
+    return  {  
+      Id :`${newUsuario.dataValues['id']}`,
+      Nome :`${newUsuario.dataValues['nome']}`,
+      Email :`${newUsuario.dataValues['email']}`
+  };
   } catch (error) {
     return { erro: error};
   }

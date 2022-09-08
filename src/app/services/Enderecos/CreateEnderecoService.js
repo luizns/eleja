@@ -24,7 +24,15 @@ export default class CreateEnderecoService {
                 eleitor_id,
             });
             
-            return newEndereco;        
+            return {
+               Id: `${newEndereco.dataValues['id']}`,
+               Estado: `${newEndereco.dataValues['estado']}`,
+               CEP: `${newEndereco.dataValues['cep']}`,
+               Cidade: `${newEndereco.dataValues['cidade']}`,
+               Bairro: `${newEndereco.dataValues['bairro']}`,
+               Rua: `${newEndereco.dataValues['rua']}`,
+               Número: `${newEndereco.dataValues['numero']}`,
+            };        
         } catch(error) {
             console.log(error);
             return { erro: error.message };
