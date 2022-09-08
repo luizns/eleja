@@ -79,11 +79,6 @@ As variáveis de environment pode ser encontradas e modificadas no arquivo `.env
 
 API_PORT= # default 3000
 
-#VARIAVEIS DE AMBIENTE MYSQL
-
-##PORTA DO SERVIDOR
-API_PORT=
-
 ##VARIAVEIS DE AMBIENTE MYSQL
 DB_TYPE=mysql
 DB_PORT=3306
