@@ -2,7 +2,7 @@ import Sequelize, { Model } from "sequelize";
 import databaseConfig from "../../../config/database";
 import PartidoModel from "../Partidos/PartidoModel";
 import JuizEleitoralModel from "../Partidos/PartidoModel";
-import QuantidadeVotosCandidatosModel from "../Votos/QuantidadeVotosCandidatosModel";
+import QuantidadeVotosCandidatosModel from "../Votos/QuantVotosCandidatosModel";
 const sequelize = new Sequelize(databaseConfig);
 class CandidatoModel extends Model {}
 

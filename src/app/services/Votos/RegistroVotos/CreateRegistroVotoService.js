@@ -1,19 +1,22 @@
 import { v4 } from "uuid";
-import RegistroVotoModel from "../../../models/Votos/RegistroVotoEleitorModel";
+import RegistroVotoModel from "../../../models/Votos/RegistroVotoModel";
 
 export default class CreateRegistroVotoService {
   constructor() {}
 
-  async create(idRegistroVotoEleitor, hora_voto, data_voto,id_eleitor) {
+  async create(
+    dataHora,
+    id_eleitor
+  ) {
     try {
-      const newRegistroVoto = await RegistroVotoModel.create({
+      const registroVoto = await RegistroVotoModel.create({
         idRegistroVotoEleitor: v4(),
-        hora_voto,
-        data_voto,
+        dataHora,
         id_eleitor
       });
 
-      return newRegistroVoto;
+      return registroVoto;
+
     } catch (error) {
       console.log(error);
       return { erro: error.message };

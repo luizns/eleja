@@ -22,7 +22,7 @@ const routesEleitor = new Router();
 // Rota para juízes
 routesEleitor.get('/eleitores', (req, res) => listEleitorController.index(req, res));
 
-routesEleitor.post('/eleitores', EleitorValidator, (req,res) => createEleitorController.create(req, res));
+routesEleitor.post('/eleitores', /* EleitorValidator, */ (req,res) => createEleitorController.create(req, res));
 
 routesEleitor.put('/eleitores/:idEleitor', IndexValidator, EleitorValidator, (req, res) => updateEleitorController.update(req, res));
 

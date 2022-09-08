@@ -6,7 +6,9 @@ export default class ListAllController {
     }
 
     listAll (req, res){
-        const registroVoto = this.service.listAll();
+        const {id_eleitor} = req.query;
+
+        const registroVoto = this.service.listAll(id_eleitor);
 
         return res.send(registroVoto);
         

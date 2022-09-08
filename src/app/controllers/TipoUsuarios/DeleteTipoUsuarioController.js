@@ -1,19 +1,16 @@
 import DeleteTipoUsuarioService from '../../services/TipoUsuarios/DeleteTipoUsuarioService';
 
-export default class DeleteTipoUsuarioService {
+export default class DeleteTipoUsuarioController {
 
-    constructor(){
+    constructor() {
         this.service = new DeleteTipoUsuarioService();
     }
 
-    delete (req, res){
+    async delete(req, res) {
         const { id } = req.params;
 
-        const deletedTipoUsuario = this.service.delete(id);
+        const tipoUsuarioDeletado = await this.service.delete(id);
 
-        if (!deletedTipoUsuario.sucess) {
-            return res.status(400).json(deletedTipoUsuario.message);
-        }
-        res.status(200).json(deletedTipoUsuario.message)
+        res.json(tipoUsuarioDeletado);
     }
 }

@@ -1,7 +1,9 @@
 import Sequelize, { Model } from "sequelize";
 import databaseConfig from "../../../config/database";
 import UsuarioModel from "../Usuarios/UsuarioModel";
+
 const sequelize = new Sequelize(databaseConfig);
+
 class EleitorModel extends Model {}
 
 EleitorModel.init(

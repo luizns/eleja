@@ -1,31 +1,40 @@
 import Router from 'express';
 
 // importando validações
-import VotoValidator from '../middlewares/VotoValidator';
+// import VotoValidator from '../middlewares/VotoValidator';
 import IndexValidator from '../middlewares/IndexValidator';
 
 //importando controllers para Voto
 import CreateVotoController from '../app/controllers/Votos/CreateVotoController';
-import ListAllVotoController from '../app/controllers/Votos/ListAllVotoController';
-import UpdateVotoController from '../app/controllers/Votos/UpdateVotoController';
-import DeleteVotoController from '../app/controllers/Votos/DeleteVotoController';
-import VotoValidator from '../middlewares/VotoValidator';
+import ListVotosController from '../app/controllers/Votos/ListVotosController';
+import CreateRegistroVotoController from '../app/controllers/Votos/RegistroVotos/CreateRegistroVotoController'
+import ListAllRegistroVotoController from '../app/controllers/Votos/RegistroVotos/ListAllRegistroVotoController'
+import ListAllQuantVotoController from '../app/controllers/Votos/QuantVotos/ListAllQuantVotoController'
 
 // instanciando objetos do crud de Voto
 const createVotoController = new CreateVotoController();
-const deleteVotoController = new DeleteVotoController();
-const updateVotoController = new UpdateVotoController();
-const listAllVotoController = new ListAllVotoController();
+const listVotosController = new ListVotosController();
+const createRegistroVotoController = new CreateRegistroVotoController();
+const listAllRegistroVotoController = new ListAllRegistroVotoController();
+const listAllQuantVotoController = new ListAllQuantVotoController();
 
-const routesVoto = new Router();
+const routes = new Router();
 
 // Rota para Voto
-routesVoto.get('/votos', (req, res) => listAllVotoController.listAll(req, res));
+routes.post('/votos_registro', (req, res) =>
+    createRegistroVotoController.create(req, res)
+);
+routes.get('/votos_registro', (req, res) =>
+    listAllRegistroVotoController.listAll(req, res)
+);
+/* routes.get('votos-quantidade', (req, res) =>
+    listAllQuantVotoController.show(req, res)
+); */
+routes.post('/votos', (req, res) =>
+    createVotoController.create(req, res)
+);
+routes.get('/votos', (req, res) =>
+    listVotosController.list(req, res)
+);
 
-routesVoto.post('/votos', VotoValidator, (req,res) => createVotoController.create(req, res));
-
-routesVoto.put('/votos/:id', IndexValidator, VotoValidator, (req, res) => updateVotoController.update(req, res));
-
-routesVoto.delete('/votos/:id', IndexValidator, (req, res) => deleteVotoController.delete(req, res));
-
-export default routesVoto;
+export default routes;

@@ -1,8 +1,12 @@
 import Sequelize, { Model } from "sequelize";
 import databaseConfig from "../../../config/database";
-import QuantidadeVotosCandidatosModel from "./QuantidadeVotosCandidatosModel"
-import RegistroVotoEleitorModel from "./RegistroVotoEleitorModel"
+
+import QuantVotosCandidatosModel from "./QuantVotosCandidatosModel";
+
+import RegistroVotoModel from "./RegistroVotoModel";
+
 const sequelize = new Sequelize(databaseConfig);
+
 class VotoModel extends Model {}
 
 VotoModel.init(
@@ -11,27 +15,40 @@ VotoModel.init(
       type: Sequelize.UUIDV4(),
       primaryKey: true,
     },
-    id_quant_votos_candidato:{ 
-      type:Sequelize.UUID,
+    id_registro_voto_eleitor: {
+      type: Sequelize.UUID,
       references: {
-        model: QuantidadeVotosCandidatosModel,
+        model: RegistroVotoModel,
+        key: 'idRegistroVotoEleitor',
+      }
+    },
+    id_quant_votos_candidato: {
+      type: Sequelize.UUIDV4(),
+      references: {
+        model: QuantVotosCandidatosModel,
         key: 'idQuantVotosCandidato',
       },
     },
-    id_registro_voto_eleitor: {
-      type:Sequelize.UUID,
-      references: {
-        model: RegistroVotoEleitorModel,
-        key: 'idRegistroVotoEleitor',
-      },
-    },
-    },
+  },
   {
     sequelize,
     modelName: "votos",
-    timestamps: false,
+    timestamps: true,
   }
 );
-VotoModel.belongsToMany(QuantidadeVotosCandidatosModel,{through:QuantidadeVotosCandidatosModel,as:'idQuantVotosCandidato'})
-VotoModel.belongsToMany(RegistroVotoEleitorModel,{through:RegistroVotoEleitorModel,as:'idRegistroVotoEleitor'})
+
+RegistroVotoModel.belongsToMany(QuantVotosCandidatosModel, { through: VotoModel });
+
+QuantVotosCandidatosModel.belongsToMany(RegistroVotoModel, { through: VotoModel });
+
+VotoModel.belongsTo(RegistroVotoModel, {
+  as: "RegistroVotoEleitor",
+  foreignKey: "idRegistroVotoEleitor"
+});
+
+VotoModel.belongsTo(QuantVotosCandidatosModel, {
+  as: "QuantidadeVotosCandidatos",
+  foreignKey: "idQuantVotosCandidato"
+});
+
 export default VotoModel;
