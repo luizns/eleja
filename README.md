@@ -1,17 +1,19 @@
-![f42e539f-8d83-4f07-9d33-c2cd05587105](https://user-images.githubusercontent.com/23271567/179368939-835fa1c2-ac62-4352-bd7d-ec066acd78ae.jpg)
-
+<p align="center">
+<img src="https://user-images.githubusercontent.com/23271567/179368939-835fa1c2-ac62-4352-bd7d-ec066acd78ae.jpg" width="700" height="300"/>
+</p>
 
 # Projeto Integrador
 
- iFood  | Potência Tech | Digital House 
+<h4> iFood  | Digital House |  Potência Tech </h4> 
  
-<u>
-  <img src="https://seeklogo.com/images/I/ifood-logo-F65BEA85BF-seeklogo.com.png" width="70" height="70" /> 
-  
-  <img src="https://user-images.githubusercontent.com/23271567/189163295-8e541962-73ae-4dcd-a9bb-09a33c7b5877.png" width="70" height="70" /> 
+
+<img align="left" src="https://user-images.githubusercontent.com/23271567/189177608-81a0ef7b-f5ab-4be3-8510-2e6d102c2b54.png" width="70" height="70" />
+
+<img align="left" src="https://user-images.githubusercontent.com/23271567/189177630-8bd74fc6-b123-4ea7-ae13-4b3ba00c04b8.png" width="70" height="70" />
+
 
  <img src="https://user-images.githubusercontent.com/23271567/189163612-1624afff-888b-4375-8591-aa66578955b4.png" />
-</ul>
+
 
 ## <Elej@>
 
@@ -24,46 +26,46 @@ Discentes:
 - [Ubirajara Tamer Pinto Júnior](https://github.com/ubirajaratamer)
 
 
-## Manual Installation
+## Manual de Instalação
 
-Clone the repo:
+Clone o repositorio:
 
 ```bash
 git clone https://github.com/luizns/eleja.git
 cd eleja
 ```
 
-Install the dependencies:
+Instale as dependências:
 
 ```bash
 npm install
 ```
 
-Set the environment variables:
+Set as variáveis de environment:
 
 ```bash
 cp .env.example .env
 # open .env and modify the environment variables
 ```
 
-## Table of Contents
+## Índice
 
-- [Commands](#commands)
-- [Environment Variables](#environment-variables)
-- [Project Structure](#project-structure)
+- [Comandos](#comandos)
+- [Variáveis de Environment](#variáveis-de-environment)
+- [Estrutura do projeto](#estrutura-do-projeto)
 - [API Endpoints](#api-endpoints)
 
-## Commands
+## Comandos
 
-Running in development:
+Rodando em desenvolvimento:
 
 ```bash
 npm start
 ```
 
-## Environment Variables
+## Variáveis de Environment
 
-The environment variables can be found and modified in the `.env` file.
+As variáveis de environment pode ser encontradas e modificadas no arquivo `.env`.
 
 ```bash
 #PORTA DO SERVIDOR
@@ -72,14 +74,26 @@ API_PORT= # default 3000
 
 #VARIAVEIS DE AMBIENTE MYSQL
 
+##PORTA DO SERVIDOR
+API_PORT=
+
+##VARIAVEIS DE AMBIENTE MYSQL
 DB_TYPE=mysql
-DB_PORT= # default 3306
+DB_PORT=3306
 DB_HOST=localhost
-DB_USERNAME= # default root
-DB_PASSWORD= 
-DB_DATABASE=eleja
+DB_USERNAME=root
+DB_PASSWORD=
+DB_DATABASE=
+
+#HASH
+
+# CRIPTOGRAFIA DE SENHA
+PASSWORD_SALT=
+
+#JWT
+JWT_PRIVATE_KEY=
 ```
-## Project Structure
+## Estrutura do projeto
 
 ```
 
@@ -98,14 +112,14 @@ src\
 
 ## API Endpoints
 
-List of available routes:
+Lista de routes disponíveis:
 
 
-**User routes**:\
-`POST /users` - Create a user\
-`GET  /users` - Get all users\
-`PUT /users/:id` - Update user\
-`DELETE users/:id` - Delete user
+**Rotas do Usuário**:\
+`POST /usuarios` - Create a user\
+`GET  /usuarios` - Get all users\
+`PUT /usuarios/:id` - Update user\
+`DELETE /usuarios/:id` - Delete user\
 
 
 ## Insonmia Import
