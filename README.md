@@ -17,13 +17,9 @@
 
 ## <Elej@>
 
-Discentes: 
-- [Acácio Novoa Monteiro](https://github.com/kcildo)
-- [Daniel dos Santos Filho](https://github.com/dsfilho)
-- [Jackson de Oliveira Pereira](https://github.com/jaxolv)
-- [Luiz Nascimento da Silva](https://github.com/luizns)
-- [Rodrigo Moreira Lima](https://github.com/rodriigolima)
-- [Ubirajara Tamer Pinto Júnior](https://github.com/ubirajaratamer)
+## Sobre o projeto
+
+redigir texto...
 
 
 ## Manual de Instalação
@@ -54,6 +50,7 @@ cp .env.example .env
 - [Variáveis de Environment](#variáveis-de-environment)
 - [Estrutura do projeto](#estrutura-do-projeto)
 - [API Endpoints](#api-endpoints)
+- [Contribuidores](#contribuidores)
 
 ## Comandos
 
@@ -115,14 +112,26 @@ src\
 Lista de routes disponíveis:
 
 
-**Rotas do Usuário**:\
-`POST /usuarios` - Create a user\
-`GET  /usuarios` - Get all users\
-`PUT /usuarios/:id` - Update user\
-`DELETE /usuarios/:id` - Delete user\
-
-
-## Insonmia Import
-
-
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Eleja%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fluizns%2Feleja%2Frodrigo%2FInsomnia_2022-07-16.json)
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/23053694-acb08648-90a8-4d16-8588-327951eafc24?action=collection%2Ffork&collection-url=entityId%3D23053694-acb08648-90a8-4d16-8588-327951eafc24%26entityType%3Dcollection%26workspaceId%3Db06d8e7c-c874-4815-9459-a1fc0da74ff3)
+
+Todas as rotas você pode importar para o insomnia ou postman para testar-la!
+
+
+## Contribuidores: 
+
+<br >
+Todos os contribuidores do projetos:
+
+<table>
+<tr>
+    <td align="center"><a href="https://github.com/rodriigolima"><img src="https://avatars.githubusercontent.com/u/23271567?v=4" width="100px;" alt=""/><br /><sub><b>Rodrigo Moreira Lima</b></sub></a><br /></td> 
+    <td align="center"><a href="https://github.com/dsfilho"><img src="https://avatars.githubusercontent.com/u/99821361?v=4" width="100px;" alt=""/><br /><sub><b>Daniel dos Santos Filho</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/kcildo"><img src="https://avatars.githubusercontent.com/u/56267053?v=4" width="100px;" alt=""/><br /><sub><b>Acácio Novoa Monteiro</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/ubirajaratamer"><img src="https://avatars.githubusercontent.com/u/104770933?v=4" width="100px;" alt=""/><br /><sub><b>Ubirajara Tamer Pinto Júnior</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/luizns"><img src="https://avatars.githubusercontent.com/u/65914531?v=4" width="100px;" alt=""/><br /><sub><b>Luiz Nascimento da Silva</b></sub></a><br /></td>
+</table>
+
+
+
