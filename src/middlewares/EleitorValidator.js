@@ -5,18 +5,20 @@ export default async function EleitorValidator(request, response, next) {
         cpf: yup
             .string()
             .required("CPF é obrigatório.")
-            .min(11, "CPF não válido, CPF deve ter 11 digítos.")
-            .max(14, "CPF não válido, CPF deve ter 14 digítos."),        
+            .matches(
+                /^(\d{3}\.\d{3}\.\d{3}\-\d{2}$)/,
+                "Não se encaixa no padrao de CPF"),    
         titulo_eleitor: yup
             .string()
             .required("Titulo é obrigatório.")
-            .min(12, "Titulo não válido, Titulo deve ter 12 digítos.")
-            .max(14, "Titulo não válido, Titulo deve ter 14 digítos."),
+            .matches(
+                /^([0-9]{4}[0-9]{4}[0-9]{4}$)|([0-9]{4}\ [0-9]{4}\ [0-9]{4}$)/,
+                "Não se encaixa no padrão"),
         rg: yup
         .string()
         .required("RG é obrigatório.")
-        .min(9, "RG não válido, RG deve ter 9 digítos.")
-        .max(10, "RG não válido, RG deve ter 9 digítos.")  
+        .min(7, "RG não válido, RG deve ter 9 digítos.")
+        .max(9, "RG não válido, RG deve ter 9 digítos.")  
     });
 
     try{
