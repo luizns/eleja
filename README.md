@@ -131,6 +131,7 @@ Todos os contribuidores do projetos:
     <td align="center"><a href="https://github.com/kcildo"><img src="https://avatars.githubusercontent.com/u/56267053?v=4" width="100px;" alt=""/><br /><sub><b>Acácio Novoa Monteiro</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/ubirajaratamer"><img src="https://avatars.githubusercontent.com/u/104770933?v=4" width="100px;" alt=""/><br /><sub><b>Ubirajara Tamer Pinto Júnior</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/luizns"><img src="https://avatars.githubusercontent.com/u/65914531?v=4" width="100px;" alt=""/><br /><sub><b>Luiz Nascimento da Silva</b></sub></a><br /></td>
+   <td align="center"><a href="https://github.com/jaxolv"><img src="https://avatars.githubusercontent.com/u/92948351?v=4" width="100px;" alt=""/><br /><sub><b>Jackson de Oliveira</b></sub></a><br /></td>
 </table>
 
 
