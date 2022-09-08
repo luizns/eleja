@@ -20,7 +20,6 @@
 ### Sobre o projeto
 
 
-
 <p>  O objetivo do presente projeto está voltado para o desenvolvimento de uma API que
 possibilitará o voto eletrônico para as eleições gerais, viabilizando o voto autenticado e
 direto através da internet. O sistema será acessado via web, através do dispositivo do eleitor
