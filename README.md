@@ -17,10 +17,20 @@
 
 ## <Elej@>
 
-## Sobre o projeto
+### Sobre o projeto
 
-redigir texto...
 
+
+<p>  O objetivo do presente projeto está voltado para o desenvolvimento de uma API que
+possibilitará o voto eletrônico para as eleições gerais, viabilizando o voto autenticado e
+direto através da internet. O sistema será acessado via web, através do dispositivo do eleitor
+que deverá efetuar cadastro prévio no mesmo com os dados devidamente validados nos
+sistemas do TRE e TSE. O voto eletrônico digital e remoto facilitará o acesso ao exercício
+do direito máximo à democracia, possibilitando alcance para quem tem dificuldade de
+locomoção, pessoas acamadas, pessoas que residem em zona rural com limitações físicas,
+de saúde ou ainda para o eleitor que não quer se abster do conforto de sua casa para
+exercer o seu direito constitucional.
+</p>
 
 ## Manual de Instalação
 
