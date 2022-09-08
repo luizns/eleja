@@ -3,11 +3,15 @@
 
 # Projeto Integrador
 
- Digital House | Potência Tech | iFood
+ iFood  | Potência Tech | Digital House 
  
-<p align="center" t>
-  <img src="https://seeklogo.com/images/I/ifood-logo-F65BEA85BF-seeklogo.com.png" />
-</p>
+<u>
+  <img src="https://seeklogo.com/images/I/ifood-logo-F65BEA85BF-seeklogo.com.png" width="70" height="70" /> 
+  
+  <img src="https://user-images.githubusercontent.com/23271567/189163295-8e541962-73ae-4dcd-a9bb-09a33c7b5877.png" width="70" height="70" /> 
+
+ <img src="https://user-images.githubusercontent.com/23271567/189163612-1624afff-888b-4375-8591-aa66578955b4.png" />
+</ul>
 
 ## <Elej@>
 
