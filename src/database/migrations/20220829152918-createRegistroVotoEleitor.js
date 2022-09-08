@@ -2,20 +2,26 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return await queryInterface.createTable("registro_voto_eleitores", {
-      id_registro_voto_eleitor: {
+    return await queryInterface.createTable("registra_voto_eleitores", {
+      idRegistroVotoEleitor: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
         primaryKey: true,
       },
-      hora_voto: {
+      dataHora: {
         type: Sequelize.DATE,
         allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
-      data_voto: {
-        type: Sequelize.DATEONLY,
-        allowNull: false,
+      id_eleitor: {
+        type: Sequelize.UUID,
+        references: {
+          model: {
+            tableName: "eleitores"
+          },
+          key: "idEleitor",
+        },
       },
     });
   },
