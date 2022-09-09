@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 import ListUsuarioService from '../../services/Usuarios/ListUsuarioService';
+import updateUsuarioService from '../../services/Usuarios/UpdateUsuarioService';
 import HashPassword from '../../utils/HashPassword';
 
 export  default class SessionController { 
@@ -8,6 +9,7 @@ export  default class SessionController {
    static async create(req, res) {
     const { email, senha } = req.body
     const service= new ListUsuarioService();
+    const serviceUpdate= new updateUsuarioService();
     const usuario =await service.listUserSessao(email, senha)
 
 
@@ -23,6 +25,7 @@ export  default class SessionController {
     const token=jwt.sign({ idUsuario }, process.env.JWT_PRIVATE_KEY, {
       expiresIn: '5d'});
       
+    const gravaTokenSessao=await serviceUpdate.updateSessaoUsuario(idUsuario,email,token);
   
     return res.json({
       usuario: {

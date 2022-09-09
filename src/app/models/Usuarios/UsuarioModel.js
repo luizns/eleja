@@ -14,6 +14,7 @@ UsuarioModel.init(
     nome: Sequelize.STRING,
     email: Sequelize.STRING,
     senha: Sequelize.STRING,
+    token_sessao:Sequelize.STRING,
     id_tipo_usuario: {
       type: Sequelize.STRING,
       references: {
