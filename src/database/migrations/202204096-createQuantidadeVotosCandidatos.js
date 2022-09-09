@@ -12,7 +12,7 @@ module.exports = {
       hora_voto: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.fn('now')
       },
       data_voto: {
         type: Sequelize.DATEONLY,

@@ -7,15 +7,15 @@ export default class CreateQuantidadeVotoController {
     
        async create (req, res){
             const {
-                idQuantVotosCandidato,
                 hora_voto,
                 data_voto,
+                id_candidato_voto
                 } = req.body;
     
             const createdVotoCandidato = await this.service.create(
-                idQuantVotosCandidato,
                 hora_voto,
                 data_voto,
+                id_candidato_voto
             );
     
             return res.status(200).json(createdVotoCandidato);
