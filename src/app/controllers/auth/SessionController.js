@@ -16,8 +16,6 @@ export default class SessionController {
     }
     const ehSenhaValida= HashPassword.validate(senha,usuario.senha)
     
-    const testeSenha= HashPassword.hash("12345678");
-    console.log(testeSenha);
     if (!ehSenhaValida) {
       return res.status(401).json({ error: "Atenção a senha é inválida" });
     }
