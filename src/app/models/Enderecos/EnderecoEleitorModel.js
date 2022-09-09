@@ -16,6 +16,7 @@ EnderecoModel.init(
     numero: Sequelize.STRING,
     cidade: Sequelize.STRING,
     cep: Sequelize.STRING,
+    uf:Sequelize.STRING,
     id_eleitor: {
       type: Sequelize.UUID,
       references: {
