@@ -8,7 +8,6 @@ import routesCandidatos from './rotas/routesCandidatos';
 import routesPartidos from './rotas/routesPartidos';
 import routesEleitores from './rotas/routesEleitores';
 import routesEnderecos from './rotas/routesEnderecos';
-import routesZonas from './rotas/routesZonas';
 import routesQuantVotos from './rotas/routesQuantVotos';
 import routesRegistroVotos from './rotas/routesRegistroVotos';
 import routesVotos from './rotas/routesVotos';
@@ -25,7 +24,6 @@ class App {
     this.routesPartidos();
     this.routesEleitores();
     this.routesEnderecos();
-    this.routesZonas();
     this.routesQuantVotos();
     this.routesRegistroVotos();
     this.routesVotos();

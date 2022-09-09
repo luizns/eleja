@@ -44,16 +44,6 @@ module.exports = {
           model:  'eleitores' ,
           key: 'id'
       }},
-      zona_id: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
-        allowNull: false,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        references: {
-          model:  'zonas' ,
-          key: 'id'
-      }},
       createdAt: {
         field: 'created_at',
         allowNull: false,

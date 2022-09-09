@@ -1,3 +1,6 @@
+import EleitorModel from '../../models/Eleitores/EleitorModel';
+import EnderecoModel from '../../models/Enderecos/EnderecoModel';
+import UsuarioModel from '../../models/Usuarios/UsuarioModel';
 import UpdateEnderecoService from '../../services/Enderecos/UpdateEnderecoService';
 
 export default class UpdateEnderecoController {
@@ -5,29 +8,37 @@ export default class UpdateEnderecoController {
         this.service = new UpdateEnderecoService();
     }
 
-    update (req, res){
-        const { id } = req.params
+    async update (req, res){
+        
+        const { usuario_id, eleitor_id, id } = req.params;
         const {
-            rua,
-            bairro,
-            numero,
-            cidade,
             cep,
-            id_eleitor,
-            id_zona
+            estado,
+            cidade,
+            bairro,
+            rua,
+            numero,
         } = req.body;
 
-        const updatedEndereco = this.service.Update(
-            idendereco,
-            rua,
-            bairro,
-            numero,
-            cidade,
-            cep,
-            id_eleitor,
-            id_zona
-        );
+        const usuario = await UsuarioModel.findByPk(usuario_id);
 
-        res.json(updatedEndereco)
+        const eleitor = await EleitorModel.findByPk(eleitor_id);
+
+        const endereco = await EnderecoModel.findByPk(id);
+
+        if(!usuario || !eleitor || !endereco){
+            return res.status(404).json({ error: 'Usuário não encontrado!' })
+        }
+
+        const updatedEndereco = await this.service.update(
+            id,
+            cep,
+            estado,
+            cidade,
+            bairro,
+            rua,
+            numero,)
+
+        res.json(updatedEndereco);
     }
 }

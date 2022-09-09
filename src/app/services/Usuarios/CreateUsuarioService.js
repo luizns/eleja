@@ -4,7 +4,7 @@ import UsuarioModel from "../../models/Usuarios/UsuarioModel";
 export default class CreateUsuarioService {
   constructor() {}
 
-  async create( nome, email, senha, tipo_usuario_id) {
+  async create(nome, email, senha, tipo_usuario_id) {
     
   const hashedSenha = HashSenha.hash(senha); 
 

@@ -20,6 +20,7 @@ export default class UpdateUsuarioService {
       if ([numeroDeRegistrosAtualizados] === 0) {
         return { mensagem: "Dados iguais" };
       } 
+      
       return { id, nome, email, senha };
       
     } catch (error) {

@@ -14,15 +14,23 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
+      rg: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+      },
       titulo_eleitor: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
-      rg: {
+      zona:{
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      secao: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
       },
       usuario_id: {
         type: Sequelize.UUID,

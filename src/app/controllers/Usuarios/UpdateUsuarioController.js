@@ -8,18 +8,17 @@ export default class UpdateUsuarioController {
 
     async update(req, res) {
         try{
-            const { idusuario } = req.params;
+            const { id } = req.params;
             const { nome, email, senha  } = req.body;
     
-            const usuario = await UsuarioModel.findByPk(idusuario);
+            const usuario = await UsuarioModel.findByPk(id);
     
             if (!usuario) {
                 res.status(404).json({ mensagem: "Usuário não encontrado!"}) ;
             }
          
-            const updateUsuario = await this.service.update( idusuario, nome, email, senha);
-    
-            console.log(updateUsuario)
+            const updateUsuario = await this.service.update( id, nome, email, senha);
+
             res.json(updateUsuario);  
         }
         catch (error){

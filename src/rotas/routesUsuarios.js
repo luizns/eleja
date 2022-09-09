@@ -27,10 +27,9 @@ routesUsuario.get('/usuarios', (req, res) => listAllUsuarioController.listAll(re
 
 routesUsuario.get('/usuarios', (req, res) => listAllUsuarioController.FindUsuario(req, res));
 
-
 routesUsuario.post('/usuarios', UsuarioValidator, (req,res) => createUsuarioController.create(req, res));
 
-routesUsuario.put('/usuarios/:id',  (req, res) => updateUsuarioController.update(req, res));
+routesUsuario.put('/usuarios/:id', UsuarioValidator, (req, res) => updateUsuarioController.update(req, res));
 
 routesUsuario.delete('/usuarios/:id', (req, res) => deleteUsuarioController.delete(req, res));
 

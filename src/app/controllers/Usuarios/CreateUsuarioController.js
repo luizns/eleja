@@ -13,6 +13,7 @@ export default class CreateUsuarioController {
             senha,
             tipo_usuario_id
         } = req.body;
+       
 
         const createdUsuario = await this.service.create(
             nome,

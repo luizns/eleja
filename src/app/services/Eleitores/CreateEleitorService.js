@@ -6,15 +6,19 @@ export default class CreateEleitorService {
 
     async create (
         cpf,
-        titulo_eleitor,
         rg,
+        titulo_eleitor,
+        zona,
+        secao,
         usuario_id
     ) {
         try{
             const newEleitor = await EleitorModel.create({    
                 cpf,
-                titulo_eleitor,
                 rg,
+                titulo_eleitor,
+                zona,
+                secao,
                 usuario_id
             });
 
@@ -25,7 +29,8 @@ export default class CreateEleitorService {
                 CPF: `${newEleitor.dataValues['cpf']}`,
                 titulo_eleitor: `${newEleitor.dataValues['titulo_eleitor']}`,
                 RG: `${newEleitor.dataValues['rg']}`,
-                usuario_id: `${newEleitor.dataValues['usuario_id']}`
+                Zona: `${newEleitor.dataValues['zona']}`,
+                Secao: `${newEleitor.dataValues['secao']}`,
                 };
         } catch(error){
             return { erro: error};

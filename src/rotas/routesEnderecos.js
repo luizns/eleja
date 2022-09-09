@@ -2,7 +2,6 @@ import Router from 'express';
 
 // importando validações
 import EnderecoValidator from '../middlewares/EnderecoValidator';
-import validateSession from '../middlewares/ValidateSession'
 
 //importando controllers para endereco
 import CreateEnderecoController from '../app/controllers/Enderecos/CreateEnderecoController';

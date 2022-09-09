@@ -10,7 +10,10 @@ export default class CreateTipoUsuarioService {
                 descricao
             });
             
-            return newTipoUsuario;        
+            return {
+                id: `${newTipoUsuario.dataValues['id']}`,
+                descricao: `${newTipoUsuario.dataValues['descricao']}`,
+            };        
         } catch(error) {
             console.log(error);
             return { erro: error.message };

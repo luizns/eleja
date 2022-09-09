@@ -1,5 +1,5 @@
 import EleitorModel from '../../models/Eleitores/EleitorModel';
-import EnderecoModel from '../../models/Enderecos/EnderecoEleitorModel';
+import EnderecoModel from '../../models/Enderecos/EnderecoModel';
 import UsuarioModel from '../../models/Usuarios/UsuarioModel';
 
 
@@ -28,7 +28,8 @@ export default class ListEnderecoService {
                             'estado', 
                             'cep', 
                             'cidade', 
-                            'bairro', 
+                            'bairro',
+                            'rua', 
                             'numero',
                         ],
                     association: 'endereco_eleitores', 

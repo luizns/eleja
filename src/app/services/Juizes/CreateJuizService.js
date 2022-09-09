@@ -8,7 +8,9 @@ export default class CreateJuizService {
                 usuario_id
             });
             
-            return newJuiz;
+            return { 
+                Id :`${newJuiz.dataValues['id']}`,
+                Matricula :`${newJuiz.dataValues['matricula']}`,};
         } catch(error){
             return { erro: error};
         }     

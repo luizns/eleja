@@ -6,7 +6,10 @@ export default class ListTipoUsuarioService {
     
     async listAll() {
         try{
-            const tipoUsuario = await TipoUsuarioModel.findAll();
+            const tipoUsuario = await TipoUsuarioModel.findAll({
+                attributes: { exclude: ['createdAt', 'updatedAt',] }
+            });
+
             return tipoUsuario;
         } catch (err) {
             return { erro: err.message }

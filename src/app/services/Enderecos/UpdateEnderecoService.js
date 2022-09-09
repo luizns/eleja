@@ -1,44 +1,35 @@
-import ListEnderecoService from './ListEnderecoService';
-
+import EnderecoModel from "../../models/Enderecos/EnderecoModel";
 export default class UpdateEnderecoService {
 
-    constructor() {
-        this.service = new ListEnderecoService();
-    }
+    constructor() {}
 
-    Update (
-        idendereco,
-        rua,
-        bairro,
-        numero,
-        cidade,
-        cep,
-        id_eleitor,
-        id_zona
-    ) {
-        const enderecos = this.service.listAll()
-        const enderecoIndex = enderecos.findIndex(endereco => endereco.id === Number(id))
+    async update(id, cep, estado, cidade, bairro, rua, numero) {
+        try{
+            const [numeroDeRegistrosAtualizados] = await EnderecoModel.update({
+                cep,
+                estado,
+                cidade,
+                bairro,
+                rua,
+                numero
+            },{
+                where: { id },     
+            });
 
-        if (enderecoIndex === -1) {
-            return {
-                message: "ID não referente a qualquer endereco."
-            }
+            if ([numeroDeRegistrosAtualizados] === 0) {
+                return { mensagem: "Dados iguais" };
+            } 
+
+            const endereco = await EnderecoModel.findOne({
+                where: { id }
+            })
+            
+            
+            return endereco;
+
+        } catch (error){
+            console.log(error)
+            return { erro: error}
         }
-
-        enderecos[enderecoIndex] = {
-            idendereco,
-            rua,
-            bairro,
-            numero,
-            cidade,
-            cep,
-            id_eleitor,
-            id_zona
-        }
-
-        return {
-            id,
-            ...enderecos[enderecoIndex]
-        }
-    }
+    }  
 }

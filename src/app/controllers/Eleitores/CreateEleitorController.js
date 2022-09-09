@@ -12,8 +12,10 @@ export default class CreateEleitorController {
         
         const {
             cpf,
-            titulo_eleitor,
             rg,
+            titulo_eleitor,
+            zona,
+            secao,
         } = req.body;
 
         const usuario = await UsuarioModel.findByPk(usuario_id);
@@ -24,8 +26,10 @@ export default class CreateEleitorController {
   
         const createdEleitor = await this.service.create(      
             cpf,
-            titulo_eleitor,
             rg,
+            titulo_eleitor,
+            zona,
+            secao,
             usuario_id
         );
  

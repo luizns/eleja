@@ -6,6 +6,8 @@ export default class ListAllController {
     }
 
     async listAll (req, res){
+        
+
         const tipoUsuario = await this.service.listAll();
 
         return res.send(tipoUsuario);    

@@ -1,6 +1,6 @@
 import { Sequelize, Model, DataTypes } from 'sequelize';
 import databaseConfig from "../../../config/database";
-import EnderecoModel from '../Enderecos/EnderecoEleitorModel';
+import EnderecoModel from '../Enderecos/EnderecoModel';
 
 const sequelize = new Sequelize(databaseConfig);
 
@@ -13,11 +13,11 @@ EleitorModel.init({
     defaultValue: DataTypes.UUIDV4
   },
   cpf: DataTypes.STRING,
-  titulo_eleitor: DataTypes.STRING,
   rg: DataTypes.STRING,
-  usuario_id: { 
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4},
+  titulo_eleitor: DataTypes.STRING,
+  zona: DataTypes.STRING,
+  secao: DataTypes.STRING,
+  usuario_id: DataTypes.UUID,
   createdAt: {
     field: 'created_at',
     allowNull: false,
@@ -39,6 +39,8 @@ EleitorModel.hasOne(EnderecoModel, {
   foreignKey: 'eleitor_id', as: 'endereco_eleitores'
 });
 EnderecoModel.belongsTo(EleitorModel);
+
+
 
 
 

@@ -2,6 +2,7 @@ import { Sequelize, Model, DataTypes } from "sequelize";
 import databaseConfig from "../../../config/database";
 
 const sequelize = new Sequelize(databaseConfig);
+
 class EnderecoModel extends Model {}
 
 EnderecoModel.init(
@@ -17,8 +18,7 @@ EnderecoModel.init(
     bairro: DataTypes.STRING,
     rua: DataTypes.STRING,
     numero: DataTypes.STRING,
-    eleitor_id: { type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4 },
+    eleitor_id: DataTypes.UUID,
     createdAt: {
       field: 'created_at',
       allowNull: false,
@@ -33,7 +33,7 @@ EnderecoModel.init(
   {
     sequelize,
     modelName: "endereco_eleitores",
-    timestamps: true,
   }
 );
+
 export default EnderecoModel;

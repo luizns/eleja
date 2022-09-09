@@ -1,4 +1,4 @@
-import EleitorModel from '../../models/Eleitores/EleitorModel';
+import EnderecoModel from '../../models/Enderecos/EnderecoModel';
 import UsuarioModel from '../../models/Usuarios/UsuarioModel';
 import UpdateEleitorService from '../../services/Eleitores/UpdateEleitorService';
 
@@ -8,28 +8,40 @@ export default class UpdateEleitorController {
     }
 
     async update (req, res){
-        const { usuario_id, id  } = req.params
-        const {
-            cpf,
-            titulo_eleitor,
-            rg,
+        try{ 
+            const { usuario_id, id  } = req.params;
+            const {
+                cpf,
+                rg,
+                titulo_eleitor,
+                zona,
+                secao
 
-        } = req.body;
+            } = req.body;
 
-        const usuario = await UsuarioModel.findByPk(usuario_id);
-        const eleitor = await EleitorModel.findByPk(id);
+            const usuario = await UsuarioModel.findByPk(usuario_id);
+            
+            const eleitor = await EnderecoModel.findByPk(id);
 
-        if(!usuario || !eleitor){
-            return res.status(404).json({ error: 'Usuario não encontrado' });
+            if(!usuario || !eleitor){
+                return res.status(404).json({ error: 'Usuario não encontrado' });
+            }
+
+            const updatedEleitor = await this.service.update(
+                id,
+                cpf,
+                rg,
+                titulo_eleitor,
+                zona,
+                secao,
+                usuario_id
+            );
+
+            res.json(updatedEleitor);
+        } catch(error) {
+            return { erro: error }
         }
-
-        const updatedEleitor = this.service.update(
-            id,
-            cpf,
-            titulo_eleitor,
-            rg,
-        );
-
-        res.json(updatedEleitor)
     }
 }
+
+    

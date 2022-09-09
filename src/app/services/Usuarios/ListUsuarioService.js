@@ -11,7 +11,10 @@ export default class ListUsuarioService {
                 return await this.FindUsuario(nome);
             }
 
-            const usuarios = await UsuarioModel.findAll();
+            const usuarios = await UsuarioModel.findAll({
+                attributes: { exclude: ['senha', 'createdAt', 'updatedAt', 'tipo_usuario_id',] }
+            });
+
             return usuarios;
         } catch(err) {
             return { erro: err.message };
@@ -20,7 +23,9 @@ export default class ListUsuarioService {
     async FindUsuario(nome) {
         try { 
             const usuario = await UsuarioModel.findAll({
-                where: { nome: { [Op.like]: `%${nome}%` } }          
+                where: { nome: { [Op.like]: `%${nome}%` },
+                },
+                attributes: { exclude: ['senha', 'createdAt', 'updatedAt', 'tipo_usuario_id'], }          
             });
 
             if(!usuario) {
@@ -37,6 +42,7 @@ export default class ListUsuarioService {
             where: {
               email,
             },
+            attributes: { exclude: ['senha', 'createdAt', 'updatedAt',] }
           });
     
           return usuario;

@@ -1,7 +1,7 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
+import { Sequelize, Model, DataTypes } from 'sequelize';
 import databaseConfig from "../../../config/database";
 import EleitorModel from "../Eleitores/EleitorModel";
-import EnderecoModel from "../Enderecos/EnderecoEleitorModel";
+import EnderecoModel from "../Enderecos/EnderecoModel";
 import JuizEleitoralModel from "../Juizes/JuizModel";
 
 

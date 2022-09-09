@@ -2,14 +2,14 @@ const yup = require('yup');
 
 async function EnderecoValidator(request, response, next) {
     const schema = yup.object().shape({
-        estado: yup
-            .string()
-            .required("Estado é obrigatório"),
         cep: yup
             .string()
             .required("Cep é obrigatório."),
+        estado: yup
+            .string()
+            .required("Estado é obrigatório"),
         cidade: yup
-            	.string()
+                .string()
             .required("Cidade é obrigatório."),
         bairro: yup
             .string()
