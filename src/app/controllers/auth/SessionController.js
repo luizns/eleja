@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import ListUsuarioService from '../../services/Usuarios/ListUsuarioService';
 import HashPassword from '../../utils/HashPassword';
 
-export default class SessionController { 
+export  default class SessionController { 
   constructor() {}
    static async create(req, res) {
     const { email, senha } = req.body
@@ -20,17 +20,19 @@ export default class SessionController {
       return res.status(401).json({ error: "Atenção a senha é inválida" });
     }
     const {idUsuario, nome} = usuario;
-
+    const token=jwt.sign({ idUsuario }, process.env.JWT_PRIVATE_KEY, {
+      expiresIn: '5d'});
+      
+  
     return res.json({
       usuario: {
         idUsuario,
         nome,
-        email
-      },
-      token: jwt.sign({ idUsuario }, process.env.JWT_PRIVATE_KEY, {
-        expiresIn: '5d'
-      })
+        email,
+        token
+      }
     })
   }
-};
+}
+
 

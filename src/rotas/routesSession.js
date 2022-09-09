@@ -7,6 +7,6 @@ import SessionController from '../app/controllers/auth/SessionController';
 const routesSession = new Router();
 
 // Rota para sessão
-routesSession.post('/sessao', (req,res) => SessionController.create(req, res));
+routesSession.post('/login', (req,res) => SessionController.create(req, res));
 
 export default routesSession;

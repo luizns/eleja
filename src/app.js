@@ -1,7 +1,7 @@
 import express from 'express';
 import db from "./database";
 
-
+import routesSession from './rotas/routesSession';
 import routesUsuarios from './rotas/routesUsuarios';
 import routesJuizes from './rotas/routesJuizes';
 import routesCandidatos from './rotas/routesCandidatos';
@@ -11,9 +11,12 @@ import routesEnderecos from './rotas/routesEnderecos';
 import routesZonas from './rotas/routesZonas';
 import routesVotos from './rotas/routesVotos';
 import routesTipoUsuario from './rotas/routesTipoUsuario';
-import routesSession from './rotas/routesSession';
+import tokenSessaoValidation from './middlewares/TokenSessaoValidation';
+
+
 class App {
    constructor() {
+    
     this.server = express();
     this.initializeDatabase();
     this.middlewares();
@@ -27,6 +30,11 @@ class App {
     this.routesZonas();
     this.routesVotos();
     this.routesTipoUsuario();
+  }
+
+  routesSession(){
+    this.server.use(routesSession);
+   this.server.use(tokenSessaoValidation)
   }
 
   middlewares() {
@@ -70,10 +78,7 @@ class App {
     this.server.use(routesVotos);
   }
 
-  routesSession(){
-    this.server.use(routesSession);
-  }
-
+  
   async initializeDatabase() {
     try {
       await db.authenticate();
