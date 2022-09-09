@@ -19,6 +19,16 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
+      id_candidato_voto: {
+        type: Sequelize.UUID,
+        allowNull: false,
+        references: {
+          model: {
+            tableName: "candidatos",
+          },
+          key: "idCandidato",
+        },
+      },
    });
   },
 

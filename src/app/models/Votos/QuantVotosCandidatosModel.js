@@ -1,9 +1,10 @@
 import Sequelize, { Model, Sequelize } from "sequelize";
 import databaseConfig from "../../../config/database";
+import CandidatoModel  from "../../models/Candidatos/CandidatoModel"
 
 const sequelize = new Sequelize(databaseConfig);
 
-export default class QuantidadeVotosCandidatosModel extends Model {}
+class QuantidadeVotosCandidatosModel extends Model {}
 
 QuantidadeVotosCandidatosModel.init(
   {
@@ -13,6 +14,14 @@ QuantidadeVotosCandidatosModel.init(
     },
     hora_voto:Sequelize.DATE,
     data_voto: Sequelize.DATEONLY,
+    id_candidato_voto: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      references: {
+        model: CandidatoModel,
+        key: 'idCandidato',
+      },
+    },
    },
   {
     sequelize,
@@ -20,3 +29,10 @@ QuantidadeVotosCandidatosModel.init(
     timestamps: false
   }
 );
+  
+QuantidadeVotosCandidatosModel.belongsTo(CandidatoModel,{through:CandidatoModel,
+  as: "candidatos",
+  foreignKey: "id_candidato_voto"})
+
+
+export default QuantidadeVotosCandidatosModel;

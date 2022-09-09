@@ -37,16 +37,6 @@ module.exports = {
           key: "idJuiz",
         },
       },
-      id_candidato_voto: {
-        type: Sequelize.UUID,
-        allowNull: false,
-        references: {
-          model: {
-            tableName: "quant_votos_candidatos",
-          },
-          key: "idQuantVotosCandidato",
-        },
-      },
     });
   },
 
