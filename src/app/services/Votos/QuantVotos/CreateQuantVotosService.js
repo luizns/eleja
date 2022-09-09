@@ -6,18 +6,19 @@ export default class CreateQuantidadeVotosService {
 
   async create(
     idQuantVotosCandidato,
-    dataHora,
-    candidato_id
+    hora_vota,
+    data_voto,
+    id_candidato
   ) {
     try {
-      const voto = await QuantVotosCandidatosModel.create({
-        idVoto: v4(),
-        dataHora,
-        idQuantVotosCandidato,
-        candidato_id
+      const votoCandidato = await QuantVotosCandidatosModel.create({
+        idQuantVotosCandidato: v4(),
+        hora_vota,
+        data_voto,
+        id_candidato
       });
 
-      return voto;
+      return votoCandidato;
 
     } catch (error) {
       console.log(error);
