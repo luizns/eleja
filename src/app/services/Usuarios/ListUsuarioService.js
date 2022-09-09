@@ -1,4 +1,5 @@
 import UsuarioModel from "../../models/Usuarios/UsuarioModel";
+const { Op } = require("sequelize");
 
 export default class ListUsuarioService {
   constructor() {}
@@ -30,17 +31,20 @@ export default class ListUsuarioService {
     }
   }
 
-  async listOne(nomeUsuario) {
+  async listOne(dadoUsuario) {
     try {
       const usuario = await UsuarioModel.findOne({
         where: {
-          nome: nomeUsuario,
+          [Op.or]: [
+            { nome: { [Op.like]: "%" + dadoUsuario + "%" } },
+            { email: { [Op.like]: "%" + dadoUsuario + "%" } },
+          ],
         },
       });
 
       if (!usuario) {
         return {
-          mesagem: "Usuario não localizado com o nome: " + nomeUsuario,
+          mesagem: "Usuario não localizado com o nome: " + dadoUsuario,
         };
       }
 
@@ -49,6 +53,24 @@ export default class ListUsuarioService {
     } catch (error) {
       console.log(error);
       return { erro: error.message };
+    }
+  }
+
+  async listUsuarioToken(tokenRequisicao) {
+    try {
+       
+      const usuario = await UsuarioModel.findOne({
+        where: {
+          token_sessao:tokenRequisicao
+        },
+      });
+         
+      return usuario.get('token_sessao');
+     
+            
+    } catch (error) {
+      //console.log(error);
+      //return { erro: error.message };
     }
   }
 }

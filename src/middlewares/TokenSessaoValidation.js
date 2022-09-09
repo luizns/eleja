@@ -1,10 +1,24 @@
-export default function ValidaTokenSessao(req, res, next) {
-  const token = req.headers.authorization;
+import listUsuarioService from "../app/services/Usuarios/ListUsuarioService";
+export default async function ValidaTokenSessao(req, res, next) {
+  const service = new listUsuarioService();
+  const tokenCabecalho = req.headers.authorization;
+  let tokenFormatado;
 
-  if (!token) {
+  if (!tokenCabecalho) {
     return res
       .status(401)
-      .json({Erro:"É necessário realizar login para acessar o recurso."});
+      .json({ Erro: "Usuário não logado ou token da requisição inválido." });
+  } else {
+    tokenFormatado = tokenCabecalho.replace("Bearer ", "");
+  }
+
+  const tokenUsuarioValido = await service.listUsuarioToken(tokenFormatado);
+
+ 
+  if (tokenUsuarioValido != tokenFormatado) {
+    return res
+      .status(401)
+      .json({ Erro: "É necessário realizar login para acessar o recurso." });
   }
 
   next();
