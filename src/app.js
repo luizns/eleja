@@ -11,12 +11,13 @@ import routesEnderecos from './rotas/routesEnderecos';
 import routesZonas from './rotas/routesZonas';
 import routesVotos from './rotas/routesVotos';
 import routesTipoUsuario from './rotas/routesTipoUsuario';
+import routesSession from './rotas/routesSession';
 class App {
    constructor() {
     this.server = express();
     this.initializeDatabase();
     this.middlewares();
-
+    this.routesSession();
     this.routesUsuarios();
     this.routesJuizes();
     this.routesCandidatos();
@@ -67,6 +68,10 @@ class App {
 
   routesVotos(){
     this.server.use(routesVotos);
+  }
+
+  routesSession(){
+    this.server.use(routesSession);
   }
 
   async initializeDatabase() {

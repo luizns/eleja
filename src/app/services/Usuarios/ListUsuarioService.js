@@ -15,6 +15,21 @@ export default class ListUsuarioService {
       return { erro: error.message };
     }
   }
+  async listUserSessao(email,senha) {
+    try {
+      const usuarios = await UsuarioModel.findOne({
+        where:{
+          email,
+          }
+
+      });
+      return usuarios;
+    } catch (error) {
+      console.log(error);
+      return { erro: error.message };
+    }
+  }
+
   async listOne(nomeUsuario) {
     try {
       const usuario = await UsuarioModel.findOne({

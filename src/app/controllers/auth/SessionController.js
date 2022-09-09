@@ -1,31 +1,35 @@
 import jwt from 'jsonwebtoken';
 
-import ListUserService from '../../services/Users/ListUserService';
+import ListUsuarioService from '../../services/Usuarios/ListUsuarioService';
+import HashPassword from '../../utils/HashPassword';
 
 export default class SessionController { 
-  constructor() {
-    this.service = new ListUserService();
-  }
-
-  static create(request, response) {
-    const { email, password } = request.body
-
-    const user = this.service.FindUser(email, password)
+  constructor() {}
+   static async create(req, res) {
+    const { email, senha } = req.body
+    const service= new ListUsuarioService();
+    const usuario =await service.listUserSessao(email, senha)
 
 
-  if(!user) {
-      return response.status(401).json({error: 'Trainer not found'})
+  if(!usuario) {
+      return res.status(401).json({error: 'Usuário não encontrado'})
     }
+    const ehSenhaValida= HashPassword.validate(senha,usuario.senha)
+    
+    const testeSenha= HashPassword.hash("12345678");
+    console.log(testeSenha);
+    if (!ehSenhaValida) {
+      return res.status(401).json({ error: "Atenção a senha é inválida" });
+    }
+    const {idUsuario, nome} = usuario;
 
-    const {id, name} = trainer;
-
-    return response.json({
-      trainer: {
-        id,
-        name,
+    return res.json({
+      usuario: {
+        idUsuario,
+        nome,
         email
       },
-      token: jwt.sign({ id }, 'a07bda8fd5e39462b4c3d860a36f6b4d', {
+      token: jwt.sign({ idUsuario }, process.env.JWT_PRIVATE_KEY, {
         expiresIn: '5d'
       })
     })
