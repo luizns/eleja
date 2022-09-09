@@ -1,4 +1,5 @@
 import UsuarioModel from "../../models/Usuarios/UsuarioModel";
+import HashPassword from "../../utils/HashPassword";
 
 export default class UpdateUsuarioService {
   constructor() {}
@@ -10,12 +11,12 @@ export default class UpdateUsuarioService {
       if (!usuario) {
         return { mensagem: "Usuário não localizado com id: " + idUsuario };
       }
-
+      const hashedPassword = HashPassword.hash(senha);
       const [numeroRegistrosAtualizado] = await UsuarioModel.update(
         {
           nome,
           email,
-          senha,
+          senha:hashedPassword,
           id_tipo_usuario,
         },
 
