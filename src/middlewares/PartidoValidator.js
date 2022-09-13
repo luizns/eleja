@@ -2,7 +2,7 @@ const yup = require('yup');
 
 export default async function PartidoValidator(request, response, next) {
     const schema = yup.object().shape({
-        name: yup
+        nome_partido: yup
             .string()
             .strict()
             .required("Nome é obrigatório.")
@@ -11,18 +11,21 @@ export default async function PartidoValidator(request, response, next) {
             .string()
             .required("Sigla é obrigatório.")
             .min(2, "São necessários no mínimo 2 caracteres para sigla."),
-        numeroLegenda: yup
+        numero_legenda: yup
         .string()
         .required("Número da legenda é obrigatório.")        
         .min(2, "São necessários no mínimo 2 caracteres para número da legenda.")
         .max(2, "São necessários no máximo 2 caracteres para número da legenda.")
     });
 
-    await schema.validate(request.body).catch((err) => {
+    try{
+        await schema.validate(request.body)
+    }
+    catch(err){
         return response.status(400).json({
             message: err.errors
         });
-    });
+    };
 
     next();
 }

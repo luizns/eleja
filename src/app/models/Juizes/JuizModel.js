@@ -1,5 +1,6 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
+import { Sequelize, Model, DataTypes } from 'sequelize';
 import databaseConfig from "../../../config/database";
+import CandidatoModel from '../../models/Candidatos/CandidatoModel'
 
 const sequelize = new Sequelize(databaseConfig);
 
@@ -13,9 +14,7 @@ JuizEleitoralModel.init(
       defaultValue: DataTypes.UUIDV4,
     },
     matricula: Sequelize.STRING,
-    usuario_id: { 
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4},
+    usuario_id: DataTypes.UUID,
     createdAt: {
       field: 'created_at',
       allowNull: false,
@@ -33,5 +32,10 @@ JuizEleitoralModel.init(
     timestamps: true,
   }
 );
+
+JuizEleitoralModel.hasMany(CandidatoModel, {
+  foreignKey: 'juiz_id', a: 'juizes_eleitorais'
+});
+CandidatoModel.belongsTo(JuizEleitoralModel);
 
 export default JuizEleitoralModel;

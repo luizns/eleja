@@ -22,7 +22,7 @@ const routesPartido = new Router();
 // Rota para partidos
 routesPartido.get('/partidos', (req, res) => listAllPartidoController.listAll(req, res));
 
-routesPartido.post('usuarios/juizes/partidos', PartidoValidator, (req,res) => createPartidoController.create(req, res));
+routesPartido.post('/partidos', PartidoValidator, (req,res) => createPartidoController.create(req, res));
 
 routesPartido.put('/partidos/:id', PartidoValidator, (req, res) => updatePartidoController.update(req, res));
 

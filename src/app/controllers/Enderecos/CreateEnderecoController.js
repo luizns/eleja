@@ -25,6 +25,7 @@ export default class CreateEnderecoController {
 
         const eleitor = await EleitorModel.findByPk(eleitor_id);
 
+
         if(!usuario || !eleitor){
             return res.status(404).json({ error: 'Usuário não encontrado!' })
         }

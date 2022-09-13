@@ -7,21 +7,19 @@ export default class CreatePartidoController {
             this.service = new CreatePartidoService();
         }
 
-    create (req, res){
+    async create (req, res){
         const {
-            id,
-            name,
+            nome_partido,
             sigla,
-            numeroLegenda
+            numero_legenda
         } = req.body;
     
-        const createdPartido = this.service.create(
-            id,
-            name,
+        const createdPartido = await this.service.create(
+            nome_partido,
             sigla,
-            numeroLegenda
+            numero_legenda
         );
     
-        return res.status(200).json(createdPartido.message);
+        return res.json(createdPartido);
     }
 }

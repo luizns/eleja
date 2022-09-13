@@ -11,18 +11,17 @@ export default class CreateEnderecoService {
         bairro,
         rua,
         numero,
-        eleitor_id,
-
+        eleitor_id
         ) {
         try {
             const newEndereco = await EnderecoModel.create({
-                cep,
+                cep, 
                 estado,
                 cidade,
                 bairro,
                 rua,
                 numero,
-                eleitor_id,
+                eleitor_id
             });
             
             return {

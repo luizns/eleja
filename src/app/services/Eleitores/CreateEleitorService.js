@@ -20,7 +20,8 @@ export default class CreateEleitorService {
                 zona,
                 secao,
                 usuario_id
-            });
+            },
+            );
 
             console.log(newEleitor)
 

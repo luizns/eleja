@@ -36,7 +36,7 @@ export default class ListUsuarioService {
             return { erro: err.message }
         }
     }
-    async listOne(email, password) {
+    async listOne(email, senha) {
         try {
           const usuario = await UsuarioModel.findOne({
             where: {
