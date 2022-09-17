@@ -6,7 +6,7 @@ import CreateQuantidadeVotosController from '../app/controllers/Votos/QuantVotos
 const createQuantidadeVotosController = new CreateQuantidadeVotosController();
 const listAllQuantVotoController = new ListAllQuantVotoController();
 
-const routes = new Router();
+const routesVotos = new Router();
 
 // Rota para Voto
 /*routes.post('/votos_registro', (req, res) =>
@@ -18,12 +18,12 @@ routes.get('/votos_registro', (req, res) =>
 /*routes.post('/registra_voto_candidato', (req, res) =>
     createVotoController.create(req, res)
 );*/
-routes.get('/votos_quantidade/', (req, res) =>
+routesVotos.get('/votos_quantidade/', (req, res) =>
     listAllQuantVotoController.listAll(req, res)
 ); 
 
-routes.post('/registra_voto_candidato', (req, res) =>
+routesVotos.post('/registra_voto_candidato', (req, res) =>
 createQuantidadeVotosController.create(req, res)
 );
 
-export default routes;
+export default routesVotos;

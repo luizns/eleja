@@ -11,8 +11,9 @@ import routesEnderecos from './routes/routesEnderecos';
 import routesZonas from './routes/routesZonas';
 import routesVotos from './routes/routesVotos';
 import routesTipoUsuario from './routes/routesTipoUsuario';
+import routesDocs from './routes/routesDocs';
 import tokenSessaoValidation from './middlewares/TokenSessaoValidation';
-import routes from './routes/routesVotos';
+
 
 
 class App {
@@ -31,11 +32,12 @@ class App {
     this.routesZonas();
     this.routesVotos();
     this.routesTipoUsuario();
+    this.routesDocs();
   }
 
   routesSession(){
     this.server.use(routesSession);
-   this.server.use(tokenSessaoValidation)
+    //this.server.use(tokenSessaoValidation)
   }
 
   middlewares() {
@@ -80,7 +82,7 @@ class App {
     }
 
     routesDocs() {
-      this.server.use(routes);
+      this.server.use(routesDocs);
     }
 
   
