@@ -1,92 +1,453 @@
 {
-  "openapi": "3.0.0",
+  "openapi": "3.0.3",
   "info": {
     "title": "API Eleja",
-    "description": " API que possibilitará o voto eletrônico para as eleições gerais, viabilizando o voto autenticado e direto através da internet",
-    "version": "1.0.0"
+    "description": "O objetivo do presente projeto está voltado para o desenvolvimento de uma API que possibilitará o voto eletrônico para as eleições gerais, viabilizando o voto autenticado e direto através da internet. O sistema será acessado via web, através do dispositivo do eleitor que deverá efetuar cadastro prévio no mesmo com os dados devidamente validados nos sistemas do TRE e TSE. O voto eletrônico digital e remoto facilitará o acesso ao exercício do direito máximo à democracia, possibilitando alcance para quem tem dificuldade de locomoção, pessoas acamadas, pessoas que residem em zona rural com limitações físicas, de saúde ou ainda para o eleitor que não quer se abster do conforto de sua casa para exercer o seu direito constitucional.",
+    "version": "1.0.11"
   },
   "servers": [
     {
-      "description": "Localhost",
-      "url": "http://localhost:3000"
+      "url": "https:localhost:3000 - Localhost"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "autentificação",
+      "description": "Efeitoar login de acesso"
+    },
+    {
+      "name": "usuario",
+      "description": "Tudo sobre o usuário"
+    },
+    {
+      "name": "eleitor",
+      "description": "Tudo sobre eleitores"
+    },
+    {
+      "name": "endereco",
+      "description": "Endereço dos eleitores"
+    },
+    {
+      "name": "voto",
+      "description": "Tudo sobre o voto"
+    },
+    {
+      "name": "juiz",
+      "description": "Tudo sobre juízes Eleitoral"
     }
   ],
   "paths": {
-    "/login": {
-      "post": {
+    "/eleitor": {
+      "get": {
         "tags": [
-          "Authentication"
+          "eleitor"
         ],
-        "summary": "Realizar login na API",
-        "description": "Esta rota é responsável por gerar um token JWT para visualização de rotas protegidas",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/session-request"
-              },
-              "examples": {
-                "session-sucess": {
-                  "value": {
-                    "email": "email@example.com",
-                    "senha": "123456"
-                  }
-                }
+        "summary": "Finds Pets by tags",
+        "description": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
+        "operationId": "findPetsByTags",
+        "parameters": [
+          {
+            "name": "tags",
+            "in": "query",
+            "description": "Tags to filter by",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
               }
             }
           }
-        },
+        ],
         "responses": {
           "200": {
-            "description": "Login realizado com sucesso",
+            "description": "successful operation",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "$ref": "#/components/schemas/session-request"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Pet"
+                  }
                 }
               }
             }
           },
           "400": {
-            "description": "Dados inválidos / Usuário não encontrado",
+            "description": "Invalid tag value"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "eleitor"
+        ],
+        "summary": "Add a new pet to the store",
+        "description": "Add a new pet to the store",
+        "operationId": "addPet",
+        "requestBody": {
+          "description": "Create a new pet in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Eleitor"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
             "content": {
               "application/json": {
-                "value": {
-                  "error": {
-                    "type": "string"
-                  }
+                "schema": {
+                  "$ref": "#/components/schemas/Eleitor"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Eleitor"
                 }
               }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/eleitor/{idEleitor}": {
+      "put": {
+        "tags": [
+          "eleitor"
+        ],
+        "summary": "Atualizar um eleitor existente",
+        "description": "Update an existing pet by Id",
+        "operationId": "updatePet",
+        "requestBody": {
+          "description": "Update an existent pet in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Eleitor"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Eleitor"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Eleitor"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Eleitor"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Eleitor"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Pet not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "eleitor"
+        ],
+        "summary": "Deletes a pet",
+        "description": "delete a pet",
+        "operationId": "deletePet",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "petId",
+            "in": "path",
+            "description": "Pet id to delete",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid pet value"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "email@exemplo.com"
+          },
+          "senha": {
+            "type": "string",
+            "example": "123456789"
+          }
+        }
+      },
+      "Usuario": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "João das Neves"
+          },
+          "email": {
+            "type": "string",
+            "example": "email@exemplo.com"
+          },
+          "senha": {
+            "type": "string",
+            "example": "123456789"
+          },
+          "endereco": {
+            "type": "array",
+            "xml": {
+              "name": "addresses",
+              "wrapped": true
+            },
+            "items": {}
+          }
+        },
+        "xml": {
+          "name": "usuario"
+        }
+      },
+      "Endereco": {
+        "type": "object",
+        "properties": {
+          "cep": {
+            "type": "string",
+            "example": "524265498"
+          },
+          "uf": {
+            "type": "string",
+            "example": "SP"
+          },
+          "cidade": {
+            "type": "string",
+            "example": "São Paulo"
+          },
+          "rua": {
+            "type": "string",
+            "example": "Rua Visconde"
+          },
+          "numero": {
+            "type": "string",
+            "example": "234"
+          }
+        },
+        "xml": {
+          "name": "endereco"
+        }
+      },
+      "Zona": {
+        "type": "object",
+        "properties": {
+          "secao": {
+            "type": "string",
+            "example": "0264"
+          },
+          "numeroZona": {
+            "type": "string",
+            "example": "004"
+          }
+        },
+        "xml": {
+          "name": "zona"
+        }
+      },
+      "Juiz": {
+        "type": "object",
+        "properties": {
+          "matricula": {
+            "type": "string",
+            "example": "132156"
+          }
+        },
+        "xml": {
+          "name": "juiz"
+        }
+      },
+      "Candidato": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "Silvio Santos velho rico"
+          },
+          "numero": {
+            "type": "string",
+            "example": "25123"
+          },
+          "idPartido": {
+            "type": "string",
+            "format": "UUIDV4"
+          },
+          "idJuizEleitoral": {
+            "type": "string",
+            "format": "UUIDV4"
+          },
+          "idCandidatoVoto": {
+            "type": "string",
+            "format": "UUIDV4"
+          }
+        },
+        "xml": {
+          "name": "candidato"
+        }
+      },
+      "Partido": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "Partido Devs dos Brasileiro"
+          },
+          "sigla": {
+            "type": "string",
+            "example": "PDB"
+          },
+          "numeroLegenda": {
+            "type": "string",
+            "example": "22"
+          }
+        },
+        "xml": {
+          "name": "partido"
+        }
+      },
+      "Voto": {
+        "type": "object",
+        "properties": {
+          "idRegistroVotoEleitor": {
+            "type": "string",
+            "format": "UUIDV4"
+          },
+          "idQuantVotoCandidato": {
+            "type": "string",
+            "format": "UUIDV4"
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "Pet": {
+        "description": "Pet object that needs to be added to the store",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "UserArray": {
+        "description": "List of user object",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {}
             }
           }
         }
       }
     },
-    "components": {
-      "schemas": {
-        "session-request": {
-          "type": "object",
-          "properties": {
-            "email": {
-              "type": "string"
-            },
-            "senha": {
-              "type": "string"
-            }
-          }
-        },
-        "session-response": {
-          "type": "object",
-          "properties": {
-            "usuarios": {
-              "type": "object"
-            },
-            "token": {
-              "type": "string"
-            }
-          }
-        }
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
