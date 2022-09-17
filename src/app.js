@@ -1,16 +1,16 @@
 import express from 'express';
 import db from "./database";
 
-import routesSession from './rotas/routesSession';
-import routesUsuarios from './rotas/routesUsuarios';
-import routesJuizes from './rotas/routesJuizes';
-import routesCandidatos from './rotas/routesCandidatos';
-import routesPartidos from './rotas/routesPartidos';
-import routesEleitores from './rotas/routesEleitores';
-import routesEnderecos from './rotas/routesEnderecos';
-import routesZonas from './rotas/routesZonas';
-import routesVotos from './rotas/routesVotos';
-import routesTipoUsuario from './rotas/routesTipoUsuario';
+import routesSession from './routes/routesSession';
+import routesUsuarios from './routes/routesUsuarios';
+import routesJuizes from './routes/routesJuizes';
+import routesCandidatos from './routes/routesCandidatos';
+import routesPartidos from './routes/routesPartidos';
+import routesEleitores from './routes/routesEleitores';
+import routesEnderecos from './routes/routesEnderecos';
+import routesZonas from './routes/routesZonas';
+import routesVotos from './routes/routesVotos';
+import routesTipoUsuario from './routes/routesTipoUsuario';
 import tokenSessaoValidation from './middlewares/TokenSessaoValidation';
 
 
