@@ -12,6 +12,7 @@ import routesZonas from './routes/routesZonas';
 import routesVotos from './routes/routesVotos';
 import routesTipoUsuario from './routes/routesTipoUsuario';
 import tokenSessaoValidation from './middlewares/TokenSessaoValidation';
+import routes from './routes/routesVotos';
 
 
 class App {
@@ -72,11 +73,15 @@ class App {
 
     routesZonas() {
       this.server.use(routesZonas);
-  }
+    }
 
-  routesVotos(){
-    this.server.use(routesVotos);
-  }
+    routesVotos(){
+      this.server.use(routesVotos);
+    }
+
+    routesDocs() {
+      this.server.use(routes);
+    }
 
   
   async initializeDatabase() {
