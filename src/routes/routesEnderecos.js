@@ -2,7 +2,6 @@ import Router from 'express';
 
 // importando validações
 import EnderecoValidator from '../middlewares/EnderecoValidator';
-import IndexValidator from '../middlewares/IndexValidator';
 
 //importando controllers para endereco
 import CreateEnderecoController from '../app/controllers/Enderecos/CreateEnderecoController';
@@ -24,8 +23,8 @@ routesEndereco.get('/enderecos', (req, res) => listAllEnderecoController.listAll
 
 routesEndereco.post('/enderecos', EnderecoValidator, (req,res) => createEnderecoController.create(req, res));
 
-routesEndereco.put('/enderecos/:idEndereco', IndexValidator, EnderecoValidator, (req, res) => updateEnderecoController.update(req, res));
+routesEndereco.put('/enderecos/:idEndereco',  EnderecoValidator, (req, res) => updateEnderecoController.update(req, res));
 
-routesEndereco.delete('/enderecos/:idEndereco', IndexValidator, (req, res) => deleteEnderecoController.delete(req, res));
+routesEndereco.delete('/enderecos/:idEndereco', (req, res) => deleteEnderecoController.delete(req, res));
 
 export default routesEndereco;

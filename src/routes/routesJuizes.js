@@ -2,7 +2,6 @@ import Router from 'express';
 
 // importando validações
 import JuizValidator from '../middlewares/JuizValidator';
-import IndexValidator from '../middlewares/IndexValidator';
 
 //importando controllers para Juízes
 import CreateJuizController from '../app/controllers/Juizes/CreateJuizController';
@@ -24,8 +23,8 @@ routesJuiz.get('/juizes', (req, res) => listJuizController.index(req, res));
 
 routesJuiz.post('/juizes', JuizValidator, (req,res) => createJuizController.create(req, res));
 
-routesJuiz.put('/juizes/:idJuiz', IndexValidator, JuizValidator, (req, res) => updateJuizController.update(req, res));
+routesJuiz.put('/juizes/:idJuiz', JuizValidator, (req, res) => updateJuizController.update(req, res));
 
-routesJuiz.delete('/juizes/:idJuiz', IndexValidator, (req, res) => deleteJuizController.delete(req, res));
+routesJuiz.delete('/juizes/:idJuiz', (req, res) => deleteJuizController.delete(req, res));
 
 export default routesJuiz;

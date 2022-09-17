@@ -8,8 +8,6 @@ const uploadFile = multer({ storage: multerConfig })
 
 // importando validações
 import CandidatoValidator from '../middlewares/CandidatoValidator';
-import IndexValidator from '../middlewares/IndexValidator';
-
 
 //importando controllers para Candidato
 import CreateCandidatoController from '../app/controllers/Candidatos/CreateCandidatoController';
@@ -32,9 +30,9 @@ routesCandidato.get('/candidatos', (req, res) => listCandidatosController.index(
 
 routesCandidato.post('/candidatos', CandidatoValidator, (req,res) => createCandidatoController.create(req, res));
 
-routesCandidato.put('/candidatos/:idCandidato', IndexValidator, CandidatoValidator, (req, res) => updateCandidatoController.update(req, res));
+routesCandidato.put('/candidatos/:idCandidato',  CandidatoValidator, (req, res) => updateCandidatoController.update(req, res));
 
-routesCandidato.delete('/candidatos/:idCandidato', IndexValidator, (req, res) => deleteCandidatoController.delete(req, res));
+routesCandidato.delete('/candidatos/:idCandidato',  (req, res) => deleteCandidatoController.delete(req, res));
 
 routesCandidato.post('/uploads', uploadFile.single('file') ,uploadFileController.storeFile);
 

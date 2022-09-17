@@ -2,7 +2,6 @@ import Router from 'express';
 
 // importando validações
 import UsuarioValidator from '../middlewares/UsuarioValidator';
-import IndexValidator from '../middlewares/IndexValidator';
 
 //importando controllers para usuários
 import CreateUsuarioController from '../app/controllers/Usuarios/CreateUsuarioController';

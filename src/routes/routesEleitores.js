@@ -2,7 +2,6 @@ import Router from 'express';
 
 // importando validações
 import EleitorValidator from '../middlewares/EleitorValidator';
-import IndexValidator from '../middlewares/IndexValidator';
 
 //importando controllers para Juízes
 import CreateEleitorController from '../app/controllers/Eleitores/CreateEleitorController';
@@ -22,10 +21,10 @@ const routesEleitor = new Router();
 // Rota para juízes
 routesEleitor.get('/eleitores', (req, res) => listEleitorController.index(req, res));
 
-routesEleitor.post('/eleitores', /* EleitorValidator, */ (req,res) => createEleitorController.create(req, res));
+routesEleitor.post('/eleitores',  (req,res) => createEleitorController.create(req, res));
 
-routesEleitor.put('/eleitores/:idEleitor', IndexValidator, EleitorValidator, (req, res) => updateEleitorController.update(req, res));
+routesEleitor.put('/eleitores/:idEleitor',  EleitorValidator, (req, res) => updateEleitorController.update(req, res));
 
-routesEleitor.delete('/eleitores/:idEleitor', IndexValidator, (req, res) => deleteEleitorController.delete(req, res));
+routesEleitor.delete('/eleitores/:idEleitor', (req, res) => deleteEleitorController.delete(req, res));
 
 export default routesEleitor;
