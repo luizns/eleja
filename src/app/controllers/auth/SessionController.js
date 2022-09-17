@@ -23,7 +23,7 @@ export  default class SessionController {
     }
     const {idUsuario, nome} = usuario;
     const token=jwt.sign({ idUsuario }, process.env.JWT_PRIVATE_KEY, {
-      expiresIn: '5d'});
+      expiresIn: '1d'});
       
     const gravaTokenSessao=await serviceUpdate.updateSessaoUsuario(idUsuario,email,token);
   

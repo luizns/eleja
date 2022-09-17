@@ -1,3 +1,93 @@
 {
-    
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Eleja",
+    "description": " API que possibilitará o voto eletrônico para as eleições gerais, viabilizando o voto autenticado e direto através da internet",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "description": "Localhost",
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Realizar login na API",
+        "description": "Esta rota é responsável por gerar um token JWT para visualização de rotas protegidas",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/session-request"
+              },
+              "examples": {
+                "session-sucess": {
+                  "value": {
+                    "email": "email@example.com",
+                    "senha": "123456"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login realizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/session-request"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados inválidos / Usuário não encontrado",
+            "content": {
+              "application/json": {
+                "value": {
+                  "error": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "session-request": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "senha": {
+              "type": "string"
+            }
+          }
+        },
+        "session-response": {
+          "type": "object",
+          "properties": {
+            "usuarios": {
+              "type": "object"
+            },
+            "token": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
 }
