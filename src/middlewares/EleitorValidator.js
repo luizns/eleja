@@ -1,6 +1,6 @@
 const yup = require('yup');
 
-export default async function EleitorValidator(request, response, next) {
+async function eleitorValidator(request, response, next) {
     const schema = yup.object().shape({
         cpf: yup
             .string()
@@ -13,17 +13,19 @@ export default async function EleitorValidator(request, response, next) {
             .min(12, "Titulo não válido, Titulo deve ter 12 digítos.")
             .max(12, "Titulo não válido, Titulo deve ter 12 digítos."),
         rg: yup
-        .string()
-        .required("RG é obrigatório.").min(9, "RG não válido, RG deve ter 9 digítos.").max(9, "RG não válido, RG deve ter 9 digítos.")  
+            .string()
+            .required("RG é obrigatório.").min(9, "RG não válido, RG deve ter 9 digítos.").max(9, "RG não válido, RG deve ter 9 digítos.")  
     });
 
-    await schema.validate(request.body).catch((err) => {
+    try{
+        await schema.validate(request.body)
+    } catch(err) {
         return response.status(400).json({
             message: err.errors
         });
-    });
+    };
 
     next();
 }
 
-// export default UserValidator;
+export default eleitorValidator;

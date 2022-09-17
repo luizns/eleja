@@ -1,5 +1,5 @@
 import listUsuarioService from "../app/services/Usuarios/ListUsuarioService";
-export default async function ValidaTokenSessao(req, res, next) {
+export default async function validaTokenSessao(req, res, next) {
   const service = new listUsuarioService();
   const tokenCabecalho = req.headers.authorization;
   let tokenFormatado;
