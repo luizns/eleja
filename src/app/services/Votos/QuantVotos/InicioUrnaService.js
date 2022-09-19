@@ -6,7 +6,7 @@ export default class InicioUrnaService {
   async initiate() {
     const votos = await QuantidadeVotoModel.findAll()
 
-    if (votos.length !== 0) {
+    if (votos) {
         return { mensagem: `A urna já foi iniciada e já tem ${votos.length} voto(s) computados.` }
     }
 

@@ -27,7 +27,7 @@ routes.get('/votos_quantidade/', (req, res) =>
     listAllQuantVotoController.listAll(req, res)
 );
 
-routes.get('/iniciar-urna', (req, res) =>
+routes.get('/iniciar_urna', (req, res) =>
     inicioUrnaController.list(req, res)
 );
 

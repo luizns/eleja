@@ -6,7 +6,7 @@ export default class InicioUrnaController {
     async list(req, res) {
         const votos = this.service.initiate();
 
-        if (votos.mensagem) { res.status(206).json(votos) }
+        if (votos.mensagem) { res.json(votos) }
 
         res.status(204).json(votos)
     }
