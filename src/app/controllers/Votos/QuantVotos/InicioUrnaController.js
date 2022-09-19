@@ -4,7 +4,7 @@ export default class InicioUrnaController {
     constructor() { this.service = new InicioUrnaService() };
 
     async list(req, res) {
-        const votos = this.service.initiate();
+        const votos = await this.service.initiate();
 
         if (votos.mensagem) { res.json(votos) }
 
