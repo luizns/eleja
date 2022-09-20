@@ -16,17 +16,22 @@ QuantidadeVotosCandidatosModel.init(
     data_voto: Sequelize.DATEONLY,
     id_candidato_voto: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: CandidatoModel,
         key: 'idCandidato',
       },
     },
+    branco_nulo:{
+      type:Sequelize.ENUM,
+      values:['branco','nulo']
+    }
    },
   {
     sequelize,
     modelName: "quant_votos_candidatos",
-    timestamps: false
+    timestamps: false,
+    constraints: false
   }
 );
   

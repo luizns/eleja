@@ -33,22 +33,19 @@ VotoModel.init(
   {
     sequelize,
     modelName: "votos",
-    timestamps: true,
+    timestamps: false,
+    constraints: false,
   }
 );
 
-RegistroVotoModel.belongsToMany(QuantVotosCandidatosModel, { through: VotoModel });
+/*VotoModel.belongsTo(QuantVotosCandidatosModel, { through: QuantVotosCandidatosModel },{ 
+as: "QuantidadeVotosCandidatos",
+foreignKey: "id_quant_votos_candidato"});
 
-QuantVotosCandidatosModel.belongsToMany(RegistroVotoModel, { through: VotoModel });
-
-VotoModel.belongsTo(RegistroVotoModel, {
+VotoModel.belongsTo(RegistroVotoModel, { through: RegistroVotoModel },{
   as: "RegistroVotoEleitor",
-  foreignKey: "idRegistroVotoEleitor"
-});
+  foreignKey: "id_registro_voto_eleitor"
+});*/
 
-VotoModel.belongsTo(QuantVotosCandidatosModel, {
-  as: "QuantidadeVotosCandidatos",
-  foreignKey: "idQuantVotosCandidato"
-});
 
 export default VotoModel;

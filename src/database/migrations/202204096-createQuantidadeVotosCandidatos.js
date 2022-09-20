@@ -21,13 +21,17 @@ module.exports = {
       },
       id_candidato_voto: {
         type: Sequelize.UUID,
-        allowNull: false,
+        allowNull: true,
         references: {
           model: {
             tableName: "candidatos",
           },
           key: "idCandidato",
         },
+      },
+      branco_nulo:{
+        type:Sequelize.ENUM,
+        values:['branco','nulo']
       },
    });
   },

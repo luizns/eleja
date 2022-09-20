@@ -1,4 +1,4 @@
-import Sequelize, { Model } from "sequelize";
+import Sequelize, { Association, Model } from "sequelize";
 import databaseConfig from "../../../config/database";
 
 import EleitorModel from "../Eleitores/EleitorModel"
@@ -26,24 +26,12 @@ RegistroVotoModel.init(
   {
     sequelize,
     modelName: "registra_voto_eleitores",
-    timestamps: true,
-  }
-);
+    timestamps: false,
+    freezeTableName:true,
+    constraints: false
+    
+  })
 
-RegistroVotoModel.belongsTo(EleitorModel);
-
-EleitorModel.hasOne(RegistroVotoModel, {
-  foreignKey: "idEleitor"
-});
-
-/* 
-  hora_voto: {
-    type: Sequelize.TIME,
-    allowNull: false,
-    defaultValue: Sequelize.fn('now')
-  },
-  data_voto: {
-    type: Sequelize.DATEONLY,
-    allowNull: false,
-    defaultValue: Sequelize.fn('now')}
-*/
+  RegistroVotoModel.associate = (EleitorModel) => {
+    RegistroVotoModel.belongsTo(EleitorModel.idEleitor, { foreignKey: 'id_eleitor' });
+  };

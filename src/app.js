@@ -13,6 +13,7 @@ import routesVotos from './routes/routesVotos';
 import routesTipoUsuario from './routes/routesTipoUsuario';
 import routesDocs from './routes/routesDocs';
 import tokenSessaoValidation from './middlewares/TokenSessaoValidation';
+import routesRegistraVoto from './routes/routesRegistraVoto';
 
 
 
@@ -33,6 +34,7 @@ class App {
     this.routesVotos();
     this.routesTipoUsuario();
     this.routesDocs();
+    this.routesRegistraVoto();
   }
 
   routesSession(){
@@ -84,7 +86,9 @@ class App {
     routesDocs() {
       this.server.use(routesDocs);
     }
-
+    routesRegistraVoto() {
+      this.server.use(routesRegistraVoto);
+    }
   
   async initializeDatabase() {
     try {
