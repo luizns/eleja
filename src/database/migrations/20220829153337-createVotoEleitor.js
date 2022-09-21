@@ -11,7 +11,6 @@ module.exports = {
       },
       id_registro_voto_eleitor: {
         type: Sequelize.STRING({length:100}),
-        allowNull: false,
         references: {
           model: {
             tableName: "registra_voto_eleitores",
@@ -21,7 +20,6 @@ module.exports = {
       },
       id_quant_votos_candidato: {
         type: Sequelize.UUID,
-        allowNull: false,
         references: {
           model: {
             tableName: "quant_votos_candidatos",

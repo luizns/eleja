@@ -11,13 +11,13 @@ module.exports = {
       },
       hora_voto: {
         type: Sequelize.STRING,
-        allowNull: false,
-        defaultValue: Sequelize.literal('NULL')
+        allowNull: true,
+        defaultValue: Sequelize.literal('null')
       },
       data_voto: {
         type: Sequelize.STRING,
-        allowNull: false,
-        defaultValue: Sequelize.literal('NULL')
+        allowNull: true,
+        defaultValue: Sequelize.literal('null')
       },
       id_candidato_voto: {
         type: Sequelize.UUID,
