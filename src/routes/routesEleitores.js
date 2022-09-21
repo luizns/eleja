@@ -3,14 +3,14 @@ import Router from 'express';
 // importando validações
 import EleitorValidator from '../middlewares/EleitorValidator';
 
-//importando controllers para Juízes
+//importando controllers para eleitores
 import CreateEleitorController from '../app/controllers/Eleitores/CreateEleitorController';
 import ListEleitorController from '../app/controllers/Eleitores/ListEleitorController';
 import UpdateEleitorController from '../app/controllers/Eleitores/UpdateEleitorController';
 import DeleteEleitorController from '../app/controllers/Eleitores/DeleteEleitorController';
 import eleitorValidator from '../middlewares/EleitorValidator';
 
-// instanciando objetos do crud de Juízes
+// instanciando objetos do crud de eleitores
 const createEleitorController = new CreateEleitorController();
 const deleteEleitorController = new DeleteEleitorController();
 const updateEleitorController = new UpdateEleitorController();
@@ -18,7 +18,7 @@ const listEleitorController = new ListEleitorController();
 
 const routesEleitor = new Router();
 
-// Rota para juízes
+// Rota para eleitores
 routesEleitor.get('/eleitores', (req, res) => listEleitorController.index(req, res));
 
 routesEleitor.post('/eleitores',  (req,res) => createEleitorController.create(req, res));
