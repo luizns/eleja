@@ -32,7 +32,7 @@ export default class CreateRegistraVotoService {
         idRegistroVotoEleitor: idRegistroVotoEleitor,
         id_eleitor:idEleitor,
         data_voto:dataAtual,
-        hora_atual:horaAtual,
+        hora_voto:horaAtual,
       },{transaction:blocoTransacaoVoto});
 
       await QuantidadeVotosCandidatosModel.create({
