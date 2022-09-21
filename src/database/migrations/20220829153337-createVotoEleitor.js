@@ -10,7 +10,7 @@ module.exports = {
         primaryKey: true,
       },
       id_registro_voto_eleitor: {
-        type: Sequelize.UUID,
+        type: Sequelize.STRING({length:100}),
         allowNull: false,
         references: {
           model: {

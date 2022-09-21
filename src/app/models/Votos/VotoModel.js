@@ -16,7 +16,7 @@ VotoModel.init(
       primaryKey: true,
     },
     id_registro_voto_eleitor: {
-      type: Sequelize.UUID,
+      type: Sequelize.STRING({length:100}),
       references: {
         model: RegistroVotoModel,
         key: 'idRegistroVotoEleitor',
@@ -38,14 +38,14 @@ VotoModel.init(
   }
 );
 
-/*VotoModel.belongsTo(QuantVotosCandidatosModel, { through: QuantVotosCandidatosModel },{ 
+VotoModel.belongsTo(QuantVotosCandidatosModel, { through: QuantVotosCandidatosModel },{ 
 as: "QuantidadeVotosCandidatos",
 foreignKey: "id_quant_votos_candidato"});
 
 VotoModel.belongsTo(RegistroVotoModel, { through: RegistroVotoModel },{
   as: "RegistroVotoEleitor",
   foreignKey: "id_registro_voto_eleitor"
-});*/
+});
 
 
 export default VotoModel;
