@@ -10,14 +10,14 @@ module.exports = {
         primaryKey: true,
       },
       hora_voto: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: Sequelize.fn('now')
+        defaultValue: Sequelize.literal('NULL')
       },
       data_voto: {
-        type: Sequelize.DATEONLY,
+        type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('NULL')
       },
       id_candidato_voto: {
         type: Sequelize.UUID,

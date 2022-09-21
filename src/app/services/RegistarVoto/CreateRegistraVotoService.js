@@ -31,12 +31,16 @@ export default class CreateRegistraVotoService {
       await RegistroVotoModel.create({
         idRegistroVotoEleitor: idRegistroVotoEleitor,
         id_eleitor:idEleitor,
+        data_voto:dataAtual,
+        hora_atual:horaAtual,
       },{transaction:blocoTransacaoVoto});
 
       await QuantidadeVotosCandidatosModel.create({
         idQuantVotosCandidato: idVotoCandidato,
         id_candidato_voto:idCandidatoSelecionado == 0 ? null : idCandidatoSelecionado,
         branco_nulo: VotoNuloBranco,
+        hora_voto:horaAtual,
+        data_voto:dataAtual
       },{transaction:blocoTransacaoVoto});
       
       await sequelize.query({

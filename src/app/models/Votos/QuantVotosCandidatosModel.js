@@ -12,8 +12,8 @@ QuantidadeVotosCandidatosModel.init(
       type: Sequelize.UUIDV4(),
       primaryKey: true
     },
-    hora_voto:Sequelize.DATE,
-    data_voto: Sequelize.DATEONLY,
+    hora_voto:Sequelize.STRING,
+    data_voto: Sequelize.STRING,
     id_candidato_voto: {
       type: Sequelize.STRING,
       allowNull: true,
