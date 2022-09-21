@@ -17,7 +17,7 @@ export default class HashPassword {
 
   static hashVotoEleitor(password) {
     const hashPassword = crypto
-      .pbkdf2Sync(password, process.env.PASSWORD_VOTO_SALT, 10000, 32, "sha512")
+      .pbkdf2Sync(password, process.env.PASSWORD_VOTO_SALT, 10000, 36, "sha512")
       .toString("hex");
     return hashPassword;
   }

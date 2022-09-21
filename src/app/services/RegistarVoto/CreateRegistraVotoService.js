@@ -5,7 +5,10 @@ import VotoModel from "../../models/Votos/VotoModel";
 import CandidatoModel from "../../models/Candidatos/CandidatoModel";
 import UsuarioModel from "../../models/Usuarios/UsuarioModel";
 import HashPassword from "../../utils/HashPassword";
+import databaseConfig from "../../../config/database";
+import {Sequelize} from "sequelize";
 
+const sequelize = new Sequelize(databaseConfig);
 export default class CreateRegistraVotoService {
   constructor() {}
 
@@ -22,25 +25,33 @@ export default class CreateRegistraVotoService {
     const nomeEleitor = await this.selecionaNomeEleitor(tokenUsuario);
     const idCandidatoSelecionado = await this.selecionaIdCandidato(numero_candidato);
     const VotoNuloBranco = this.verificaVotoNuloBranco(numero_candidato,idCandidatoSelecionado);
-
+    const blocoTransacaoVoto = await sequelize.transaction();
       
     try {
       await RegistroVotoModel.create({
         idRegistroVotoEleitor: idRegistroVotoEleitor,
         id_eleitor:idEleitor,
-      });
+      },{transaction:blocoTransacaoVoto});
 
       await QuantidadeVotosCandidatosModel.create({
         idQuantVotosCandidato: idVotoCandidato,
         id_candidato_voto:idCandidatoSelecionado == 0 ? null : idCandidatoSelecionado,
         branco_nulo: VotoNuloBranco,
-      });
+      },{transaction:blocoTransacaoVoto});
+      
+      await sequelize.query({
+        query:"SET FOREIGN_KEY_CHECKS=0;"
+      },{transaction:blocoTransacaoVoto}) 
 
       await VotoModel.create({
         idVoto: v4(),
-        id_registro_voto_eleitor:idRegistroVotoEleitor, //HashPassword.hashVotoEleitor(idRegistroVotoEleitor),
+        id_registro_voto_eleitor:HashPassword.hashVotoEleitor(idRegistroVotoEleitor),
         id_quant_votos_candidato: idVotoCandidato,
-      });
+      },{transaction:blocoTransacaoVoto});
+
+
+      await  blocoTransacaoVoto.commit();
+
       return {
         título: "Comprovante Votação Elej@",
         mensagem: "Festa da democracia, o seu voto foi registrado com sucesso!",
