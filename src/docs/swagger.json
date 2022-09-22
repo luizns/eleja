@@ -1,119 +1,45 @@
 {
-  "openapi": "3.0.3",
+  "openapi": "3.0.0",
   "info": {
-    "title": "API Eleja",
-    "description": "O objetivo do presente projeto está voltado para o desenvolvimento de uma API que possibilitará o voto eletrônico para as eleições gerais, viabilizando o voto autenticado e direto através da internet. O sistema será acessado via web, através do dispositivo do eleitor que deverá efetuar cadastro prévio no mesmo com os dados devidamente validados nos sistemas do TRE e TSE. O voto eletrônico digital e remoto facilitará o acesso ao exercício do direito máximo à democracia, possibilitando alcance para quem tem dificuldade de locomoção, pessoas acamadas, pessoas que residem em zona rural com limitações físicas, de saúde ou ainda para o eleitor que não quer se abster do conforto de sua casa para exercer o seu direito constitucional.",
-    "version": "1.0.11"
+    "title": "Eleja API v2",
+    "contact": {},
+    "version": "1.0"
   },
   "servers": [
     {
-      "url": "https:localhost:3000 - Localhost"
-    }
-  ],
-  "security": [
-    {
-      "bearerAuth": []
-    }
-  ],
-  "tags": [
-    {
-      "name": "autentificação",
-      "description": "Efeitoar login de acesso"
-    },
-    {
-      "name": "usuario",
-      "description": "Tudo sobre o usuário"
-    },
-    {
-      "name": "eleitor",
-      "description": "Tudo sobre eleitores"
-    },
-    {
-      "name": "endereco",
-      "description": "Endereço dos eleitores"
-    },
-    {
-      "name": "voto",
-      "description": "Tudo sobre o voto"
-    },
-    {
-      "name": "juiz",
-      "description": "Tudo sobre juízes Eleitoral"
+      "url": "http://example.com",
+      "variables": {}
     }
   ],
   "paths": {
-    "/eleitor": {
-      "get": {
-        "tags": [
-          "eleitor"
-        ],
-        "summary": "Finds Pets by tags",
-        "description": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
-        "operationId": "findPetsByTags",
-        "parameters": [
-          {
-            "name": "tags",
-            "in": "query",
-            "description": "Tags to filter by",
-            "required": false,
-            "style": "form",
-            "explode": true,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Pet"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid tag value"
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ]
-      },
+    "/login": {
       "post": {
         "tags": [
-          "eleitor"
+          "Login"
         ],
-        "summary": "Add a new pet to the store",
-        "description": "Add a new pet to the store",
-        "operationId": "addPet",
+        "summary": "login",
+        "operationId": "login",
+        "parameters": [],
         "requestBody": {
-          "description": "Create a new pet in the store",
+          "description": "",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Eleitor"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/loginrequest"
+                  },
+                  {
+                    "example": {
+                      "email": "usuarioexemplo@exemplo.com",
+                      "senha": "123456"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "email": "usuarioexemplo@exemplo.com",
+                "senha": "123456"
               }
             }
           },
@@ -121,58 +47,382 @@
         },
         "responses": {
           "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Eleitor"
-                }
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/tipoUsuarios": {
+      "get": {
+        "tags": [
+          "Tipo de Usuario"
+        ],
+        "summary": "Listar os Tipos de Usuario",
+        "operationId": "ListarosTiposdeUsuario",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Tipo de Usuario"
+        ],
+        "summary": "Criar Tipo de Usuario",
+        "operationId": "CriarTipodeUsuario",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CriarTipodeUsuarioRequest"
+                  },
+                  {
+                    "example": {
+                      "descricao": "Juiz Eleitoral"
+                    }
+                  }
+                ]
               },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Eleitor"
-                }
+              "example": {
+                "descricao": "Juiz Eleitoral"
               }
             }
           },
-          "405": {
-            "description": "Invalid input"
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
           }
         },
+        "deprecated": false
+      }
+    },
+    "/tipoUsuarios/{id}": {
+      "delete": {
+        "tags": [
+          "Tipo de Usuario"
+        ],
+        "summary": "Deletar tipo de Usuario",
+        "operationId": "DeletartipodeUsuario",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "2427b29f-4b03-4a1d-9a72-8c3cbcddcecc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/usuarios": {
+      "get": {
+        "tags": [
+          "Usuarios"
+        ],
+        "summary": "Listar Usuarios",
+        "operationId": "ListarUsuarios",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/usuarios/cadastrar": {
+      "post": {
+        "tags": [
+          "Usuarios"
+        ],
+        "summary": "Criar Usuario",
+        "operationId": "CriarUsuario",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CriarUsuarioRequest"
+                  },
+                  {
+                    "example": {
+                      "nome": "Usuario Exemplo",
+                      "email": "usuarioexemplo@exemplo.com",
+                      "senha": "123456",
+                      "tipo_usuario_id": "cb591b16-db1d-44ca-8a76-eb5b4e9cce5e"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "nome": "Usuario Exemplo",
+                "email": "usuarioexemplo@exemplo.com",
+                "senha": "123456",
+                "tipo_usuario_id": "cb591b16-db1d-44ca-8a76-eb5b4e9cce5e"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/usuarios/{id}": {
+      "put": {
+        "tags": [
+          "Usuarios"
+        ],
+        "summary": "Atualizar Usuario",
+        "operationId": "AtualizarUsuario",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "9665c960-8974-4a68-90bc-09a83db78784"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AtualizarUsuarioRequest"
+                  },
+                  {
+                    "example": {
+                      "nome": "Rodrigo Moreira Lima",
+                      "email": "rodrigomoreiralima@gmail.com.br",
+                      "senha": "Sen%ha123"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "nome": "Rodrigo Moreira Lima",
+                "email": "rodrigomoreiralima@gmail.com.br",
+                "senha": "Sen%ha123"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Usuarios"
+        ],
+        "summary": "Deletar Usuario",
+        "operationId": "DeletarUsuario",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "5e736b0e-2f2d-4238-80eb-f653560da92e"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/usuarios/eleitores": {
+      "get": {
+        "tags": [
+          "Eleitores"
+        ],
+        "summary": "Listar dados do eleitores",
+        "operationId": "Listardadosdoeleitores",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/usuarios/{usuario_id}/eleitores": {
+      "post": {
+        "tags": [
+          "Eleitores"
+        ],
+        "summary": "Criar dados do Eleitor",
+        "operationId": "CriardadosdoEleitor",
+        "parameters": [
+          {
+            "name": "usuario_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "287126fb-8679-4822-b70e-b0760a4f4297"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CriardadosdoEleitorRequest"
+                  },
+                  {
+                    "example": {
+                      "cpf": "028.967.230-43",
+                      "titulo_eleitor": "151215610111",
+                      "rg": "27231-314",
+                      "zona": "004",
+                      "secao": "0316"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "cpf": "028.967.230-43",
+                "titulo_eleitor": "151215610111",
+                "rg": "27231-314",
+                "zona": "004",
+                "secao": "0316"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
         "security": [
           {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
+            "bearer": []
           }
         ]
       }
     },
-    "/eleitor/{idEleitor}": {
+    "/usuarios/{usuario_id}/eleitores/{id}": {
       "put": {
         "tags": [
-          "eleitor"
+          "Eleitores"
         ],
-        "summary": "Atualizar um eleitor existente",
-        "description": "Update an existing pet by Id",
-        "operationId": "updatePet",
+        "summary": "Atualizar dados Eleitor",
+        "operationId": "AtualizardadosEleitor",
+        "parameters": [
+          {
+            "name": "usuario_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "9665c960-8974-4a68-90bc-09a83db78784"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "cb2b0f76-2297-4e59-8776-45154ccbf71c"
+            }
+          }
+        ],
         "requestBody": {
-          "description": "Update an existent pet in the store",
+          "description": "",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Eleitor"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Eleitor"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/Eleitor"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AtualizardadosEleitorRequest"
+                  },
+                  {
+                    "example": {
+                      "cpf": "516.498.419-99",
+                      "rg": "21651-191",
+                      "titulo_eleitor": "1516 2156 1999",
+                      "zona": "004",
+                      "secao": "0316"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "cpf": "516.498.419-99",
+                "rg": "21651-191",
+                "titulo_eleitor": "1516 2156 1999",
+                "zona": "004",
+                "secao": "0316"
               }
             }
           },
@@ -180,275 +430,1223 @@
         },
         "responses": {
           "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Eleitor"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Eleitor"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Pet not found"
-          },
-          "405": {
-            "description": "Validation exception"
+            "description": "",
+            "headers": {}
           }
         },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ]
+        "deprecated": false
       },
       "delete": {
         "tags": [
-          "eleitor"
+          "Eleitores"
         ],
-        "summary": "Deletes a pet",
-        "description": "delete a pet",
-        "operationId": "deletePet",
+        "summary": "Deletar dados do Eleitor",
+        "operationId": "DeletardadosdoEleitor",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "header",
+            "name": "usuario_id",
+            "in": "path",
             "description": "",
-            "required": false,
+            "required": true,
             "style": "simple",
-            "explode": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "9665c960-8974-4a68-90bc-09a83db7878"
             }
           },
           {
-            "name": "petId",
+            "name": "id",
             "in": "path",
-            "description": "Pet id to delete",
+            "description": "",
             "required": true,
             "style": "simple",
-            "explode": false,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string",
+              "example": "236d7b09-0c0e-4ec7-b051-664cff153842"
             }
           }
         ],
         "responses": {
-          "400": {
-            "description": "Invalid pet value"
+          "200": {
+            "description": "",
+            "headers": {}
           }
         },
+        "deprecated": false
+      }
+    },
+    "/usuarios/eleitores/enderecos": {
+      "get": {
+        "tags": [
+          "Endereco dos Eleitores"
+        ],
+        "summary": "Listar endereços do eleitores",
+        "operationId": "Listarendereçosdoeleitores",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/usuarios/{usuario_id}/eleitores/{eleitor_id}/enderecos": {
+      "post": {
+        "tags": [
+          "Endereco dos Eleitores"
+        ],
+        "summary": "Criar um endereço para o usuario",
+        "operationId": "Criarumendereçoparaousuario",
+        "parameters": [
+          {
+            "name": "usuario_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "287126fb-8679-4822-b70e-b0760a4f4297"
+            }
+          },
+          {
+            "name": "eleitor_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "ff62d092-7eb6-40b0-a81b-5856119d4ef8"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CriarumendereoparaousuarioRequest"
+                  },
+                  {
+                    "example": {
+                      "cep": "5322-515",
+                      "estado": "PE",
+                      "cidade": "Recife",
+                      "bairro": "Boa viagem",
+                      "rua": "Rua Setúbal",
+                      "numero": "232"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "cep": "5322-515",
+                "estado": "PE",
+                "cidade": "Recife",
+                "bairro": "Boa viagem",
+                "rua": "Rua Setúbal",
+                "numero": "232"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/usuarios/{usuario_id}/eleitores/{eleitor_id}/enderecos/{id}": {
+      "put": {
+        "tags": [
+          "Endereco dos Eleitores"
+        ],
+        "summary": "Atualizar endereço do Eleitor",
+        "operationId": "AtualizarendereçodoEleitor",
+        "parameters": [
+          {
+            "name": "usuario_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "9665c960-8974-4a68-90bc-09a83db78784"
+            }
+          },
+          {
+            "name": "eleitor_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "cb2b0f76-2297-4e59-8776-45154ccbf71c"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "9792e422-70b5-4cf1-9cd9-688c5c534d2"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AtualizarendereodoEleitorRequest"
+                  },
+                  {
+                    "example": {
+                      "cep": "52321-515",
+                      "estado": "PE",
+                      "cidade": "Recife",
+                      "bairro": "Água Fria",
+                      "rua": "Rua Pernambucanas",
+                      "numero": "232"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "cep": "52321-515",
+                "estado": "PE",
+                "cidade": "Recife",
+                "bairro": "Água Fria",
+                "rua": "Rua Pernambucanas",
+                "numero": "232"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/zonas": {
+      "get": {
+        "tags": [
+          "Zonas"
+        ],
+        "summary": "Listar Zonas",
+        "operationId": "ListarZonas",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Zonas"
+        ],
+        "summary": "Criar Zonas",
+        "operationId": "CriarZonas",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/zonas/{idZona}": {
+      "put": {
+        "tags": [
+          "Zonas"
+        ],
+        "summary": "Atualizar Zona",
+        "operationId": "AtualizarZona",
+        "parameters": [
+          {
+            "name": "idZona",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "null"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Zonas"
+        ],
+        "summary": "Deletar Zona",
+        "operationId": "DeletarZona",
+        "parameters": [
+          {
+            "name": "idZona",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "null"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/usuarios/{usuario_id}/juizes": {
+      "get": {
+        "tags": [
+          "Juiz Eleitoral"
+        ],
+        "summary": "Listar Juiz",
+        "operationId": "ListarJuiz",
+        "parameters": [
+          {
+            "name": "usuario_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "2d8bd637-456e-4840-a5f7-b3f6abefca57"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Juiz Eleitoral"
+        ],
+        "summary": "Criar dados do Juiz Eleitoral",
+        "operationId": "CriardadosdoJuizEleitoral",
+        "parameters": [
+          {
+            "name": "usuario_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "5ee18c23-0a9e-47e3-9cc9-74fcb40ba242"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CriardadosdoJuizEleitoralRequest"
+                  },
+                  {
+                    "example": {
+                      "matricula": "tre05322"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "matricula": "tre05322"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
         "security": [
           {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
+            "bearer": []
           }
         ]
+      }
+    },
+    "/usuarios/juizes": {
+      "get": {
+        "tags": [
+          "Juiz Eleitoral"
+        ],
+        "summary": "Listar Juizes",
+        "operationId": "ListarJuizes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/usuarios/{usuaria_id}/juizes/{id}": {
+      "put": {
+        "tags": [
+          "Juiz Eleitoral"
+        ],
+        "summary": "Atualizar dados do Juiz",
+        "operationId": "AtualizardadosdoJuiz",
+        "parameters": [
+          {
+            "name": "usuaria_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "588614db-cb4f-4948-b1d3-bb6ef260bd3b"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "12e0e049-fa2d-4ce0-a39a-e3789bda9c62"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AtualizardadosdoJuizRequest"
+                  },
+                  {
+                    "example": {
+                      "matricula": "treUpdateMatricula"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "matricula": "treUpdateMatricula"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/usuarios/{usuario_id}/juizes/{id}": {
+      "delete": {
+        "tags": [
+          "Juiz Eleitoral"
+        ],
+        "summary": "Deletar dados do Juiz",
+        "operationId": "DeletardadosdoJuiz",
+        "parameters": [
+          {
+            "name": "usuario_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "2d8bd637-456e-4840-a5f7-b3f6abefca57"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "5879b32b-d48c-4102-9635-458d7563ab55"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/usuarios/{usuario_id}/juizes/{juiz_eleitoral_id}/candidatos": {
+      "post": {
+        "tags": [
+          "Candidatos"
+        ],
+        "summary": "Criar Candidato",
+        "operationId": "CriarCandidato",
+        "parameters": [
+          {
+            "name": "usuario_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "null"
+            }
+          },
+          {
+            "name": "juiz_eleitoral_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "null"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/candidatos": {
+      "get": {
+        "tags": [
+          "Candidatos"
+        ],
+        "summary": "Listar Candidatos",
+        "operationId": "ListarCandidatos",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/candidatos/{idCandidato}": {
+      "put": {
+        "tags": [
+          "Candidatos"
+        ],
+        "summary": "Atualizar Candidatos",
+        "operationId": "AtualizarCandidatos",
+        "parameters": [
+          {
+            "name": "idCandidato",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "null"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Candidatos"
+        ],
+        "summary": "Deletar Candidatos",
+        "operationId": "DeletarCandidatos",
+        "parameters": [
+          {
+            "name": "idCandidato",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "null"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/uploads": {
+      "post": {
+        "tags": [
+          "Candidatos"
+        ],
+        "summary": "Adicionar imagem do Candidato",
+        "operationId": "AdicionarimagemdoCandidato",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/partidos": {
+      "post": {
+        "tags": [
+          "Partidos"
+        ],
+        "summary": "Criar partido",
+        "operationId": "Criarpartido",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CriarpartidoRequest"
+                  },
+                  {
+                    "example": {
+                      "nome_partido": "Partido Devs dos Brasileiro",
+                      "sigla": "PDB",
+                      "numero_legenda": "22"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "nome_partido": "Partido Devs dos Brasileiro",
+                "sigla": "PDB",
+                "numero_legenda": "22"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "get": {
+        "tags": [
+          "Partidos"
+        ],
+        "summary": "Listar partidos",
+        "operationId": "Listarpartidos",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/partidos/{idPartido}": {
+      "put": {
+        "tags": [
+          "Partidos"
+        ],
+        "summary": "Atualizar  Partidos",
+        "operationId": "AtualizarPartidos",
+        "parameters": [
+          {
+            "name": "idPartido",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "null"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AtualizarPartidosRequest"
+                  },
+                  {
+                    "example": {
+                      "nome_partido": "Partido Devs dos Brasileiro",
+                      "sigla": "PDB",
+                      "numero_legenda": "22"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "nome_partido": "Partido Devs dos Brasileiro",
+                "sigla": "PDB",
+                "numero_legenda": "22"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Partidos"
+        ],
+        "summary": "Deletar Partidos",
+        "operationId": "DeletarPartidos",
+        "parameters": [
+          {
+            "name": "idPartido",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "null"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/voto_quantidade": {
+      "get": {
+        "tags": [
+          "Votos"
+        ],
+        "summary": "Listar Quant votos candidatos",
+        "operationId": "ListarQuantvotoscandidatos",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/registra_voto_candidato": {
+      "post": {
+        "tags": [
+          "Votos"
+        ],
+        "summary": "Criar registro de voto candidato",
+        "operationId": "Criarregistrodevotocandidato",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "example": {}
+              },
+              "example": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
       }
     }
   },
   "components": {
     "schemas": {
-      "Login": {
+      "loginrequest": {
+        "title": "loginrequest",
+        "required": [
+          "email",
+          "senha"
+        ],
         "type": "object",
         "properties": {
           "email": {
-            "type": "string",
-            "example": "email@exemplo.com"
+            "type": "string"
           },
           "senha": {
-            "type": "string",
-            "example": "123456789"
+            "type": "string"
           }
+        },
+        "example": {
+          "email": "usuarioexemplo@exemplo.com",
+          "senha": "123456"
         }
       },
-      "Usuario": {
+      "CriarTipodeUsuarioRequest": {
+        "title": "CriarTipodeUsuarioRequest",
+        "required": [
+          "descricao"
+        ],
+        "type": "object",
+        "properties": {
+          "descricao": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "descricao": "Juiz Eleitoral"
+        }
+      },
+      "CriarUsuarioRequest": {
+        "title": "CriarUsuarioRequest",
+        "required": [
+          "nome",
+          "email",
+          "senha",
+          "tipo_usuario_id"
+        ],
         "type": "object",
         "properties": {
           "nome": {
-            "type": "string",
-            "example": "João das Neves"
+            "type": "string"
           },
           "email": {
-            "type": "string",
-            "example": "email@exemplo.com"
+            "type": "string"
           },
           "senha": {
-            "type": "string",
-            "example": "123456789"
+            "type": "string"
           },
-          "endereco": {
-            "type": "array",
-            "xml": {
-              "name": "addresses",
-              "wrapped": true
-            },
-            "items": {}
+          "tipo_usuario_id": {
+            "type": "string"
           }
         },
-        "xml": {
-          "name": "usuario"
+        "example": {
+          "nome": "Usuario Exemplo",
+          "email": "usuarioexemplo@exemplo.com",
+          "senha": "123456",
+          "tipo_usuario_id": "cb591b16-db1d-44ca-8a76-eb5b4e9cce5e"
         }
       },
-      "Endereco": {
+      "AtualizarUsuarioRequest": {
+        "title": "AtualizarUsuarioRequest",
+        "required": [
+          "nome",
+          "email",
+          "senha"
+        ],
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "senha": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "nome": "Rodrigo Moreira Lima",
+          "email": "rodrigomoreiralima@gmail.com.br",
+          "senha": "Sen%ha123"
+        }
+      },
+      "CriardadosdoEleitorRequest": {
+        "title": "CriardadosdoEleitorRequest",
+        "required": [
+          "cpf",
+          "titulo_eleitor",
+          "rg",
+          "zona",
+          "secao"
+        ],
+        "type": "object",
+        "properties": {
+          "cpf": {
+            "type": "string"
+          },
+          "titulo_eleitor": {
+            "type": "string"
+          },
+          "rg": {
+            "type": "string"
+          },
+          "zona": {
+            "type": "string"
+          },
+          "secao": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "cpf": "028.967.230-43",
+          "titulo_eleitor": "151215610111",
+          "rg": "27231-314",
+          "zona": "004",
+          "secao": "0316"
+        }
+      },
+      "AtualizardadosEleitorRequest": {
+        "title": "AtualizardadosEleitorRequest",
+        "required": [
+          "cpf",
+          "rg",
+          "titulo_eleitor",
+          "zona",
+          "secao"
+        ],
+        "type": "object",
+        "properties": {
+          "cpf": {
+            "type": "string"
+          },
+          "rg": {
+            "type": "string"
+          },
+          "titulo_eleitor": {
+            "type": "string"
+          },
+          "zona": {
+            "type": "string"
+          },
+          "secao": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "cpf": "516.498.419-99",
+          "rg": "21651-191",
+          "titulo_eleitor": "1516 2156 1999",
+          "zona": "004",
+          "secao": "0316"
+        }
+      },
+      "CriarumendereoparaousuarioRequest": {
+        "title": "CriarumendereoparaousuarioRequest",
+        "required": [
+          "cep",
+          "estado",
+          "cidade",
+          "bairro",
+          "rua",
+          "numero"
+        ],
         "type": "object",
         "properties": {
           "cep": {
-            "type": "string",
-            "example": "524265498"
+            "type": "string"
           },
-          "uf": {
-            "type": "string",
-            "example": "SP"
+          "estado": {
+            "type": "string"
           },
           "cidade": {
-            "type": "string",
-            "example": "São Paulo"
+            "type": "string"
+          },
+          "bairro": {
+            "type": "string"
           },
           "rua": {
-            "type": "string",
-            "example": "Rua Visconde"
+            "type": "string"
           },
           "numero": {
-            "type": "string",
-            "example": "234"
+            "type": "string"
           }
         },
-        "xml": {
-          "name": "endereco"
+        "example": {
+          "cep": "5322-515",
+          "estado": "PE",
+          "cidade": "Recife",
+          "bairro": "Boa viagem",
+          "rua": "Rua Setúbal",
+          "numero": "232"
         }
       },
-      "Zona": {
+      "AtualizarendereodoEleitorRequest": {
+        "title": "AtualizarendereodoEleitorRequest",
+        "required": [
+          "cep",
+          "estado",
+          "cidade",
+          "bairro",
+          "rua",
+          "numero"
+        ],
         "type": "object",
         "properties": {
-          "secao": {
-            "type": "string",
-            "example": "0264"
+          "cep": {
+            "type": "string"
           },
-          "numeroZona": {
-            "type": "string",
-            "example": "004"
+          "estado": {
+            "type": "string"
+          },
+          "cidade": {
+            "type": "string"
+          },
+          "bairro": {
+            "type": "string"
+          },
+          "rua": {
+            "type": "string"
+          },
+          "numero": {
+            "type": "string"
           }
         },
-        "xml": {
-          "name": "zona"
+        "example": {
+          "cep": "52321-515",
+          "estado": "PE",
+          "cidade": "Recife",
+          "bairro": "Água Fria",
+          "rua": "Rua Pernambucanas",
+          "numero": "232"
         }
       },
-      "Juiz": {
+      "CriardadosdoJuizEleitoralRequest": {
+        "title": "CriardadosdoJuizEleitoralRequest",
+        "required": [
+          "matricula"
+        ],
         "type": "object",
         "properties": {
           "matricula": {
-            "type": "string",
-            "example": "132156"
+            "type": "string"
           }
         },
-        "xml": {
-          "name": "juiz"
+        "example": {
+          "matricula": "tre05322"
         }
       },
-      "Candidato": {
+      "AtualizardadosdoJuizRequest": {
+        "title": "AtualizardadosdoJuizRequest",
+        "required": [
+          "matricula"
+        ],
         "type": "object",
         "properties": {
-          "nome": {
-            "type": "string",
-            "example": "Silvio Santos velho rico"
-          },
-          "numero": {
-            "type": "string",
-            "example": "25123"
-          },
-          "idPartido": {
-            "type": "string",
-            "format": "UUIDV4"
-          },
-          "idJuizEleitoral": {
-            "type": "string",
-            "format": "UUIDV4"
-          },
-          "idCandidatoVoto": {
-            "type": "string",
-            "format": "UUIDV4"
+          "matricula": {
+            "type": "string"
           }
         },
-        "xml": {
-          "name": "candidato"
+        "example": {
+          "matricula": "treUpdateMatricula"
         }
       },
-      "Partido": {
+      "CriarpartidoRequest": {
+        "title": "CriarpartidoRequest",
+        "required": [
+          "nome_partido",
+          "sigla",
+          "numero_legenda"
+        ],
         "type": "object",
         "properties": {
-          "nome": {
-            "type": "string",
-            "example": "Partido Devs dos Brasileiro"
+          "nome_partido": {
+            "type": "string"
           },
           "sigla": {
-            "type": "string",
-            "example": "PDB"
+            "type": "string"
           },
-          "numeroLegenda": {
-            "type": "string",
-            "example": "22"
+          "numero_legenda": {
+            "type": "string"
           }
         },
-        "xml": {
-          "name": "partido"
+        "example": {
+          "nome_partido": "Partido Devs dos Brasileiro",
+          "sigla": "PDB",
+          "numero_legenda": "22"
         }
       },
-      "Voto": {
+      "AtualizarPartidosRequest": {
+        "title": "AtualizarPartidosRequest",
+        "required": [
+          "nome_partido",
+          "sigla",
+          "numero_legenda"
+        ],
         "type": "object",
         "properties": {
-          "idRegistroVotoEleitor": {
-            "type": "string",
-            "format": "UUIDV4"
+          "nome_partido": {
+            "type": "string"
           },
-          "idQuantVotoCandidato": {
-            "type": "string",
-            "format": "UUIDV4"
+          "sigla": {
+            "type": "string"
+          },
+          "numero_legenda": {
+            "type": "string"
           }
-        }
-      }
-    },
-    "requestBodies": {
-      "Pet": {
-        "description": "Pet object that needs to be added to the store",
-        "content": {
-          "application/json": {
-            "schema": {}
-          }
+        },
+        "example": {
+          "nome_partido": "Partido Devs dos Brasileiro",
+          "sigla": "PDB",
+          "numero_legenda": "22"
         }
       },
-      "UserArray": {
-        "description": "List of user object",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "array",
-              "items": {}
-            }
+      "DeletarPartidosRequest": {
+        "title": "DeletarPartidosRequest",
+        "required": [
+          "nome_partido",
+          "sigla",
+          "numero_legenda"
+        ],
+        "type": "object",
+        "properties": {
+          "nome_partido": {
+            "type": "string"
+          },
+          "sigla": {
+            "type": "string"
+          },
+          "numero_legenda": {
+            "type": "string"
           }
+        },
+        "example": {
+          "nome_partido": "Partido Devs dos Brasileiro",
+          "sigla": "PDB",
+          "numero_legenda": "22"
         }
       }
     },
     "securitySchemes": {
-      "bearerAuth": {
+      "bearer": {
         "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
+        "scheme": "bearer"
       }
     }
-  }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "Login"
+    },
+    {
+      "name": "Tipo de Usuario"
+    },
+    {
+      "name": "Usuarios"
+    },
+    {
+      "name": "Eleitores"
+    },
+    {
+      "name": "Endereco dos Eleitores"
+    },
+    {
+      "name": "Zonas"
+    },
+    {
+      "name": "Juiz Eleitoral"
+    },
+    {
+      "name": "Candidatos"
+    },
+    {
+      "name": "Partidos"
+    },
+    {
+      "name": "Votos"
+    }
+  ]
 }
