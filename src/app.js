@@ -39,7 +39,7 @@ class App {
 
   routesSession(){
     this.server.use(routesSession);
-    //this.server.use(tokenSessaoValidation)
+    this.server.use(tokenSessaoValidation)
   }
 
   middlewares() {

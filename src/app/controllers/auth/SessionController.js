@@ -6,7 +6,8 @@ import HashPassword from '../../utils/HashPassword';
 
 export  default class SessionController { 
   constructor() {}
-   static async create(req, res) {
+
+  static async create(req, res) {
     const { email, senha } = req.body
     const service = new ListUsuarioService();
     const serviceUpdate = new updateUsuarioService();
