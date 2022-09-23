@@ -3,6 +3,7 @@ import CandidatoModel from "../../models/Candidatos/CandidatoModel";
 
 export default class CreateCandidatoService {
   constructor() {}
+
   async create(
     idCandidato,
     nome_candidato,
@@ -20,8 +21,9 @@ export default class CreateCandidatoService {
         id_juiz_eleitoral,
         id_candidato_voto,
       });
-      console.log(newCandidato);
+      
       return newCandidato;
+
     } catch (error) {
       console.log(error);
       return { erro: error.message };

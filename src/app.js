@@ -9,7 +9,6 @@ import routesPartidos from './routes/routesPartidos';
 import routesEleitores from './routes/routesEleitores';
 import routesEnderecos from './routes/routesEnderecos';
 import routesZonas from './routes/routesZonas';
-import routesVotos from './routes/routesVotos';
 import routesTipoUsuario from './routes/routesTipoUsuario';
 import routesDocs from './routes/routesDocs';
 import tokenSessaoValidation from './middlewares/TokenSessaoValidation';
@@ -32,7 +31,6 @@ class App {
     this.routesEleitores();
     this.routesEnderecos();
     this.routesZonas();
-    this.routesVotos();
     this.routesTipoUsuario();
     this.routesDocs();
     this.routesRegistraVoto();
@@ -79,10 +77,6 @@ class App {
 
     routesZonas() {
       this.server.use(routesZonas);
-    }
-
-    routesVotos(){
-      this.server.use(routesVotos);
     }
 
     routesDocs() {

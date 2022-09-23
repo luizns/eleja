@@ -14,7 +14,9 @@ export default class CreateEleitorService {
         idade,
         id_usuario,
       });
+
       return newEleitor;
+      
     } catch (error) {
       console.log(error);
       return { erro: error.message };

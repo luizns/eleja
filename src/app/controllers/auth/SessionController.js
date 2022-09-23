@@ -8,9 +8,9 @@ export  default class SessionController {
   constructor() {}
    static async create(req, res) {
     const { email, senha } = req.body
-    const service= new ListUsuarioService();
-    const serviceUpdate= new updateUsuarioService();
-    const usuario =await service.listUserSessao(email, senha)
+    const service = new ListUsuarioService();
+    const serviceUpdate = new updateUsuarioService();
+    const usuario = await service.listUserSessao(email, senha)
 
 
   if(!usuario) {
@@ -25,7 +25,7 @@ export  default class SessionController {
     const token=jwt.sign({ idUsuario }, process.env.JWT_PRIVATE_KEY, {
       expiresIn: '1d'});
       
-    const gravaTokenSessao=await serviceUpdate.updateSessaoUsuario(idUsuario,email,token);
+    await serviceUpdate.updateSessaoUsuario(idUsuario,email,token);
   
     return res.json({
       usuario: {

@@ -2,12 +2,13 @@ import Router from 'express';
 
 // importando validações
 import juizValidator from '../middlewares/JuizValidator';
+
 //importando controllers para Juízes
 import CreateJuizController from '../app/controllers/Juizes/CreateJuizController';
 import ListJuizController from '../app/controllers/Juizes/ListJuizController';
 import UpdateJuizController from '../app/controllers/Juizes/UpdateJuizController';
 import DeleteJuizController from '../app/controllers/Juizes/DeleteJuizController';
-import JuizValidator from '../middlewares/JuizValidator';
+import juizValidator from '../middlewares/JuizValidator';
 
 // instanciando objetos do crud de Juízes
 const createJuizController = new CreateJuizController();

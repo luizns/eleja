@@ -5,8 +5,10 @@ export default class ListTipoUsuarioService {
 
     async listAll() {
         try {
-            const tipos = await TipoUsuarioModel.findAll()
-            return tipos
+
+            const tipos = await TipoUsuarioModel.findAll();
+            
+            return tipos;
         } catch (error) {
             console.log(error);
             return { erro: error.message };

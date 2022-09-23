@@ -8,7 +8,7 @@ import CreateUsuarioController from '../app/controllers/Usuarios/CreateUsuarioCo
 import ListAllUsuarioController from '../app/controllers/Usuarios/ListAllUsuarioController';
 import UpdateUsuarioController from '../app/controllers/Usuarios/UpdateUsuarioController';
 import DeleteUsuarioController from '../app/controllers/Usuarios/DeleteUsuarioController';
-import UsuarioValidator from '../middlewares/UsuarioValidator';
+import usuarioValidator from '../middlewares/UsuarioValidator';
 
 // instanciando objetos do crud de usuários
 const createUsuarioController = new CreateUsuarioController();
@@ -21,9 +21,9 @@ const routesUsuario = new Router();
 // Rota para usuários
 routesUsuario.get('/usuarios', (req, res) => listAllUsuarioController.listAll(req, res));
 
-routesUsuario.post('/usuarios', UsuarioValidator, (req,res) => createUsuarioController.create(req, res));
+routesUsuario.post('/usuarios', usuarioValidator, (req,res) => createUsuarioController.create(req, res));
 
-routesUsuario.put('/usuarios/:idUsuario', UsuarioValidator, (req, res) => updateUsuarioController.update(req, res));
+routesUsuario.put('/usuarios/:idUsuario', usuarioValidator, (req, res) => updateUsuarioController.update(req, res));
 
 routesUsuario.delete('/usuarios/:idUsuario', (req, res) => deleteUsuarioController.delete(req, res));
 

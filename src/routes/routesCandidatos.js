@@ -14,7 +14,7 @@ import CreateCandidatoController from '../app/controllers/Candidatos/CreateCandi
 import ListCandidatosController from '../app/controllers/Candidatos/ListCandidatoController';
 import UpdateCandidatoController from '../app/controllers/Candidatos/UpdateCandidatoController';
 import DeleteCandidatoController from '../app/controllers/Candidatos/DeleteCandidatoController';
-import CandidatoValidator from '../middlewares/CandidatoValidator';
+import candidatoValidator from '../middlewares/CandidatoValidator';
 
 // instanciando objetos do crud de Candidato
 const createCandidatoController = new CreateCandidatoController();

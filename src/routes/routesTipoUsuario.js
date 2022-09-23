@@ -15,11 +15,11 @@ const listAllTipoUsuarioController = new ListAllTipoUsuarioController();
 const routes = new Router();
 
 // Rotas para TipoUsuario
-routes.post('/tipoUsuarios', (req, res) =>
-    createTipoUsuarioController.create(req, res)
-);
 routes.get('/tipoUsuarios', (req, res) =>
     listAllTipoUsuarioController.listAll(req, res)
+);
+routes.post('/tipoUsuarios', (req, res) =>
+    createTipoUsuarioController.create(req, res)
 );
 routes.put('/tipoUsuarios/:id',  (req, res) =>
     updateTipoUsuarioController.update(req, res)

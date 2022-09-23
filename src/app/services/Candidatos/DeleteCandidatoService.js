@@ -1,4 +1,5 @@
 import CandidatoModel from "../../models/Candidatos/CandidatoModel";
+
 export default class DeleteCandidatoService {
   constructor() {}
 

@@ -13,8 +13,6 @@ export default class UpdateCandidatoService {
     try {
       const candidato = await CandidatoModel.findByPk(idCandidato);
 
-      console.log("id", candidato)
-
       if (!candidato) {
         return { mensagem: "Candidato não localizado com id: " + idCandidato };
       }

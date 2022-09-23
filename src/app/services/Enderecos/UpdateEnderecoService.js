@@ -1,6 +1,9 @@
 import EnderecoModel from "../../models/Enderecos/EnderecoEleitorModel";
+
 export default class UpdateEnderecoService {
+
   constructor() {}
+
   async update(
     idEndereco,
     rua,
@@ -8,9 +11,9 @@ export default class UpdateEnderecoService {
     numero,
     cidade,
     cep,
-    uf,
-    
-  ) {
+    uf, 
+  ) 
+  {
     try {
       const endereco = await EnderecoModel.findByPk(idEndereco);
 
