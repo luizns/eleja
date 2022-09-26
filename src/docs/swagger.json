@@ -2,12 +2,14 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Eleja API v2",
+    "description": "O objetivo do presente projeto está voltado para o desenvolvimento de uma API que possibilitará o voto eletrônico para as eleições gerais, viabilizando o voto autenticado e direto através da internet. O sistema será acessado via web, através do dispositivo do eleitor que deverá efetuar cadastro prévio no mesmo com os dados devidamente validados nos sistemas do TRE e TSE. O voto eletrônico digital e remoto facilitará o acesso ao exercício do direito máximo à democracia, possibilitando alcance para quem tem dificuldade de locomoção, pessoas acamadas, pessoas que residem em zona rural com limitações físicas, de saúde ou ainda para o eleitor que não quer se abster do conforto de sua casa para exercer o seu direito constitucional",
     "contact": {},
     "version": "1.0"
   },
   "servers": [
     {
-      "url": "http://example.com",
+      "description": "Localhost",
+      "url": "http://localhost:3000",
       "variables": {}
     }
   ],
@@ -17,7 +19,8 @@
         "tags": [
           "Login"
         ],
-        "summary": "login",
+        "summary": "Realizar login na API",
+        "description": "Esta rota é responsável por gerar um token JWT para visualização de rotas protegidas",
         "operationId": "login",
         "parameters": [],
         "requestBody": {
@@ -25,30 +28,42 @@
           "content": {
             "application/json": {
               "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/loginrequest"
-                  },
-                  {
-                    "example": {
-                      "email": "usuarioexemplo@exemplo.com",
-                      "senha": "123456"
-                    }
-                  }
-                ]
+                "$ref": "#/components/schemas/loginrequest"
               },
-              "example": {
-                "email": "usuarioexemplo@exemplo.com",
-                "senha": "123456"
+              "examples": {
+                "loginsucess": {
+                  "value": {
+                    "email": "usuarioexemplo@exemplo.com",
+                    "senha": "123456"
+                  }
+                }
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
-            "description": "",
-            "headers": {}
+            "description": "Login realizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/loginresponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados inválidos / Usuário não encontrado",
+            "content": {
+              "application/json": {
+                "value": {
+                  "error": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
           }
         },
         "deprecated": false
@@ -1356,6 +1371,17 @@
         "example": {
           "email": "usuarioexemplo@exemplo.com",
           "senha": "123456"
+        }
+      },
+      "loginresponse": {
+        "type": "object",
+        "properties": {
+          "usuario": {
+            "type": "object"
+          },
+          "token": {
+            "type": "string"
+          }
         }
       },
       "CriarTipodeUsuarioRequest": {

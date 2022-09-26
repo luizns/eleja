@@ -23,6 +23,7 @@ class App {
     this.server = express();
     this.initializeDatabase();
     this.middlewares();
+    this.routesDocs();
     this.routesSession();
     this.routesUsuarios();
     this.routesJuizes();
@@ -32,7 +33,6 @@ class App {
     this.routesEnderecos();
     this.routesZonas();
     this.routesTipoUsuario();
-    this.routesDocs();
     this.routesRegistraVoto();
     this.routesApuracao();
   }
