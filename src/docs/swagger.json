@@ -28,21 +28,15 @@
           "content": {
             "application/json": {
               "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/loginrequest"
-                  },
-                  {
-                    "example": {
-                      "email": "usuarioexemplo@exemplo.com",
-                      "senha": "123456"
-                    }
-                  }
-                ]
+                "$ref": "#/components/schemas/loginrequest"
               },
-              "example": {
-                "email": "usuarioexemplo@exemplo.com",
-                "senha": "123456"
+              "exemples": {
+                "loginsucess": {
+                  "value": {
+                    "email": "usuarioexemplo@exemplo.com",
+                    "senha": "123456"
+                  }
+                }
               }
             }
           }
