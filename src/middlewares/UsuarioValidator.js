@@ -9,7 +9,8 @@ async function usuarioValidator(request, response, next) {
             .required("Nome é obrigatório."),
         email: yup
             .string()
-            .required("E-mail é obrigatório."),
+            .required("E-mail é obrigatório.")
+            .email(),
         senha: yup
             .string()
             .strict()

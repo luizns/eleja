@@ -32,14 +32,14 @@
                   {
                     "example": {
                       "email": "usuarioexemplo@exemplo.com",
-                      "senha": "123456"
+                      "senha": "12345678"
                     }
                   }
                 ]
               },
               "example": {
                 "email": "usuarioexemplo@exemplo.com",
-                "senha": "123456"
+                "senha": "12345678"
               }
             }
           },

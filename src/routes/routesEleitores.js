@@ -22,7 +22,7 @@ const routesEleitor = new Router();
 
 routesEleitor.get('/eleitores', (req, res) => listEleitorController.index(req, res));
 
-routesEleitor.post('/eleitores',  (req,res) => createEleitorController.create(req, res));
+routesEleitor.post('/eleitores',  eleitorValidator, (req,res) => createEleitorController.create(req, res));
 
 routesEleitor.put('/eleitores/:idEleitor',  eleitorValidator, (req, res) => updateEleitorController.update(req, res));
 
