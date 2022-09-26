@@ -7,7 +7,7 @@ async function juizValidator(request, response, next) {
             .required("O identificado do usuário  é obrigatório."),        
         matricula: yup
             .string()
-            .required("A matrícula é obrigatória.")        
+            .required("A matrícula é obrigatória.")
     });
     try{
         await schema.validate(request.body)

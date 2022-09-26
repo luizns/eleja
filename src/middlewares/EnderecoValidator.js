@@ -16,7 +16,10 @@ async function enderecoValidator(request, response, next) {
             .required("Cidade é obrigatório."),
         cep: yup
             .string()
-            .required("Cep é obrigatório."),
+            .required("CEP é obrigatório.")
+            .min(8, "Favor inserir no mínimo 8 dígitos")
+            .max(8, "Favor inserir no máximo 8 dígitos")
+            .matches(/^([0-9]$)/, "Favor inserir somente números para CEP!"),
 
     });
 
