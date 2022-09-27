@@ -228,7 +228,6 @@
         "tags": [
           "Usuarios"
         ],
-        "security": [{ "bearerAuth": [] }],
         "summary": "Criar Usuario",
         "operationId": "CriarUsuario",
         "parameters": [],
@@ -371,9 +370,7 @@
           }
         },
         "deprecated": false
-      }
-    },
-    "/usuarios/{usuario_id}/eleitores": {
+      },
       "post": {
         "tags": [
           "Eleitores"
