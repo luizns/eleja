@@ -22,6 +22,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      token_sessao:{
+        type:Sequelize.STRING,
+        allowNull:true,
+        unique:false,
+      },
       id_tipo_usuario: {
         type: Sequelize.UUID,
         allowNull: false,

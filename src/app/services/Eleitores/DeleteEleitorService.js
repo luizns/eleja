@@ -1,4 +1,5 @@
 import EleitorModel from "../../models/Eleitores/EleitorModel";
+
 export default class DeleteEleitorService {
   constructor() {}
 

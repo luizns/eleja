@@ -29,6 +29,10 @@ module.exports = {
         type: Sequelize.STRING({ length: 10 }),
         allowNull: false,
       },
+      uf: {
+        type: Sequelize.STRING({ length: 2 }),
+        allowNull: false,
+      },
       id_eleitor: {
         type: Sequelize.UUID,
         allowNull: false,

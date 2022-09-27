@@ -1,4 +1,6 @@
 import UsuarioModel from "../../models/Usuarios/UsuarioModel";
+import HashPassword from "../../utils/HashPassword";
+const { Op } = require("sequelize");
 
 export default class UpdateUsuarioService {
   constructor() {}
@@ -10,12 +12,12 @@ export default class UpdateUsuarioService {
       if (!usuario) {
         return { mensagem: "Usuário não localizado com id: " + idUsuario };
       }
-
+      const hashedPassword = HashPassword.hash(senha);
       const [numeroRegistrosAtualizado] = await UsuarioModel.update(
         {
           nome,
           email,
-          senha,
+          senha: hashedPassword,
           id_tipo_usuario,
         },
 
@@ -37,6 +39,28 @@ export default class UpdateUsuarioService {
         };
       }
     } catch (error) {
+      console.log(error);
+      return { erro: error.message };
+    }
+  }
+
+  async updateSessaoUsuario(idUsuario, email, token) {
+    try {
+
+      await UsuarioModel.findByPk(idUsuario);
+
+      await UsuarioModel.update(
+        {
+          token_sessao: token,
+        },
+        {
+          where: {
+            [Op.and]: [{ idUsuario: idUsuario }, { email: email }],
+          },
+        }
+      );
+
+      } catch (error) {
       console.log(error);
       return { erro: error.message };
     }

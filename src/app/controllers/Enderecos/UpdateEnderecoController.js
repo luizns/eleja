@@ -7,7 +7,7 @@ export default class UpdateEnderecoController {
 
   async update(req, res) {
     const { idEndereco } = req.params;
-    const { rua, bairro, numero, cidade, cep, id_eleitor, id_zona } = req.body;
+    const { rua, bairro, numero, cidade, cep,uf } = req.body;
 
     const updatedEndereco = await this.service.update(
       idEndereco,
@@ -16,8 +16,7 @@ export default class UpdateEnderecoController {
       numero,
       cidade,
       cep,
-      id_eleitor,
-      id_zona
+      uf,
     );
 
     res.json(updatedEndereco);

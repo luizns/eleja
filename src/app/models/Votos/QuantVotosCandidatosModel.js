@@ -1,10 +1,10 @@
 import Sequelize, { Model, Sequelize } from "sequelize";
 import databaseConfig from "../../../config/database";
-import CandidatoModel from "../Candidatos/CandidatoModel";
+import CandidatoModel  from "../../models/Candidatos/CandidatoModel"
 
 const sequelize = new Sequelize(databaseConfig);
 
-export default class QuantidadeVotosCandidatosModel extends Model { }
+class QuantidadeVotosCandidatosModel extends Model {}
 
 QuantidadeVotosCandidatosModel.init(
   {
@@ -12,18 +12,32 @@ QuantidadeVotosCandidatosModel.init(
       type: Sequelize.UUIDV4(),
       primaryKey: true
     },
-    dataHora: Sequelize.DATE,
-    candidato_id: {
-      type: Sequelize.UUID,
+    hora_voto:Sequelize.STRING,
+    data_voto: Sequelize.STRING,
+    id_candidato_voto: {
+      type: Sequelize.STRING,
+      allowNull: true,
       references: {
         model: CandidatoModel,
-        key: "idCandidato"
-      }
+        key: 'idCandidato',
+      },
+    },
+    branco_nulo:{
+      type:Sequelize.ENUM,
+      values:['branco','nulo']
     }
-  },
+   },
   {
     sequelize,
     modelName: "quant_votos_candidatos",
-    timestamps: true
+    timestamps: false,
+    constraints: false
   }
 );
+  
+QuantidadeVotosCandidatosModel.belongsTo(CandidatoModel,{through:CandidatoModel,
+  as: "candidatos",
+  foreignKey: "id_candidato_voto"})
+
+
+export default QuantidadeVotosCandidatosModel;

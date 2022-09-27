@@ -15,6 +15,7 @@ export default class CreateEnderecoController {
             numero,
             cidade,
             cep,
+            uf,
             id_eleitor,
             id_zona
         } = req.body;
@@ -26,6 +27,7 @@ export default class CreateEnderecoController {
             numero,
             cidade,
             cep,
+            uf,
             id_eleitor,
             id_zona
         );

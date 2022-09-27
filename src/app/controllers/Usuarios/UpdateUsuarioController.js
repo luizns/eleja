@@ -19,4 +19,15 @@ export default class UpdateUsuarioController {
 
     res.json(updatedUsuario);
   }
+
+  async updateUsuarioSessao(idUsuario,email,token) {
+    
+    const updatedUsuario = await this.service.updateSessaoUsuario(
+      idUsuario,
+      email,
+      token,
+    );
+
+    res.json(updatedUsuario);
+  }
 }

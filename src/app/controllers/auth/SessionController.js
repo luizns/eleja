@@ -1,34 +1,42 @@
 import jwt from 'jsonwebtoken';
 
-import ListUserService from '../../services/Users/ListUserService';
+import ListUsuarioService from '../../services/Usuarios/ListUsuarioService';
+import updateUsuarioService from '../../services/Usuarios/UpdateUsuarioService';
+import HashPassword from '../../utils/HashPassword';
 
-export default class SessionController { 
-  constructor() {
-    this.service = new ListUserService();
-  }
+export  default class SessionController { 
+  constructor() {}
 
-  static create(request, response) {
-    const { email, password } = request.body
+  async create(req, res) {
+    const { email, senha } = req.body
+    const service = new ListUsuarioService();
+    const serviceUpdate = new updateUsuarioService();
+    const usuario = await service.listUserSessao(email, senha)
 
-    const user = this.service.FindUser(email, password)
 
-
-  if(!user) {
-      return response.status(401).json({error: 'Trainer not found'})
+  if(!usuario) {
+      return res.status(401).json({error: 'Usuário não encontrado'})
     }
-
-    const {id, name} = trainer;
-
-    return response.json({
-      trainer: {
-        id,
-        name,
-        email
-      },
-      token: jwt.sign({ id }, 'a07bda8fd5e39462b4c3d860a36f6b4d', {
-        expiresIn: '5d'
-      })
+    const ehSenhaValida= HashPassword.validate(senha,usuario.senha)
+    
+    if (!ehSenhaValida) {
+      return res.status(401).json({ error: "Atenção a senha é inválida" });
+    }
+    const {idUsuario, nome} = usuario;
+    const token=jwt.sign({ idUsuario }, process.env.JWT_PRIVATE_KEY, {
+      expiresIn: '1d'});
+      
+    await serviceUpdate.updateSessaoUsuario(idUsuario,email,token);
+  
+    return res.json({
+      usuario: {
+        idUsuario,
+        nome,
+        email,
+        token
+      }
     })
   }
-};
+}
+
 

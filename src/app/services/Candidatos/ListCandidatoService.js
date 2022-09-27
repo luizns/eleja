@@ -10,7 +10,9 @@ export default class ListCandidatosService {
         }
 
         const candidatos = await CandidatoModel.findAll();
+
         return candidatos;
+
     }catch(error){
             console.log(error);
             return{ erro: error.message };
@@ -27,6 +29,7 @@ export default class ListCandidatosService {
                 }
                 
                 return candidato;
+                
         }catch(error){
             console.log(error);
             return{ erro: error.message };
