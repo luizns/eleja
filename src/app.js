@@ -1,17 +1,20 @@
 import express from 'express';
 import db from "./database";
 
-import routesSession from './rotas/routesSession';
-import routesUsuarios from './rotas/routesUsuarios';
-import routesJuizes from './rotas/routesJuizes';
-import routesCandidatos from './rotas/routesCandidatos';
-import routesPartidos from './rotas/routesPartidos';
-import routesEleitores from './rotas/routesEleitores';
-import routesEnderecos from './rotas/routesEnderecos';
-import routesZonas from './rotas/routesZonas';
-import routesVotos from './rotas/routesVotos';
-import routesTipoUsuario from './rotas/routesTipoUsuario';
+import routesSession from './routes/routesSession';
+import routesUsuarios from './routes/routesUsuarios';
+import routesJuizes from './routes/routesJuizes';
+import routesCandidatos from './routes/routesCandidatos';
+import routesPartidos from './routes/routesPartidos';
+import routesEleitores from './routes/routesEleitores';
+import routesEnderecos from './routes/routesEnderecos';
+import routesZonas from './routes/routesZonas';
+import routesTipoUsuario from './routes/routesTipoUsuario';
+import routesDocs from './routes/routesDocs';
 import tokenSessaoValidation from './middlewares/TokenSessaoValidation';
+import routesRegistraVoto from './routes/routesRegistraVoto';
+import routesApuracao from './routes/routesApuracao';
+
 
 
 class App {
@@ -20,6 +23,7 @@ class App {
     this.server = express();
     this.initializeDatabase();
     this.middlewares();
+    this.routesDocs();
     this.routesSession();
     this.routesUsuarios();
     this.routesJuizes();
@@ -28,8 +32,9 @@ class App {
     this.routesEleitores();
     this.routesEnderecos();
     this.routesZonas();
-    this.routesVotos();
     this.routesTipoUsuario();
+    this.routesRegistraVoto();
+    this.routesApuracao();
   }
 
   routesSession() {
@@ -42,43 +47,48 @@ class App {
   }
 
 
-  routesUsuarios() {
-    this.server.use(routesUsuarios);
-  }
+    routesUsuarios() {
+        this.server.use(routesUsuarios);
+    }
 
-  routesTipoUsuario() {
-    this.server.use(routesTipoUsuario);
-  }
+    routesTipoUsuario() {
+        this.server.use(routesTipoUsuario);
+    }
 
-  routesJuizes() {
-    this.server.use(routesJuizes);
-  }
+    routesJuizes() {
+        this.server.use(routesJuizes);
+    }
 
-  routesCandidatos() {
-    this.server.use(routesCandidatos);
-  }
+    routesCandidatos() {
+        this.server.use(routesCandidatos);
+    }
 
-  routesPartidos() {
-    this.server.use(routesPartidos);
-  }
+    routesPartidos() {
+        this.server.use(routesPartidos);
+    }
 
-  routesEleitores() {
-    this.server.use(routesEleitores);
-  }
+    routesEleitores() {
+        this.server.use(routesEleitores);
+    }
 
-  routesEnderecos() {
-    this.server.use(routesEnderecos);
-  }
+    routesEnderecos() {
+        this.server.use(routesEnderecos);
+    }
 
-  routesZonas() {
-    this.server.use(routesZonas);
-  }
+    routesZonas() {
+      this.server.use(routesZonas);
+    }
 
-  routesVotos() {
-    this.server.use(routesVotos);
-  }
-
-
+    routesDocs() {
+      this.server.use(routesDocs);
+    }
+    routesRegistraVoto() {
+      this.server.use(routesRegistraVoto);
+    }
+    routesApuracao(){
+      this.server.use(routesApuracao);
+    }
+  
   async initializeDatabase() {
     try {
       await db.authenticate();

@@ -13,7 +13,7 @@ export default class CreatePartidoService {
         numero_legenda
     });
       return newPartido;
-      console.log(newPartido)
+      
     } catch (error) {
       console.log(error);
       return { erro: error.message };

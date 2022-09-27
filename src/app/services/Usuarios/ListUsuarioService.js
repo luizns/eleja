@@ -65,12 +65,11 @@ export default class ListUsuarioService {
         },
       });
          
-      return usuario.get('token_sessao');
-     
-            
+      return usuario.get('token_sessao');    
+         
     } catch (error) {
-      //console.log(error);
-      //return { erro: error.message };
+      console.log(error);
+      return { erro: error.message };
     }
   }
 }

@@ -46,14 +46,13 @@ export default class UpdateUsuarioService {
 
   async updateSessaoUsuario(idUsuario, email, token) {
     try {
-      console.log("aqui")
-      const usuario = await UsuarioModel.findByPk(idUsuario);
+
+      await UsuarioModel.findByPk(idUsuario);
 
       await UsuarioModel.update(
         {
           token_sessao: token,
         },
-
         {
           where: {
             [Op.and]: [{ idUsuario: idUsuario }, { email: email }],

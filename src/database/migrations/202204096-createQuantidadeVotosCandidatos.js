@@ -10,24 +10,28 @@ module.exports = {
         primaryKey: true,
       },
       hora_voto: {
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.fn('now')
+        type: Sequelize.STRING,
+        allowNull: true,
+        defaultValue: Sequelize.literal('null')
       },
       data_voto: {
-        type: Sequelize.DATEONLY,
-        allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        type: Sequelize.STRING,
+        allowNull: true,
+        defaultValue: Sequelize.literal('null')
       },
       id_candidato_voto: {
         type: Sequelize.UUID,
-        allowNull: false,
+        allowNull: true,
         references: {
           model: {
             tableName: "candidatos",
           },
           key: "idCandidato",
         },
+      },
+      branco_nulo:{
+        type:Sequelize.ENUM,
+        values:['branco','nulo']
       },
    });
   },

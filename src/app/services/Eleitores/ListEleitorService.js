@@ -8,13 +8,17 @@ export default class ListEleitorService {
       if (cpfEleitor) {
         return await this.listOne(cpfEleitor);
       }
+
       const eleitores = await EleitorModel.findAll();
+
       return eleitores;
+
     } catch (error) {
       console.log(error);
       return { erro: error.message };
     }
   }
+  
   async listOne(cpfEleitor) {
     try {
       const eleitor = await EleitorModel.findOne({

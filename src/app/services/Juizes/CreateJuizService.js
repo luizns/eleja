@@ -6,8 +6,11 @@ export default class CreateJuizService {
 
   async create(idJuiz, matricula,id_usuario) {
     try {
+
       const newJuiz = await JuizModel.create({ idJuiz: v4(), matricula ,id_usuario});
+
       return newJuiz;
+      
     } catch (error) {
       console.log(error);
       return { erro: error.message };
