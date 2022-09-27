@@ -25,6 +25,7 @@ class App {
     this.middlewares();
     this.routesDocs();
     this.routesUsuarios();
+    this.routesTipoUsuario();
     this.routesSession();
     this.routesJuizes();
     this.routesCandidatos();
@@ -32,7 +33,6 @@ class App {
     this.routesEleitores();
     this.routesEnderecos();
     this.routesZonas();
-    this.routesTipoUsuario();
     this.routesRegistraVoto();
     this.routesApuracao();
   }
