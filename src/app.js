@@ -14,6 +14,7 @@ import routesDocs from './routes/routesDocs';
 import tokenSessaoValidation from './middlewares/TokenSessaoValidation';
 import routesRegistraVoto from './routes/routesRegistraVoto';
 import routesApuracao from './routes/routesApuracao';
+import routesInicializacao from "./routes/routesInicializacao";
 
 
 
@@ -35,6 +36,7 @@ class App {
     this.routesTipoUsuario();
     this.routesRegistraVoto();
     this.routesApuracao();
+    this.routesInicializacao();
   }
 
   routesSession() {
@@ -87,6 +89,9 @@ class App {
     }
     routesApuracao(){
       this.server.use(routesApuracao);
+    }
+    routesInicializacao(){
+      this.server.use(routesInicializacao);
     }
   
   async initializeDatabase() {
