@@ -19,7 +19,7 @@ async function enderecoValidator(request, response, next) {
             .required("CEP é obrigatório.")
             .min(8, "Favor inserir no mínimo 8 dígitos")
             .max(8, "Favor inserir no máximo 8 dígitos")
-            .matches(/^([0-9]$)/, "Favor inserir somente números para CEP!"),
+            .matches(/^([0-9]{8}$)/, "Favor inserir somente números para CEP!"),
 
     });
 

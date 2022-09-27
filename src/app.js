@@ -37,6 +37,10 @@ class App {
     this.routesApuracao();
   }
 
+  routesUsuarios() {
+    this.server.use(routesUsuarios);
+  }
+
   routesSession(){
     this.server.use(routesSession);
     this.server.use(tokenSessaoValidation)
@@ -47,9 +51,9 @@ class App {
   }
 
 
-    routesUsuarios() {
-        this.server.use(routesUsuarios);
-    }
+    // routesUsuarios() {
+    //     this.server.use(routesUsuarios);
+    // }
 
     routesTipoUsuario() {
         this.server.use(routesTipoUsuario);
