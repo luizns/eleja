@@ -24,8 +24,8 @@ class App {
     this.initializeDatabase();
     this.middlewares();
     this.routesDocs();
-    this.routesSession();
     this.routesUsuarios();
+    this.routesSession();
     this.routesJuizes();
     this.routesCandidatos();
     this.routesPartidos();
