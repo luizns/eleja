@@ -1131,9 +1131,7 @@
           }
         },
         "deprecated": false
-      }
-    },
-    "/usuarios/{usuario_id}/juizes/{juiz_eleitoral_id}/candidatos": {
+      },
       "post": {
         "tags": [
           "Candidatos"
