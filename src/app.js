@@ -26,6 +26,7 @@ class App {
     this.routesDocs();
     this.routesUsuarios();
     this.routesInicializacao();
+    this.routesTipoUsuario();
     this.routesSession();
     this.routesJuizes();
     this.routesCandidatos();
@@ -33,7 +34,6 @@ class App {
     this.routesEleitores();
     this.routesEnderecos();
     this.routesZonas();
-    this.routesTipoUsuario();
     this.routesRegistraVoto();
     this.routesApuracao();
   }
@@ -56,6 +56,9 @@ class App {
   routesTipoUsuario() {
     this.server.use(routesTipoUsuario);
   }
+    routesTipoUsuario() {
+        this.server.use(routesTipoUsuario);
+    }
 
   routesJuizes() {
     this.server.use(routesJuizes);
