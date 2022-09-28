@@ -868,27 +868,14 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Listar Juiz pela Matricula",
-        "operationId": "ListarJuizpelaMatricula",
-        "parameters": [
-          {
-            "name": "matricula",
-            "in": "query",
-            "description": "",
-            "required": true,
-            "style": "form",
-            "explode": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "example": 1385
-            }
-          }
-        ],
+        "summary": "Listar Juizes Eleitoral",
         "responses": {
           "200": {
-            "description": "",
+            "description": "Juiz Listado com sucesso!",
             "headers": {}
+          },
+          "400": {
+            "description": "Juiz não encontrado!"
           }
         },
         "deprecated": false

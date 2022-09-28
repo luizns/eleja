@@ -103,8 +103,9 @@ src\
  |--\app\controllers\    # Controllers
  |--\app\models\         # Mongoose models
  |--\app\services\       # Business logic
+ |--\database\index.js   # Database migration
+ |--docs\         # Documentation
  |--middlewares\    # Custom express middlewares
- |--\database\index.js   # 
  |--routes\         # Routes
  |--utils\          # Utility classes and functions
  |--validations\    # Request data validation schemas
@@ -119,7 +120,7 @@ Lista de routes disponíveis:
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Requisi%C3%A7%C3%B5es%20Eleja&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fluizns%2Feleja%2Fdevelop%2FInsomnia_2022-09-03.json)
 
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/23053694-acb08648-90a8-4d16-8588-327951eafc24?action=collection%2Ffork&collection-url=entityId%3D23053694-acb08648-90a8-4d16-8588-327951eafc24%26entityType%3Dcollection%26workspaceId%3Db06d8e7c-c874-4815-9459-a1fc0da74ff3)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/9a37e77930b57f72fa2a?action=collection%2Fimport)
 
 
 Todas as rotas você pode importar para o insomnia ou postman para testá-la!
