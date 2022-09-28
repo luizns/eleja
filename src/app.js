@@ -50,11 +50,6 @@ class App {
     this.server.use(express.json());
   }
 
-
-    // routesUsuarios() {
-    //     this.server.use(routesUsuarios);
-    // }
-
     routesTipoUsuario() {
         this.server.use(routesTipoUsuario);
     }

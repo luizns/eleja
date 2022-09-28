@@ -11,7 +11,8 @@ async function candidatoValidator(request, response, next) {
             .string()
             .required("Número é obrigatória.")
             .min(2, "Número do candidato deve ter no mínimo 2 digítos.")
-            .max(5, "Número do candidato não deve ter mais que 5 digítos."),
+            .max(5, "Número do candidato não deve ter mais que 5 digítos.")
+            .matches(/^[0-9]{2,5}$/, "Número do candidato deve conter de 2 a 5 números e não pode conter letras."),
         id_partido: yup
             .string()
             .required("Id do partido é obrigatório."),
