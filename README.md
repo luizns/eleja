@@ -55,11 +55,18 @@ cp .env.example .env
 
 ## Índice
 
-- [Comandos](#comandos)
-- [Variáveis de Environment](#variáveis-de-environment)
-- [Estrutura do projeto](#estrutura-do-projeto)
-- [API Endpoints](#api-endpoints)
-- [Contribuidores](#contribuidores)
+- [Projeto Integrador](#projeto-integrador)
+  - [<Elej@>](#elej)
+    - [Sobre o projeto](#sobre-o-projeto)
+  - [Manual de Instalação](#manual-de-instalação)
+  - [Índice](#índice)
+  - [Comandos](#comandos)
+  - [Variáveis de Environment](#variáveis-de-environment)
+  - [Estrutura do projeto](#estrutura-do-projeto)
+  - [API Endpoints](#api-endpoints)
+  - [Doc Swagger](#doc-swagger)
+  - [Contribuidores:](#contribuidores)
+- [VOA GRUPO 7 !!!!!](#voa-grupo-7-)
 
 ## Comandos
 
@@ -122,10 +129,15 @@ Lista de routes disponíveis:
 
 Todas as rotas você pode importar para o insomnia ou postman para testá-la!
 
+Também pode utilizar o documento Swagger:
+## Doc Swagger
+[http:localhost:3000/docs](#endereco-swagger)
+
+<br ><br >
 
 ## Contribuidores: 
 
-<br >
+
 Todos os contribuidores do projetos:
 
 <table>
