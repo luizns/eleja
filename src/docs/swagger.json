@@ -8,7 +8,6 @@
   },
   "servers": [
     {
-      "description": "Localhost",
       "url": "http://localhost:3000",
       "variables": {}
     }
@@ -34,7 +33,7 @@
                 "loginsucess": {
                   "value": {
                     "email": "usuarioexemplo@exemplo.com",
-                    "senha": "123456"
+                    "senha": "123456789"
                   }
                 }
               }
@@ -208,6 +207,11 @@
         "tags": [
           "Usuarios"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Listar Usuarios",
         "operationId": "ListarUsuarios",
         "parameters": [],
@@ -239,7 +243,7 @@
                     "example": {
                       "nome": "Usuario Exemplo",
                       "email": "usuarioexemplo@exemplo.com",
-                      "senha": "12345678",
+                      "senha": "123456789",
                       "id_tipo_usuario": "ef6e1211-68ee-4afd-8d54-5ac1e63b1a2f"
                     }
                   }
@@ -248,7 +252,7 @@
               "example": {
                 "nome": "Usuario Exemplo",
                 "email": "usuarioexemplo@exemplo.com",
-                "senha": "12345678",
+                "senha": "123456789",
                 "id_tipo_usuario": "ef6e1211-68ee-4afd-8d54-5ac1e63b1a2f"
               }
             }
@@ -268,6 +272,11 @@
       "put": {
         "tags": [
           "Usuarios"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "summary": "Atualizar Usuario",
         "operationId": "AtualizarUsuario",
@@ -323,6 +332,11 @@
         "tags": [
           "Usuarios"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Deletar Usuario",
         "operationId": "DeletarUsuario",
         "parameters": [
@@ -352,6 +366,11 @@
         "tags": [
           "Eleitores"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Listar dados do eleitores",
         "operationId": "Listardadosdoeleitores",
         "parameters": [],
@@ -362,28 +381,19 @@
           }
         },
         "deprecated": false
-      }
-    },
-    "/usuarios/{usuario_id}/eleitores": {
+      },
       "post": {
         "tags": [
           "Eleitores"
         ],
-        "summary": "Criar dados do Eleitor",
-        "operationId": "CriardadosdoEleitor",
-        "parameters": [
+        "security": [
           {
-            "name": "usuario_id",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "style": "simple",
-            "schema": {
-              "type": "string",
-              "example": "287126fb-8679-4822-b70e-b0760a4f4297"
-            }
+            "bearerAuth": []
           }
         ],
+        "summary": "Criar dados do Eleitor",
+        "operationId": "CriardadosdoEleitor",
+        "parameters": [],
         "requestBody": {
           "description": "",
           "content": {
@@ -421,18 +431,18 @@
             "headers": {}
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/eleitores/{idEleitor}": {
       "put": {
         "tags": [
           "Eleitores"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "summary": "Atualizar dados Eleitor",
         "operationId": "AtualizardadosEleitor",
@@ -492,6 +502,11 @@
         "tags": [
           "Eleitores"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Deletar dados do Eleitor",
         "operationId": "DeletardadosdoEleitor",
         "parameters": [
@@ -520,6 +535,11 @@
       "get": {
         "tags": [
           "Endereco dos Eleitores"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "summary": "Listar endereços do eleitores",
         "operationId": "Listarendereçosdoeleitores",
@@ -586,6 +606,11 @@
         "tags": [
           "Endereco dos Eleitores"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Atualizar endereço do Eleitor",
         "operationId": "AtualizarendereçodoEleitor",
         "parameters": [
@@ -646,6 +671,11 @@
         "tags": [
           "Endereco dos Eleitores"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Deletar endereco do Eleitor",
         "operationId": "DeletarenderecodoEleitor",
         "parameters": [
@@ -675,6 +705,11 @@
         "tags": [
           "Zonas"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Listar Zonas",
         "operationId": "ListarZonas",
         "parameters": [],
@@ -689,6 +724,11 @@
       "post": {
         "tags": [
           "Zonas"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "summary": "Criar Zonas",
         "operationId": "CriarZonas",
@@ -731,6 +771,11 @@
       "put": {
         "tags": [
           "Zonas"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "summary": "Atualizar Zona",
         "operationId": "AtualizarZona",
@@ -784,6 +829,11 @@
         "tags": [
           "Zonas"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Deletar Zona",
         "operationId": "DeletarZona",
         "parameters": [
@@ -813,27 +863,19 @@
         "tags": [
           "Juiz Eleitoral"
         ],
-        "summary": "Listar Juiz pela Matricula",
-        "operationId": "ListarJuizpelaMatricula",
-        "parameters": [
+        "security": [
           {
-            "name": "matricula",
-            "in": "query",
-            "description": "",
-            "required": true,
-            "style": "form",
-            "explode": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "example": 1385
-            }
+            "bearerAuth": []
           }
         ],
+        "summary": "Listar Juizes Eleitoral",
         "responses": {
           "200": {
-            "description": "",
+            "description": "Juiz Listado com sucesso!",
             "headers": {}
+          },
+          "400": {
+            "description": "Juiz não encontrado!"
           }
         },
         "deprecated": false
@@ -841,6 +883,11 @@
       "post": {
         "tags": [
           "Juiz Eleitoral"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "summary": "Criar dados do Juiz Eleitoral",
         "operationId": "CriardadosdoJuizEleitoral",
@@ -874,18 +921,18 @@
             "headers": {}
           }
         },
-        "deprecated": false,
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
+        "deprecated": false
       }
     },
     "/juizes/{idJuiz}": {
       "put": {
         "tags": [
           "Juiz Eleitoral"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "summary": "Atualizar dados do Juiz",
         "operationId": "AtualizardadosdoJuiz",
@@ -937,6 +984,11 @@
         "tags": [
           "Juiz Eleitoral"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Deletar dados do Juiz",
         "operationId": "DeletardadosdoJuiz",
         "parameters": [
@@ -966,6 +1018,11 @@
         "tags": [
           "Partidos"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Listar partidos",
         "operationId": "Listarpartidos",
         "parameters": [],
@@ -980,6 +1037,11 @@
       "post": {
         "tags": [
           "Partidos"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "summary": "Criar partido",
         "operationId": "Criarpartido",
@@ -1024,6 +1086,11 @@
       "put": {
         "tags": [
           "Partidos"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "summary": "Atualizar  Partidos",
         "operationId": "AtualizarPartidos",
@@ -1079,6 +1146,11 @@
         "tags": [
           "Partidos"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Deletar Partidos",
         "operationId": "DeletarPartidos",
         "parameters": [
@@ -1108,6 +1180,11 @@
         "tags": [
           "Candidatos"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Listar Candidatos",
         "operationId": "ListarCandidatos",
         "parameters": [],
@@ -1118,39 +1195,19 @@
           }
         },
         "deprecated": false
-      }
-    },
-    "/usuarios/{usuario_id}/juizes/{juiz_eleitoral_id}/candidatos": {
+      },
       "post": {
         "tags": [
           "Candidatos"
         ],
-        "summary": "Criar Candidato",
-        "operationId": "CriarCandidato",
-        "parameters": [
+        "security": [
           {
-            "name": "usuario_id",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "style": "simple",
-            "schema": {
-              "type": "string",
-              "example": "null"
-            }
-          },
-          {
-            "name": "juiz_eleitoral_id",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "style": "simple",
-            "schema": {
-              "type": "string",
-              "example": "null"
-            }
+            "bearerAuth": []
           }
         ],
+        "summary": "Criar Candidato",
+        "operationId": "CriarCandidato",
+        "parameters": [],
         "requestBody": {
           "description": "",
           "content": {
@@ -1194,6 +1251,11 @@
         "tags": [
           "Candidatos"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Adicionar imagem do Candidato",
         "operationId": "AdicionarimagemdoCandidato",
         "parameters": [],
@@ -1210,6 +1272,11 @@
       "put": {
         "tags": [
           "Candidatos"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "summary": "Atualizar Candidatos",
         "operationId": "AtualizarCandidatos",
@@ -1267,6 +1334,11 @@
         "tags": [
           "Candidatos"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Deletar Candidatos",
         "operationId": "DeletarCandidatos",
         "parameters": [
@@ -1295,6 +1367,11 @@
       "post": {
         "tags": [
           "Votos"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
         ],
         "summary": "Criar registro de voto candidato",
         "operationId": "Criarregistrodevotocandidato",
@@ -1338,6 +1415,11 @@
         "tags": [
           "Apuração"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Apuração dos votos",
         "operationId": "Apuraçãodosvotos",
         "parameters": [],
@@ -1348,6 +1430,28 @@
           }
         },
         "deprecated": false
+      }
+    },
+    "/inicializar": {
+      "get": {
+        "tags": [
+          "Inicializar"
+        ],
+        "summary": "Listar votos",
+        "operationId": "Listarvotos",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     }
   },
@@ -1370,7 +1474,7 @@
         },
         "example": {
           "email": "usuarioexemplo@exemplo.com",
-          "senha": "123456"
+          "senha": "123456789"
         }
       },
       "loginresponse": {
@@ -1440,7 +1544,7 @@
         "example": {
           "nome": "Usuario Exemplo",
           "email": "usuarioexemplo@exemplo.com",
-          "senha": "12345678",
+          "senha": "123456789",
           "id_tipo_usuario": "ef6e1211-68ee-4afd-8d54-5ac1e63b1a2f"
         }
       },
@@ -1846,9 +1950,10 @@
       }
     },
     "securitySchemes": {
-      "bearer": {
+      "bearerAuth": {
         "type": "http",
-        "scheme": "bearer"
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   },

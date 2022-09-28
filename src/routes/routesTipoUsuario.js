@@ -5,6 +5,7 @@ import CreateTipoUsuarioController from '../app/controllers/TipoUsuarios/CreateT
 import ListAllTipoUsuarioController from '../app/controllers/TipoUsuarios/ListAllTipoUsuarioController';
 import UpdateTipoUsuarioController from '../app/controllers/TipoUsuarios/UpdateTipoUsuarioController';
 import DeleteTipoUsuarioController from '../app/controllers/TipoUsuarios/DeleteTipoUsuarioController';
+import tokenSessaoValidation from "../middlewares/TokenSessaoValidation";
 
 // instanciando objetos do crud de TipoUsuario
 const createTipoUsuarioController = new CreateTipoUsuarioController();
@@ -18,13 +19,13 @@ const routes = new Router();
 routes.get('/tipoUsuarios', (req, res) =>
     listAllTipoUsuarioController.listAll(req, res)
 );
-routes.post('/tipoUsuarios', (req, res) =>
+routes.post('/tipoUsuarios',tokenSessaoValidation ,(req, res) =>
     createTipoUsuarioController.create(req, res)
 );
-routes.put('/tipoUsuarios/:id',  (req, res) =>
+routes.put('/tipoUsuarios/:id', tokenSessaoValidation ,(req, res) =>
     updateTipoUsuarioController.update(req, res)
 );
-routes.delete('/tipoUsuarios/:id', (req, res) =>
+routes.delete('/tipoUsuarios/:id',tokenSessaoValidation ,(req, res) =>
     deleteTipoUsuarioController.delete(req, res)
 );
 

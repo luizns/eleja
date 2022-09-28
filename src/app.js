@@ -14,30 +14,35 @@ import routesDocs from './routes/routesDocs';
 import tokenSessaoValidation from './middlewares/TokenSessaoValidation';
 import routesRegistraVoto from './routes/routesRegistraVoto';
 import routesApuracao from './routes/routesApuracao';
-
+import routesInicializacao from './routes/routesInicializacao';
 
 
 class App {
-   constructor() {
-    
+  constructor() {
+
     this.server = express();
     this.initializeDatabase();
     this.middlewares();
     this.routesDocs();
-    this.routesSession();
     this.routesUsuarios();
+    this.routesInicializacao();
+    this.routesTipoUsuario();
+    this.routesSession();
     this.routesJuizes();
     this.routesCandidatos();
     this.routesPartidos();
     this.routesEleitores();
     this.routesEnderecos();
     this.routesZonas();
-    this.routesTipoUsuario();
     this.routesRegistraVoto();
     this.routesApuracao();
   }
 
-  routesSession(){
+  routesUsuarios() {
+    this.server.use(routesUsuarios);
+  }
+
+  routesSession() {
     this.server.use(routesSession);
     this.server.use(tokenSessaoValidation)
   }
@@ -47,48 +52,56 @@ class App {
   }
 
 
-    routesUsuarios() {
-        this.server.use(routesUsuarios);
+
+  routesTipoUsuario() {
+    this.server.use(routesTipoUsuario);
+  }
+    routesTipoUsuario() {
+        this.server.use(routesTipoUsuario);
     }
 
     routesTipoUsuario() {
         this.server.use(routesTipoUsuario);
     }
 
-    routesJuizes() {
-        this.server.use(routesJuizes);
-    }
+  routesJuizes() {
+    this.server.use(routesJuizes);
+  }
 
-    routesCandidatos() {
-        this.server.use(routesCandidatos);
-    }
+  routesCandidatos() {
+    this.server.use(routesCandidatos);
+  }
 
-    routesPartidos() {
-        this.server.use(routesPartidos);
-    }
+  routesPartidos() {
+    this.server.use(routesPartidos);
+  }
 
-    routesEleitores() {
-        this.server.use(routesEleitores);
-    }
+  routesEleitores() {
+    this.server.use(routesEleitores);
+  }
 
-    routesEnderecos() {
-        this.server.use(routesEnderecos);
-    }
+  routesEnderecos() {
+    this.server.use(routesEnderecos);
+  }
 
-    routesZonas() {
-      this.server.use(routesZonas);
-    }
+  routesZonas() {
+    this.server.use(routesZonas);
+  }
 
-    routesDocs() {
-      this.server.use(routesDocs);
-    }
-    routesRegistraVoto() {
-      this.server.use(routesRegistraVoto);
-    }
-    routesApuracao(){
-      this.server.use(routesApuracao);
-    }
-  
+  routesDocs() {
+    this.server.use(routesDocs);
+  }
+  routesRegistraVoto() {
+    this.server.use(routesRegistraVoto);
+  }
+  routesApuracao() {
+    this.server.use(routesApuracao);
+  }
+
+  routesInicializacao() {
+    this.server.use(routesInicializacao);
+  }
+
   async initializeDatabase() {
     try {
       await db.authenticate();

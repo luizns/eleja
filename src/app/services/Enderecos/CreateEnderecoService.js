@@ -11,6 +11,7 @@ export default class CreateEnderecoService {
         numero,
         cidade,
         cep,
+        uf,
         id_eleitor,
         id_zona
         ) {
@@ -22,6 +23,7 @@ export default class CreateEnderecoService {
                 numero,
                 cidade,
                 cep,
+                uf,
                 id_eleitor,
                 id_zona
             });
