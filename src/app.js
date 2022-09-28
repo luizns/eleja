@@ -60,6 +60,10 @@ class App {
         this.server.use(routesTipoUsuario);
     }
 
+    routesTipoUsuario() {
+        this.server.use(routesTipoUsuario);
+    }
+
   routesJuizes() {
     this.server.use(routesJuizes);
   }
