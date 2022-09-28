@@ -3,13 +3,11 @@ import { Sequelize, QueryTypes } from "sequelize";
 
 const sequelize = new Sequelize(databaseConfig);
 
-const resultado = [];
-
 export default class ApuracaoService {
 
     constructor() { }
 
-    async index() {
+    async index(req, res) {
         try {
             const apuracao = 'select nome_candidato, numero_candidato, count(id_candidato_voto) as total_votos, round((count(*) / (select count(*) from quant_votos_candidatos)*100),2) as percentual from candidatos inner join quant_votos_candidatos on idcandidato = id_candidato_voto group by numero_candidato order by total_votos desc;';
 
@@ -23,10 +21,8 @@ export default class ApuracaoService {
                 query: apuracaoBranco
             }, { type: QueryTypes.SELECT });
 
-            resultado.push(get);
-            resultado.push(getBranco);
 
-            return resultado;
+            return [get, getBranco];
 
         } catch (error) {
             return { erro: error.message };
